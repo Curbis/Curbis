@@ -7,6 +7,10 @@ const router = express.Router();
 // GET / => localhost:PORT/
 router.get('/', controller.main);
 
+router.get('/groupCreate', controller.getGroupCreate);
+
+router.get('/register', controller.getRegister);
+
 // // GET /visitor => localhost:PORT/visitor
 router.get('/login', controller.login); // 전체 조회
 
