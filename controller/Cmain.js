@@ -7,7 +7,7 @@ exports.main = (req, res) => {
 
 exports.login = (req, res) => {
   res.render("login");
-
+};
 exports.getGroupCreate =  (req, res) => {
   res.render("groupCreate")
 };
