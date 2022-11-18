@@ -5,54 +5,167 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
+  
   <style>
-    .register-box legend {
+    .register-div div {
       text-align: center;
+      font-size: 25px;
     }
+
+    .register-div p {
+      text-align: right;
+    }
+
+    .register-form fieldset {
+      border: 0;
+      padding: 10px;
+    }
+
+    .register-form .form-div {
+      display:flex;
+      padding: 5px;
+      margin: 10px 20px;
+    }
+
+    .register-form label {
+      width: 140px;
+      padding: 5px;
+    }
+
+    .register-form input {
+      width: 400px;
+      margin-right: 10px;
+      height: 40px;
+      border: 1px solid rgb(221, 221, 221);
+      border-radius: 4px;
+      padding: 0px 11px 0px 15px;
+    }
+
+    .register-form button {
+      width: 80px;
+      height: 40px;
+      border-radius: 4px;
+      border: 1px solid gray;
+    }
+
+    .register-form .form-div-btn  {
+     display:flex;
+     justify-content: center;
+    }
+
+    .register-form p {
+      font-size: 13px;
+      color: red;
+      padding: 10px 0;
+      margin: 0;
+    }
+
+   .register-form img {
+    width: 120px;
+    height: 120px;
+    border-radius: 100;
+    border: 1px solid;
+   }
+
   </style>
 </head>
 <body>
 
-  <form class="register-box">
+  <div class="register-div">
+    <div>회원가입</div>
+    <p>* 필수입력사항</p>
+  </div>
+  <hr>
+  <form class="register-form">
     <fieldset>
-      <legend>회원 가입</legend>
-      <div class="profile">
+      <div class="form-div">
         <label for="profile">프로필 사진</label>
         <input type="file" id="profile">
+        <img src="/static/img/profileBasic.png">
       </div>
   
-      <div class="userid">
+      <div class="form-div">
         <label for="userid">아이디</label>
-        <input type="text" id="userid">
+        <div class="form-guide">
+          <input type="text" id="userid" placeholder="아이디를 입력해주세요" required onkeyup="idInputCheck(this, 10);">
+          <p class="guide-p"></p>
+        </div>
         <button>중복확인</button>
       </div>
       
-      <div class="pw">
+      <div class="form-div">
         <label for="pw">비밀번호</label>
-        <input type="password" id="pw">
+        <input type="password" id="pw" placeholder="비밀번호를 입력해주세요" required>
       </div>
   
-      <div class="pw-confirm">
+      <div class="form-div">
         <label for="pw">비밀번호 확인</label>
-        <input type="pw-confirm" id="pw-confirm">
+        <input type="pw-confirm" id="pw-confirm" placeholder="비밀번호를 한번 더 입력해주세요" required>
       </div>
   
-      <div class="nickname">
+      <div class="form-div">
+        <label for="name">이름</label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="form-div">
         <label for="nickname">닉네임</label>
-        <input type="text" id="nickname">
+        <input type="text" id="nickname" required onkeyup="charCheck(this, max);">
         <button>중복확인</button>
       </div>
   
-      <div class="address">
+      <div class="form-div">
         <label for="address">주소</label>
-        <input type="text" id="address">
+        <input type="text" id="address" required>
+        <button>주소 검색</button>
       </div>
-      
+      <br>
+
+      <div class="form-div-btn">
+        <button type="submit">가입하기</button>
+      </div>
     </fieldset>
       
   </form>
-
+  
   <script>
+    let useridInput = document.querySelector('#userid');
+    let useridGuide = document.querySelector('.guide-p');
+
+    function charCheck(obj) {
+      // 특수문자 판별
+      var specialChar = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+      
+      // 배열에서 하나씩 값을 비교
+      if(specialChar.test(obj.value)) {
+        // 값이 일치하면 문자를 삭제
+        obj.value = obj.value.substring( 0 , obj.value.length -1 );
+      }
+    };
+
+    // maxlength 넘었을 때 텍스트를 잘라서 value값에 넣어줌
+    function handleInputLength(el, max) {
+      if(el.value.length > max) {
+        el.value = el.value.substr(0, max);
+      }
+    };
+
+    function idInputCheck(obj, max) {
+      charCheck(obj);
+      handleInputLength(obj, max);
+      // 조건을 만족하지 않으면 가이드 보임 
+      
+      if (useridInput.value.length = 0 || useridInput.value.length < 5) {
+        useridGuide.innerText = '아이디는 5 - 10자로 만들어주세요'
+        // 6자 이상 16자 이하로 특수문자 제외
+      } else {
+        useridGuide.innerText = ''
+      }
+    };
+
+    
+
+    
 
   </script>
 </body>
