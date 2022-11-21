@@ -58,7 +58,9 @@ router.post('/dynamicFile', uploadDetail.single('dynamicFile'), controller.postP
 
 router.post('/signup', controller.postSignup)
 
-router.post('/postSignIn', controller.postSignin)
+
+router.post('/signin', controller.postSignin)
+
 
 
 // router.post('/upload', controller.postUpload)///

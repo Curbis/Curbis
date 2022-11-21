@@ -44,19 +44,8 @@ exports.postSignup = (req, res) => {
 }
 
 exports.postSignin = (req, res) => {
-  // User.signinBtn(req.body, (result) => {
-  //   //   console.log("signinBtn", result.userid);
-  //   //   console.log("signinBtn", result.pw);
-  //   //   console.log("signinBtn", result.name);
-  //   console.log(result);
-  //   if (result == undefined) {
-  //     res.send(false);
-  //   } else{
-  //   res.send(true);
-  //   }
-  // });
   models.Muser.findOne({
-    where: {
+    where: { 
       userid: req.body.userid,
       pw: req.body.pw,
     },
@@ -68,4 +57,5 @@ exports.postSignin = (req, res) => {
     }
   });
 };
+
 
