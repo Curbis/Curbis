@@ -9,7 +9,7 @@ USE curbis;
 DROP TABLE list;
 
 SHOW tables;
-alter table list DROP column chat_id;
+alter table user DROP column name;
 
 -- TODO: 새로운 데이터베이스 생성
 CREATE TABLE user (
@@ -17,8 +17,7 @@ CREATE TABLE user (
     pw VARCHAR(20) NOT NULL,
     email VARCHAR(50) NOT NULL,
     picture VARCHAR(100) NOT NULL,
-    nickname VARCHAR(10) NOT NULL,
-    address VARCHAR(50) NOT NULL
+    nickname VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE list (
