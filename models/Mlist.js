@@ -1,4 +1,4 @@
-const User = function (Sequelize, DataTypes) {
+const List = function (Sequelize, DataTypes) {
     // Sequelize: models/index.js 의 sequelize
     // DataTypes: models/index.js 의 Sequelize
   
@@ -8,41 +8,40 @@ const User = function (Sequelize, DataTypes) {
     // param3: 모델 옵션 정의 -> {}
   
     const model = Sequelize.define(
-      "user",
+      "list",
       {
         // id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
-        userid: {
-          type: DataTypes.STRING(15),
+        id: {
+          type: DataTypes.INTEGER,
           allowNull: false,
           primaryKey: true,
-
         },
-        pw: {
+        name: {
+            type: DataTypes.STRING(20),
+            allowNull: false,
+          },
+        topic: {
           type: DataTypes.STRING(20),
           allowNull: false,
         },
         // name VARCHAR(10) NOT NULL,
-        email: {
-          type: DataTypes.STRING(50),
-          allowNull: false,
-        },
-        // comment MEDIUMTEXT
-        picture: {
+        intoduce: {
           type: DataTypes.STRING(100),
           allowNull: false,
         },
         // comment MEDIUMTEXT
-        nickname: {
-            type: DataTypes.STRING(10),
-            allowNull: false, 
-        },
         address: {
-            type: DataTypes.STRING(50),
+          type: DataTypes.STRING(50),
+          allowNull: false,
+        },
+        // comment MEDIUMTEXT
+        headcount: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
       {
-        tableName: "user", // 실제 DB의 테이블 이름
+        tableName: "list", // 실제 DB의 테이블 이름
         freezeTableName: true, // 테이블 이름 고정
         timestamps: false, // 데이터가 추가/수정 시간을 자동으로 컬럼 만들어서 기록
       }
@@ -51,5 +50,5 @@ const User = function (Sequelize, DataTypes) {
     return model;
   };
   
-  module.exports = User;
+  module.exports = List;
   

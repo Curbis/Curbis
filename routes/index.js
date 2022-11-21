@@ -11,8 +11,12 @@ router.get('/groupCreate', controller.getGroupCreate);
 
 router.get('/register', controller.getRegister);
 
+router.get('/chat', controller.getChat);
+
+// router.post('/register', controller.postRegister);
+
 // // GET /visitor => localhost:PORT/visitor
-router.get('/login', controller.login); // 전체 조회
+router.get('/login', controller.login); // 전체 조회    
 
 // // GET /visitor/get => localhost:PORT/visitor/get
 // router.get('/visitor/get', controller.getVisitor); // 하나 조회
