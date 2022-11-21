@@ -17,7 +17,6 @@ exports.getRegister =  (req, res) => {
   res.render("register")
 };
 
-
 // exports.postRegister = (req, res) => {
 //     // User.signupBtn(req.body, (result) => {
 //     //   console.log("signupBtn", result);
@@ -62,3 +61,17 @@ exports.postSignup = (req, res) => {
   });
 }
 
+exports.postSignin = (req, res) => {
+  // [After]
+  // SELECT * FROM user WHERE userid = '${data.userid}' AND pw = '${data.pw}'
+  models.Muser.findOne({
+    where: { 
+      userid: req.body.userid,
+      pw: req.body.pw,
+    },
+  }).then((result) => {
+     if(result) {
+      res.send(result);
+     }
+  });
+};
