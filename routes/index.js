@@ -43,7 +43,7 @@ const uploadDetail = multer({
 // GET / => localhost:PORT/
 router.get('/', controller.main);
 
-router.get('/groupCreate', controller.getGroupCreate);
+// router.get('/groupCreate', controller.getGroupCreate);
 
 router.get('/register', controller.getRegister);
 

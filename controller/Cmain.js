@@ -49,13 +49,13 @@ exports.postProfileImg = (req, res) => {
 
 exports.postSignup = (req, res) => {
   console.log('postSignup', req.body);
-  models.MUser.create({
-    profile: req.body.profile,
+  models.Muser.create({
+    picture: req.body.profile,
     userid: req.body.userid,
     pw: req.body.pw,
-    name: req.body.name,
     nickname: req.body.nickname,
     address: req.body.address,
+
   }).then((result)=> {
     console.log('create >> ', result);
     res.send(result);
