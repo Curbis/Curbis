@@ -4,7 +4,7 @@ const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http); // http-socket 연결
 const PORT = 8090;
-
+const models = require("./models");
 // // multer 설정
 // const multer = require('multer');
 // const path = require('path');
@@ -114,23 +114,23 @@ io.on("connection", (socket) => {
 
   // [실습 44-3] 접속자 퇴장시
   // 'notice' 이벤트로 퇴장 공지
-  socket.on('disconnect', () => {
-    if (nickArray[socket.id] == undefined){
-      console.log('누가왔다감');
-      } else {
+  // socket.on('disconnect', () => {
+  //   if (nickArray[socket.id] == undefined){
+  //     console.log('누가왔다감');
+  //     } else {
 
-    // 1. socket.id 콘솔로그 찍기
-    // 2. 전체 공지 ('notice', 퇴장메세지(유저 닉네임 포함해서))
-    //  ex. aa님이 퇴장하셨습니다
-    // 3. nickArray에서 해당 유저 삭제
-    console.log(nickArray[socket.id]);
+  //   // 1. socket.id 콘솔로그 찍기
+  //   // 2. 전체 공지 ('notice', 퇴장메세지(유저 닉네임 포함해서))
+  //   //  ex. aa님이 퇴장하셨습니다
+  //   // 3. nickArray에서 해당 유저 삭제
+  //   console.log(nickArray[socket.id]);
  
-    io.emit('notice', `${nickArray[socket.id]}님이 퇴장하셨습니다`);
-    delete nickArray [socket.id]
-    io.emit("entire", nickArray)
+  //   io.emit('notice', `${nickArray[socket.id]}님이 퇴장하셨습니다`);
+  //   delete nickArray [socket.id]
+  //   io.emit("entire", nickArray)
 
-    }
-  });
+  //   }
+  // });
 
   socket.on('send', (data) => {
     console.log('socket on send >> ', data);;

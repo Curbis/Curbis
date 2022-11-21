@@ -21,11 +21,7 @@ const User = function (Sequelize, DataTypes) {
           type: DataTypes.STRING(20),
           allowNull: false,
         },
-        // name VARCHAR(10) NOT NULL,
-        email: {
-          type: DataTypes.STRING(50),
-          allowNull: false,
-        },
+
         // comment MEDIUMTEXT
         picture: {
           type: DataTypes.STRING(100),
