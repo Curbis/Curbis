@@ -47,8 +47,12 @@ router.get('/groupCreate', controller.getGroupCreate);
 
 router.get('/register', controller.getRegister);
 
+router.get('/chat', controller.getChat);
+
+// router.post('/register', controller.postRegister);
+
 // // GET /visitor => localhost:PORT/visitor
-router.get('/login', controller.login); // 전체 조회
+router.get('/login', controller.login); // 전체 조회    
 
 router.post('/dynamicFile', uploadDetail.single('dynamicFile'), controller.postProfileImg)
 
