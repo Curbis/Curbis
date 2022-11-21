@@ -7,13 +7,20 @@
   <title>회원가입</title>
   
   <style>
+
+    form {
+      margin: 0 auto;    
+      width: 650px;  
+    }
+
     .register-div div {
       text-align: center;
       font-size: 25px;
     }
 
-    .register-div p {
+    .register-form .form-required {
       text-align: right;
+      margin: 0 auto;      
     }
 
     .register-form fieldset {
@@ -33,7 +40,7 @@
     }
 
     .register-form input {
-      width: 400px;
+      width: 350px;
       margin-right: 10px;
       height: 40px;
       border: 1px solid rgb(221, 221, 221);
@@ -53,7 +60,7 @@
      justify-content: center;
     }
 
-    .register-form p {
+    .register-form .guide-p {
       font-size: 13px;
       color: red;
       padding: 10px 0;
@@ -61,27 +68,47 @@
     }
 
    .register-form img {
+    /* width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid; */
+   }
+
+   .form-div .profile-btn {
+    /* display: none; */
+    /* position: relative; */
+   }
+
+   .form-div img{
     width: 120px;
     height: 120px;
-    border-radius: 100;
-    border: 1px solid;
+    border-radius: 50%;
    }
 
   </style>
+  <!-- bootstrap cdn -->
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
 
   <div class="register-div">
     <div>회원가입</div>
-    <p>* 필수입력사항</p>
   </div>
-  <hr>
   <form class="register-form">
+    <p class="form-required">* 필수입력사항</p>
+    <hr>
     <fieldset>
       <div class="form-div">
-        <label for="profile">프로필 사진</label>
-        <input type="file" id="profile">
-        <img src="/static/img/profileBasic.png">
+        <!-- <label for="profile">프로필 사진</label>
+        <div class="profile-input">
+          <input type="file" id="profile">
+          <img src="/static/img/profileBasic.png" onclick="">
+        </div> -->
+        <p>프로필 사진</p>
+        <button type="button" class="profile-btn">
+          <img src="../static/img/profileBasic.png">
+        </button>
       </div>
   
       <div class="form-div">
@@ -90,7 +117,7 @@
           <input type="text" id="userid" placeholder="아이디를 입력해주세요" required onkeyup="idInputCheck(this, 10);">
           <p class="guide-p"></p>
         </div>
-        <button>중복확인</button>
+        <button type="button">중복확인</button>
       </div>
       
       <div class="form-div">
@@ -162,10 +189,6 @@
         useridGuide.innerText = ''
       }
     };
-
-    
-
-    
 
   </script>
 </body>
