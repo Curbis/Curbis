@@ -15,7 +15,7 @@ alter table user DROP column name;
 CREATE TABLE user (
     userid VARCHAR(15) NOT NULL PRIMARY KEY,
     pw VARCHAR(20) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    address VARCHAR(50) NOT NULL,
     picture VARCHAR(100) NOT NULL,
     nickname VARCHAR(10) NOT NULL
 );
