@@ -7,9 +7,12 @@ const controls = document.querySelectorAll('.controls');
 left.addEventListener('click', function(){
   document.querySelector('.cardArticle').getElementsByClassName.transform = 'translate(-100vw)';
 
-})
+});
 
+right.addEventListener('click', function(){
+  document.querySelector('.cardArticle').getElementsByClassName.transform = 'translate(-100vw)';
 
+});
 
 
 

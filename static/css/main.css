@@ -80,11 +80,6 @@ body{
     justify-content: center;
 }
 
-.cards{
-    position: relative;
-}
-
-
 .cardArticle{
     display: flex;
     -webkit-box-pack: start;
