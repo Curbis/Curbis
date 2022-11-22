@@ -1,13 +1,13 @@
-const { application } = require('express');
-const express = require('express');
-const controller = require('../controller/Cmain');
+const { application } = require("express");
+const express = require("express");
+const controller = require("../controller/Cmain");
 const router = express.Router();
 
 // multer 설정
-const multer = require('multer');
-const path = require('path');
+const multer = require("multer");
+const path = require("path");
 const upload = multer({
-  dest: 'uploads/',
+  dest: "uploads/",
 });
 
 const uploadDetail = multer({
@@ -16,7 +16,7 @@ const uploadDetail = multer({
       // req: 요청에 대한 정보
       // file: 파일에 대한 정보
       // done(에러, 저장경로): 함수
-      done(null, 'uploads/'); // 경로설정
+      done(null, "uploads/"); // 경로설정
     },
     filename(req, file, done) {
       // req: 요청에 대한 정보
@@ -41,24 +41,28 @@ const uploadDetail = multer({
 // 기본주소: localhost:PORT
 
 // GET / => localhost:PORT/
-router.get('/', controller.main);
+router.get("/", controller.main);
 
 // router.get('/groupCreate', controller.getGroupCreate);
 
-router.get('/register', controller.getRegister);
+router.get("/register", controller.getRegister);
 
-router.get('/chat', controller.getChat);
+router.get("/create", controller.Creater);
+
+router.get("/chat", controller.getChat);
 
 // router.post('/register', controller.postRegister);
 
 // // GET /visitor => localhost:PORT/visitor
-router.get('/login', controller.login); // 전체 조회    
+router.get("/login", controller.login); // 전체 조회
 
-router.post('/dynamicFile', uploadDetail.single('dynamicFile'), controller.postProfileImg)
+router.post(
+  "/dynamicFile",
+  uploadDetail.single("dynamicFile"),
+  controller.postProfileImg
+);
 
-router.post('/signup', controller.postSignup)
-
-
+router.post("/signup", controller.postSignup);
 
 // router.post('/upload', controller.postUpload)///
 
@@ -73,6 +77,5 @@ router.post('/signup', controller.postSignup)
 
 // // DELETE / visitor/delete => localhost:PORT/visitor/delete
 // router.delete('/visitor/delete', controller.deleteVisitor)  // 하나 삭제
-
 
 module.exports = router;

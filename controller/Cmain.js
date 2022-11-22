@@ -1,6 +1,5 @@
 const models = require("../models");
 
-
 exports.main = (req, res) => {
   res.render("main");
 };
@@ -9,14 +8,13 @@ exports.login = (req, res) => {
   res.render("login");
 };
 
-// exports.getGroupCreate =  (req, res) => {
-//   res.render("groupCreate")
-// };
-
-exports.getRegister =  (req, res) => {
-  res.render("register")
+exports.getGroupCreate = (req, res) => {
+  res.render("groupCreate");
 };
 
+exports.getRegister = (req, res) => {
+  res.render("register");
+};
 
 // exports.postRegister = (req, res) => {
 //     // User.signupBtn(req.body, (result) => {
@@ -37,28 +35,25 @@ exports.getRegister =  (req, res) => {
 //     });
 //   };
 
-
-exports.getChat =  (req, res) => {
-  res.render("chat")
+exports.getChat = (req, res) => {
+  res.render("chat");
 };
 
 exports.postProfileImg = (req, res) => {
-    // uploadDetail.single('dynamicFile');
-    res.send(req.file);
-}
+  // uploadDetail.single('dynamicFile');
+  res.send(req.file);
+};
 
 exports.postSignup = (req, res) => {
-  console.log('postSignup', req.body);
+  console.log("postSignup", req.body);
   models.Muser.create({
     picture: req.body.profile,
     userid: req.body.userid,
     pw: req.body.pw,
     nickname: req.body.nickname,
     address: req.body.address,
-
-  }).then((result)=> {
-    console.log('create >> ', result);
+  }).then((result) => {
+    console.log("create >> ", result);
     res.send(result);
   });
-}
-
+};
