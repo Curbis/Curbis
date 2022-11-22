@@ -57,7 +57,7 @@ router.get("/login", controller.login); // 전체 조회
 router.post(
   "/dynamicFile",
   uploadDetail.single("dynamicFile"),
-  controller.postProfileImg
+  controller.postProfileImg 
 );
 
 

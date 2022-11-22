@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 // socket은 express가 아닌 http 모듈에 연결해야 사용 가능
 const http = require("http").Server(app);
@@ -48,12 +48,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // [라우터 분리]
-const indexRouter = require("./routes");
-app.use("/", indexRouter); // localhost:PORT/경로는 기본으로 ./routes/index.js 파일에 선언
+const indexRouter = require('./routes');
+app.use('/', indexRouter); // localhost:PORT/경로는 기본으로 ./routes/index.js 파일에 선언
+
+
 
 // app.post(
-//     '/dynamicFile',
-//     uploadDetail.single('dynamicFile'),
+//     '/dynamicFile', 
+//     uploadDetail.single('dynamicFile'), 
 //     function (req, res) {
 //       console.log(req.file);
 //       res.send(req.file)
@@ -67,6 +69,9 @@ app.use("/", indexRouter); // localhost:PORT/경로는 기본으로 ./routes/ind
 
 // const groupRouter = require('./routes/Rgroup'); // index는 생략가능
 // app.use('/group', groupRouter); // localhost:PORT/경로는 기본으로 ./routes/index.js 파일에 선언
+
+
+
 
 const nickArray = {}; // 유저 목록
 
@@ -91,10 +96,11 @@ io.on("connection", (socket) => {
     // -> { nick1, nick2, nick2, ... }
     // -> nick 이 존재하는지
 
-    if (Object.values(nickArray).indexOf(nick) > -1) {
-      // 닉네임 중복이 있다면
 
-      socket.emit("error", "닉네임이 중복되었습니다");
+    if ( Object.values(nickArray).indexOf(nick) > -1 ) {
+      // 닉네임 중복이 있다면
+ 
+      socket.emit("error", '닉네임이 중복되었습니다')
     } else {
       // 닉네임 중복이 없다면
       nickArray[socket.id] = nick; // { socket.id: nick }
@@ -102,7 +108,7 @@ io.on("connection", (socket) => {
       io.emit("notice", `${nick}님이 입장하였습니다`);
 
       socket.emit("entrySuccess", nick);
-      io.emit("entire", nickArray);
+      io.emit("entire", nickArray)
     }
   });
 
@@ -118,7 +124,7 @@ io.on("connection", (socket) => {
   //   //  ex. aa님이 퇴장하셨습니다
   //   // 3. nickArray에서 해당 유저 삭제
   //   console.log(nickArray[socket.id]);
-
+ 
   //   io.emit('notice', `${nickArray[socket.id]}님이 퇴장하셨습니다`);
   //   delete nickArray [socket.id]
   //   io.emit("entire", nickArray)
@@ -126,17 +132,18 @@ io.on("connection", (socket) => {
   //   }
   // });
 
-  socket.on("send", (data) => {
-    console.log("socket on send >> ", data);
-    const sendData = { nick: data.myNick, msg: data.msg };
-    io.emit("newMessage", sendData);
+  socket.on('send', (data) => {
+    console.log('socket on send >> ', data);;
+    const sendData = { nick: data.myNick, msg: data.msg}
+    io.emit('newMessage', sendData)
   });
 });
 
+
 // [404 error] 맨 마지막 라우트로 선언 -> 나머지 코드 무시되기 때문!!
-app.get("*", (req, res) => {
-  res.render("404");
+app.get('*', (req, res) => {
+    res.render('404');
 });
 http.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
-});
+    console.log(`http://localhost:${PORT}`);
+})
