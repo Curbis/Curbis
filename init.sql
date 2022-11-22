@@ -1,9 +1,7 @@
 SHOW databases;
 
 CREATE DATABASE curbis DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-
 USE curbis;
-
 
 -- 기존 테이블 지움 (필요없음)
 DROP TABLE list;
@@ -15,7 +13,7 @@ alter table user DROP column name;
 CREATE TABLE user (
     userid VARCHAR(15) NOT NULL PRIMARY KEY,
     pw VARCHAR(20) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    address VARCHAR(50) NOT NULL,
     picture VARCHAR(100) NOT NULL,
     nickname VARCHAR(10) NOT NULL
 );
@@ -75,3 +73,6 @@ DESC member;
 -- user 테이블 데이터 조회
 SELECT * FROM user;
 
+-- 테이블 수정
+alter table user DROP column email;
+ALTER TABLE user ADD address VARCHAR(100) NOT NULL;

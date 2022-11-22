@@ -16,27 +16,10 @@ exports.getRegister = (req, res) => {
   res.render("register");
 };
 
-// exports.postRegister = (req, res) => {
-//     // User.signupBtn(req.body, (result) => {
-//     //   console.log("signupBtn", result);
-//     //   res.send();
-//     // });
-//     models.Muser.create({
-//       userid: req.body.userid,
-//       pw: req.body.pw,
-//       email: req.body.email,
-//       picture: req.body.picture,
-//       nickname: req.body.name,
-//       address: req.body.address,
-//     }).then((result) => {
 
-//       console.log("create >> ", result);
-//       res.send();
-//     });
-//   };
 
-exports.getChat = (req, res) => {
-  res.render("chat");
+exports.getChat =  (req, res) => {
+  res.render("chat")
 };
 
 exports.postProfileImg = (req, res) => {
@@ -56,4 +39,20 @@ exports.postSignup = (req, res) => {
     console.log("create >> ", result);
     res.send(result);
   });
+}
+
+exports.postSignin = (req, res) => {
+  models.Muser.findOne({
+    where: { 
+      userid: req.body.userid,
+      pw: req.body.pw,
+    },
+  }).then((result) => {
+    if (result == null) {
+      res.send(false);
+    } else {
+      res.send(true);
+    }
+  });
 };
+
