@@ -58,9 +58,7 @@ router.post('/dynamicFile', uploadDetail.single('dynamicFile'), controller.postP
 
 router.post('/signup', controller.postSignup)
 
-
 router.post('/signin', controller.postSignin)
-
 
 
 // router.post('/upload', controller.postUpload)///
@@ -76,6 +74,5 @@ router.post('/signin', controller.postSignin)
 
 // // DELETE / visitor/delete => localhost:PORT/visitor/delete
 // router.delete('/visitor/delete', controller.deleteVisitor)  // 하나 삭제
-
 
 module.exports = router;
