@@ -16,8 +16,6 @@ exports.getRegister = (req, res) => {
   res.render("register");
 };
 
-
-
 exports.getChat =  (req, res) => {
   res.render("chat")
 };

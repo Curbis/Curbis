@@ -62,7 +62,6 @@ router.post(
   controller.postProfileImg
 );
 
-
 router.post("/signup", controller.postSignup);
 
 router.post('/signin', controller.postSignin)
