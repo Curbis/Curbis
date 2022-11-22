@@ -95,12 +95,12 @@
       </div>
 
       <div class="form-div">
-        <label for="userid" class="form-item">아이디</label>
+        <label for="userid" class="form-item" >아이디</label>
         <div class="form-guide">
-          <input type="text" name="userid" id="userid" placeholder="아이디를 입력해주세요" required onkeyup="idInputCheck(this, 10);">
+          <input type="text" name="userid" id="userid" placeholder="아이디를 입력해주세요" required onchange="changeId()" onkeyup="idInputCheck(this, 10);">
           <p class="guide-p"></p>
         </div>
-        <button type="button" class="check-btn">중복확인</button>
+        <button type="button" class="check-btn" onclick="overlapId()">중복확인</button>
       </div>
 
       <div class="form-div">
@@ -133,7 +133,7 @@
 
       <div class="form-div-btn">
         <!-- 버튼 타입 button submit? -->
-        <button type="button" onclick="register();" class="check-btn">가입하기</button>
+        <button id="disBtn" type="button" onclick="register();" class="check-btn" disabled>가입하기</button>
       </div>
     </fieldset>
   </form>
@@ -141,6 +141,43 @@
   <script>
     let useridInput = document.querySelector('#userid');
     let useridGuide = document.querySelector('.guide-p');
+
+    
+  function changeId() {
+    const disBtn = document.querySelector('#disBtn')
+    disBtn.disabled = true;
+  }
+  // let check = false;
+function overlapId() {
+  const form = document.forms['register-form'];
+    const disBtn = document.querySelector('#disBtn')
+    console.log(form.userid.value);
+    axios({
+      method: 'POST',
+      url: '/overlap',
+      data: {
+        userid: form.userid.value,
+      },
+    })
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => { // true, false
+        console.log('중복된 아이디인가요? ', data)
+
+
+        if (data) {
+          alert('중복된 아이디입니다')
+          disBtn.disabled = true;
+
+        } else {
+          alert('사용가능한 아이디입니다')
+          disBtn.disabled = false;
+
+        }
+      });
+  }
+
 
     function charCheck(obj) {
       // 특수문자 판별
