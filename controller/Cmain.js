@@ -1,6 +1,5 @@
 const models = require("../models");
 
-
 exports.main = (req, res) => {
   res.render("main");
 };
@@ -9,12 +8,12 @@ exports.login = (req, res) => {
   res.render("login");
 };
 
-// exports.getGroupCreate =  (req, res) => {
-//   res.render("groupCreate")
-// };
+exports.getGroupCreate = (req, res) => {
+  res.render("groupCreate");
+};
 
-exports.getRegister =  (req, res) => {
-  res.render("register")
+exports.getRegister = (req, res) => {
+  res.render("register");
 };
 
 exports.getChat =  (req, res) => {
@@ -22,21 +21,20 @@ exports.getChat =  (req, res) => {
 };
 
 exports.postProfileImg = (req, res) => {
-    // uploadDetail.single('dynamicFile');
-    res.send(req.file);
-}
+  // uploadDetail.single('dynamicFile');
+  res.send(req.file);
+};
 
 exports.postSignup = (req, res) => {
-  console.log('postSignup', req.body);
+  console.log("postSignup", req.body);
   models.Muser.create({
     picture: req.body.profile,
     userid: req.body.userid,
     pw: req.body.pw,
     nickname: req.body.nickname,
     address: req.body.address,
-
-  }).then((result)=> {
-    console.log('create >> ', result);
+  }).then((result) => {
+    console.log("create >> ", result);
     res.send(result);
   });
 }
@@ -55,5 +53,4 @@ exports.postSignin = (req, res) => {
     }
   });
 };
-
 
