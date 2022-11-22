@@ -171,12 +171,14 @@
       </div>
 
       <div class="form-div">
-        <label for="userid" class="form-item">아이디</label>
+        <label for="userid" class="form-item" >아이디</label>
         <div class="form-guide">
-          <input type="text" name="userid" id="userid" placeholder="아이디를 입력해주세요" required onkeyup="idInputCheck(this, 10);">
+
+          <input type="text" name="userid" id="userid" placeholder="아이디를 입력해주세요" required onchange="changeId()" onkeyup="idInputCheck(this, 10);">
           <p class="guide-id guide"></p>
+
         </div>
-        <button type="button" class="check-btn">중복확인</button>
+        <button type="button" class="check-btn" onclick="overlapId()">중복확인</button>
       </div>
 
       <div class="form-div">
@@ -212,60 +214,55 @@
 
       <div class="form-div-btn">
         <!-- 버튼 타입 button submit? -->
-        <button type="submit" onclick="register();" class="check-btn">가입하기</button>
+        <button id="disBtn" type="submit" onclick="register();" class="check-btn" disabled>가입하기</button>
+
       </div>
     </fieldset>
   </form>
 
   <script>
-<<<<<<< HEAD
-
-
-    async function register() {
-        const form = document.forms['form_register'];
-
-        // let check = overlapId();
-        // console.log('ddd', check);
-        // if (check){ // !false -> 중복 검사 불통과 -> 종료
-        //   alert('중복검사를 다시 해주세요!');
-        //   return;
-        // }
-
-
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-
-        axios({
-          method: 'POST',
-          url: '/register',
-          data: {
-            userid: form.userid.value,
-            pw: form.pw.value,
-            name: form.name.value,
-          },
-        })
-          .then((res) => {
-            return res.data;
-          })
-          .then((data) => {
-            // (1) alert 띄우기
-            alert('회원가입 성공');
-            // (2) 가입 성공시 로그인 페이지로 이동
-            // document.location.href란?
-            // javascript에서 페이지 이동할 수 있는 방법
-            // document 객체를 사용하기 때문에 프론트에서 사용 가능
-            document.location.href = '/user/signin';
-          });
-        }
-=======
->>>>>>> d5e14bd8012554e8479c389adf167461efd29642
     let useridInput = document.querySelector('#userid');
     let pwInput = document.querySelector('#pw');
     let pwConfirm = document.querySelector('#pw-confirm');
     let useridGuide = document.querySelector('.guide-id');
     let userpwGuide = document.querySelector('.guide-pw');
+
+    
+  function changeId() {
+    const disBtn = document.querySelector('#disBtn')
+    disBtn.disabled = true;
+  }
+  // let check = false;
+function overlapId() {
+  const form = document.forms['register-form'];
+    const disBtn = document.querySelector('#disBtn')
+    console.log(form.userid.value);
+    axios({
+      method: 'POST',
+      url: '/overlap',
+      data: {
+        userid: form.userid.value,
+      },
+    })
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => { // true, false
+        console.log('중복된 아이디인가요? ', data)
+
+
+        if (data) {
+          alert('중복된 아이디입니다')
+          disBtn.disabled = true;
+
+        } else {
+          alert('사용가능한 아이디입니다')
+          disBtn.disabled = false;
+
+        }
+      });
+  }
+
 
     function charCheck(obj) {
       // 특수문자 판별

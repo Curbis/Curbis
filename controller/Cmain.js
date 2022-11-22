@@ -54,3 +54,19 @@ exports.postSignin = (req, res) => {
   });
 };
 
+
+
+exports.overlap = (req, res) => {
+console.log(req.body.userid);
+  models.Muser.findOne({
+    where: { userid: req.body.userid },
+  }).then((result) => {
+    console.log("findOne >> ", result);
+      if (result === null){
+      res.send(false); // 중복검사 통과
+    } else{
+      res.send(true); // 중복검사 불통과
+    }
+  });
+};
+
