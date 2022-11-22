@@ -47,8 +47,6 @@ router.get("/", controller.main);
 
 router.get("/register", controller.getRegister);
 
-router.get("/create", controller.Creater);
-
 router.get("/chat", controller.getChat);
 
 // router.post('/register', controller.postRegister);
