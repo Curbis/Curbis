@@ -1,18 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curbis</title>
-</head>
-<body>
-    <h1>이곳은 메인페이지입니다</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CURBIS</title>
 
-    <a href="/login">로그인페이지</a>
-    <a href="/groupCreate">소모임 만들기</a>
-    <a href="/register">회원가입</a>
-    <a href="/chat">채팅</a>
+    <!-- static 연결 -->
+    <link rel="stylesheet" href="/static/CSS/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="buttonBox">
+        <a href="/groupCreate" class="buttons" id="add">
+          <img src="/static/img/add.png"
+        /></a>
+        <a href="/login" class="buttons" id="login"
+          ><img src="/static/img/login.png" alt=""
+        /></a>
+      </div>
+      <div class="alarmList"></div>
 
-</body>
+      <div class="categories">
+        <div class="categori_1">액티비티</div>
+        <div class="categori_2">푸드</div>
+        <div class="categori_3">취미</div>
+        <div class="categori_4">여행</div>
+      </div>
+
+      <div class="cards">
+        <article type="total" class="cardArticle">
+          <div class="card">
+            <img src="" alt="" />
+            <span>모임 제목1</span>
+            <span>위치, 날짜, 시간, 모임인원</span>
+            <div>
+              <p>#해쉬테그</p>
+              <p>#해쉬테그</p>
+            </div>
+            <br />
+            <div class="membersImg">
+              <img class="profileImg" src="" alt="" />
+              <img class="profileImg" src="" alt="" />
+              <img class="profileImg" src="" alt="" />
+              <img id="addProfileImg" src="/static/img/plus.png" alt="add" />
+            </div>
+          </div>
+          <div class="card">
+            <img src="" alt="" />
+            <span>모임 제목1</span>
+            <span>위치, 날짜, 시간, 모임인원</span>
+            <div>
+              <p>#해쉬테그</p>
+              <p>#해쉬테그</p>
+            </div>
+            <br />
+            <div class="membersImg">
+              <img class="profileImg" src="" alt="" />
+              <img class="profileImg" src="" alt="" />
+              <img class="profileImg" src="" alt="" />
+              <img id="addProfileImg" src="/static/img/plus.png" alt="add" />
+            </div>
+          </div>
+          <div class="card">
+            <img src="" alt="" />
+            <span>모임 제목1</span>
+            <span>위치, 날짜, 시간, 모임인원</span>
+            <div>
+              <p>#해쉬테그</p>
+              <p>#해쉬테그</p>
+            </div>
+            <br />
+            <div class="membersImg">
+              <img class="profileImg" src="" alt="" />
+              <img class="profileImg" src="" alt="" />
+              <img class="profileImg" src="" alt="" />
+              <img id="addProfileImg" src="/static/img/plus.png" alt="add" />
+            </div>
+          </div>
+          <div class="card">
+            <img src="" alt="" />
+            <span>모임 제목1</span>
+            <span>위치, 날짜, 시간, 모임인원</span>
+            <div>
+              <p>#해쉬테그</p>
+              <p>#해쉬테그</p>
+            </div>
+            <br />
+            <div class="membersImg">
+              <img class="profileImg" src="" alt="" />
+              <img class="profileImg" src="" alt="" />
+              <img class="profileImg" src="" alt="" />
+              <img id="addProfileImg" src="/static/img/plus.png" alt="add" />
+            </div>
+          </div>
+        </article>
+        <div class="controls">
+          <img class="left" src="/static/img/leftArrow.svg" alt="" />
+          <img class="right" src="/static/img/rightArrow.svg" alt="" />
+        </div>
+        <div class="paginations"></div>
+      </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+  </body>
+
 </html>
