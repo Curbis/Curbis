@@ -66,7 +66,8 @@ router.post("/signup", controller.postSignup);
 
 router.post('/signin', controller.postSignin)
 
-router.post('/overlap', controller.overlap)
+router.post('/overlapNick', controller.overlapNick)
+router.post('/overlapId', controller.overlapId)
 
 
 // router.post('/upload', controller.postUpload)///
