@@ -21,16 +21,25 @@
         <a href="/groupCreate" class="buttons" id="add">
           <img src="/static/img/add.png"
         /></a>
+     
         <a href="/login" class="buttons" id="login"
-          ><img src="/static/img/login.png" alt=""
-        /></a>
+        ><img id = 'profile'src=
+        <% if (isLogin) { %>
+      '<%= userInfo.picture %>'
+      <% } else { %>
+        "/static/img/login.png" 
+      <% } %>
+        alt=""
+      /></a>
       </div>
 
       <div class="categories">
+
         <button class="categori_1">문화 예술</button>
         <button class="categori_2">운동/액티비티</button>
         <button class="categori_3">파티/술</button>
         <button class="categori_4">성장/자기계발</button>
+
       </div>
 
       <div class="container">
