@@ -40,6 +40,7 @@ const models = require("./models");
 //   }),
 //   limits: { fileSize: 5 * 1024 * 1024 },
 // });
+
 app.use(
   session({
     secret: 'secretKey',
@@ -51,6 +52,7 @@ app.set('view engine', 'ejs');
 app.use('/views', express.static(__dirname + '/views'));
 app.use('/static', express.static(__dirname + '/static'));
 app.use('/uploads', express.static(__dirname + '/uploads')); // upload 폴더 접근 가능하게끔
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
