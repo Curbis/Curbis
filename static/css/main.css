@@ -31,6 +31,10 @@ body {
   margin: 0px auto;
 }
 
+#profile {
+  border-radius: 50%;
+}
+
 .buttonBox {
   left: 50vh;
   position: relative;

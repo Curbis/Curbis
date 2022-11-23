@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 // socket은 express가 아닌 http 모듈에 연결해야 사용 가능
 const http = require("http").Server(app);
@@ -39,7 +40,13 @@ const models = require("./models");
 //   }),
 //   limits: { fileSize: 5 * 1024 * 1024 },
 // });
-
+app.use(
+  session({
+    secret: 'secretKey',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 app.set('view engine', 'ejs');
 app.use('/views', express.static(__dirname + '/views'));
 app.use('/static', express.static(__dirname + '/static'));

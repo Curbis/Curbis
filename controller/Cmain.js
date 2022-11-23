@@ -1,7 +1,26 @@
+// const session = require("express-session");
 const models = require("../models");
 
-exports.main = (req, res) => {
-  res.render("main");
+exports.main = async(req, res) => {
+console.log('세션', req.session.user);
+  const user = req.session.user;
+  // console.log(user);
+  // const result = await models.Mlist.findAll()
+
+// result: result
+  if (user !== undefined){
+    const userInfo = await models.Muser.findOne({
+      where: { 
+        userid: user
+      },
+  })
+    res.render('main', {isLogin: true, userInfo: userInfo})
+    console.log(userInfo);
+  } else {
+    res.render('main', {isLogin: false})
+  }
+  // console.log(req.session.user);
+  // res.render('index');
 };
 
 exports.login = (req, res) => {
@@ -49,11 +68,28 @@ exports.postSignin = (req, res) => {
     if (result == null) {
       res.send(false);
     } else {
+      req.session.user = result.userid;
+      console.log('로그인',req.session.user);
       res.send(true);
     }
   });
 };
 
+// exports.profile = (req, res) => {
+
+//   models.Muser.findOne({
+//     where: {
+//       userid: req.body.userid,
+//     },
+//   }).then((result) => {
+//     console.log(result);
+//     if (result == undefined) {
+//       res.redirect("/login");
+//     } else {
+//       res.redirect("/" );
+//     }
+//   });
+// };
 
 
 exports.overlapId = (req, res) => {

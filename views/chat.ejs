@@ -294,7 +294,7 @@
           divChat.textContent = data.msg
           nickDiv.textContent = data.nick
 
-
+      console.log('이것때문에 문제',chatList.lastChild.querySelector('span'));
       if (chatList.lastChild.className == 'my-chat') {
 
         let daterinit = `${hours}:${minutes}`
@@ -307,7 +307,7 @@
           if (myNick == data.nick) {
             div.classList.add('my-chat')
 
-            console.log('요소선택', chatList.lastChild.querySelector('span').dataset.value)
+            // console.log('요소선택', chatList.lastChild.querySelector('span').dataset.value)
             if(chatList.lastChild.querySelector('span')){
             chatList.lastChild.querySelector('span').remove()
             }
@@ -382,9 +382,7 @@
             innerDiv.appendChild(timeDiv);
             innerDiv.appendChild(divChat)
           } else {
-            if (timeDiv.dataset.value == chatList.lastChild.querySelector('span').dataset.value){
-              console.log('제발 되라..');
-            }
+        
             div.classList.add('other-chat')
 
             div.appendChild(nickDiv)
