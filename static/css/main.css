@@ -9,10 +9,10 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Pretendard-Regular";
+  font-family: "Noto Sans KR", sans-serif;
 }
 body {
-  background-color: rgb(51, 51, 51);
+  background-color: rgb(26, 31, 39);
   -ms-overflow-style: none;
 }
 ::-webkit-scrollbar {
@@ -31,6 +31,13 @@ body {
   margin: 0px auto;
 }
 
+.card > .profiledata {
+  display: flex;
+  font-size: 1rem;
+  margin-top: -10px;
+  justify-content: space-around;
+}
+
 .buttonBox {
   left: 50vh;
   position: relative;
@@ -44,12 +51,13 @@ body {
   max-width: 400px;
   min-width: 250px;
   margin: 50px;
-  color: salmon;
 }
 
 .buttons > img {
   padding: 50px;
   height: 40px;
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 #ff9671);
+  filter: opacity(0.5) drop-shadow(0 0 0 #ff9671);
 }
 
 .categories {
@@ -64,11 +72,11 @@ body {
   min-width: 280px;
   margin: 0px auto 4rem;
   border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: rgb(0 0 0 / 70%) 3px 2px 8px;
+  background-color: #ff9671;
+  box-shadow: rgb(95, 95, 95);
 }
 
-.categories > div {
+.categories > button {
   width: calc(33.3333%);
   height: 47px;
   min-height: 25px;
@@ -78,6 +86,7 @@ body {
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
+  background-color: #ff9671;
 }
 
 .cardArticle {
@@ -87,13 +96,13 @@ body {
   -webkit-box-align: center;
   align-items: center;
   position: relative;
-  padding-top: 2rem;
+  padding-top: 10px;
   overflow-x: auto;
   transition: transform 0.5s;
 }
 .card {
   position: relative;
-  padding: 10px;
+  /* padding: 10px; */
   margin: 20px;
   display: flex;
   flex-direction: column;
@@ -102,16 +111,17 @@ body {
   -webkit-box-align: center;
   align-items: center;
   width: 100%;
-  max-width: 400px;
-  min-width: 300px;
-  background-color: rgb(255, 112, 67);
+  max-width: 300px;
+  min-width: 270px;
+  background-color: #ff9671;
   border-radius: 16px;
   box-shadow: rgb(0 0 0) 2px 5px 6px;
   box-sizing: border-box;
   cursor: pointer;
-  height: 550px;
+  height: 400px;
   overflow: hidden;
   font-size: 1rem;
+  color: azure;
 }
 
 .card > * {
@@ -120,10 +130,12 @@ body {
 }
 .card > img {
   height: 200px;
-  width: 200px;
-  border-radius: 50%;
+  width: 100%;
+  max-width: 300px;
+  min-width: 270px;
   object-fit: cover;
-  border: 5px solid rgb(99, 99, 99);
+  position: relative;
+  top: -20px;
 }
 
 .membersImg {
@@ -149,6 +161,7 @@ body {
   min-width: 30px;
   background-color: rgba(250, 235, 215, 0.253);
   border-radius: 50%;
+  overflow: hidden;
   height: 100%;
   max-height: 30px;
   min-height: 30px;
@@ -162,10 +175,57 @@ body {
   justify-content: space-around;
 }
 
-.controls > img {
+.controls > button {
   height: 40px;
   width: 40px;
   background-color: rgba(245, 222, 179, 0.089);
   border-radius: 50%;
   padding: 15px;
+}
+
+.controls {
+  position: relative;
+}
+.after {
+  position: absolute;
+  left: 900px;
+  top: -300px;
+}
+.next {
+  position: absolute;
+  left: 900px;
+  top: -300px;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(26, 31, 39);
+}
+
+.prev::after,
+.prev::after {
+  display: inline;
+  justify-content: space-between;
+}
+
+.prev::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 40px; /* 사이즈 */
+  height: 40px; /* 사이즈 */
+  border-top: 5px solid #000; /* 선 두께 */
+  border-right: 5px solid #000; /* 선 두께 */
+  transform: rotate(225deg); /* 각도 */
+}
+
+.prev::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 40px; /* 사이즈 */
+  height: 40px; /* 사이즈 */
+  border-top: 5px solid #000; /* 선 두께 */
+  border-right: 5px solid #000; /* 선 두께 */
+  transform: rotate(45deg); /* 각도 */
 }

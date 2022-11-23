@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -312,13 +313,14 @@ function overlapId() {
       if (specialChar.test(obj.value)) {
         // 값이 일치하면 문자를 삭제
         obj.value = obj.value.substring(0, obj.value.length - 1);
-      }
-    };
 
-    // maxlength 넘었을 때 텍스트를 잘라서 value값에 넣어줌
-    function handleInputLength(el, max) {
-      if (el.value.length > max) {
-        el.value = el.value.substr(0, max);
+      }
+
+      // maxlength 넘었을 때 텍스트를 잘라서 value값에 넣어줌
+      function handleInputLength(el, max) {
+        if (el.value.length > max) {
+          el.value = el.value.substr(0, max);
+        }
       }
     };
 
@@ -424,12 +426,14 @@ function overlapId() {
           url: '/signup',
           data: {
             profile: document.getElementById('preview').src,
+
             userid: form.userid.value,
             pw: form.pw.value,
             nickname: form.nickname.value,
             address: form.address.value,
           },
         })
+
         .then((res) => {
           console.log(res);
           console.log(res.data);
@@ -455,3 +459,4 @@ function overlapId() {
 </body>
 
 </html>
+
