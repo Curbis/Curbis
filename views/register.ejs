@@ -224,7 +224,6 @@
     let pwConfirm = document.querySelector('#pw-confirm');
     let useridGuide = document.querySelector('.guide-id');
     let userpwGuide = document.querySelector('.guide-pw');
-
     
   function changeId() {
     const disBtn = document.querySelector('#disBtn')
@@ -322,9 +321,7 @@ function overlapId() {
       if (input.files[0]) {
         let reader = new FileReader();
         reader.onload = function(obj) {
-          document.getElementById('preview').src = obj.target.result;
-          console.log('obj.target.result >>>>>> ', obj.target.result)
-        };
+          document.getElementById('preview').src = obj.target.result;        };
         reader.readAsDataURL(input.files[0]);
       } else {
         document.getElementById('preview').src = "/static/img/profileBasic.png";
