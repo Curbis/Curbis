@@ -197,7 +197,7 @@
       <div class="form-div">
         <label for="nickname" class="form-item">닉네임</label>
         <input type="text" name="nickname" id="nickname" required onkeyup="charCheck(this, max);">
-        <button type="button" class="check-btn">중복확인</button>
+        <button type="button" class="check-btn" onclick="overlapNick()">중복확인</button>
       </div>
 
       <div class="form-div">
@@ -224,20 +224,21 @@
     let pwConfirm = document.querySelector('#pw-confirm');
     let useridGuide = document.querySelector('.guide-id');
     let userpwGuide = document.querySelector('.guide-pw');
+    const disBtn = document.querySelector('#disBtn')
 
-    
+
   function changeId() {
     const disBtn = document.querySelector('#disBtn')
     disBtn.disabled = true;
   }
   // let check = false;
 function overlapId() {
-  const disBtn = document.querySelector('#disBtn')
+
   const form = document.forms['register-form'];
     console.log(form.userid.value);
     axios({
       method: 'POST',
-      url: '/overlap',
+      url: '/overlapId',
       data: {
         userid: form.userid.value,
       },
@@ -251,13 +252,48 @@ function overlapId() {
           alert('중복된 아이디입니다')
           disBtn.disabled = true;
         } else {
+          console.log('distbtnvalue', disBtn.dataset.value);
           alert('사용가능한 아이디입니다')
-          disBtn.disabled = false;
+          if (disBtn.dataset.value){
+            disBtn.disabled = false;
+          } else {
+            disBtn.setAttribute('data-value', true);
+          }
 
         }
       });
   }
 
+  function overlapNick() {
+
+  const form = document.forms['register-form'];
+    console.log(form.userid.value);
+    axios({
+      method: 'POST',
+      url: '/overlapNick',
+      data: {
+        nickname: form.nickname.value,
+      },
+    })
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => { // true, false
+        console.log('중복된 닉네임인가요? ', data)
+        if (data) {
+          alert('중복된 닉네임입니다')
+          disBtn.disabled = true;
+
+        } else {
+          alert('사용가능한 닉네임입니다')
+          if (disBtn.dataset.value){
+            disBtn.disabled = false;
+          } else {
+            disBtn.setAttribute('data-value', true);
+          }
+        }
+      });
+  }
 
     function charCheck(obj) {
       // 특수문자 판별
@@ -323,7 +359,6 @@ function overlapId() {
         let reader = new FileReader();
         reader.onload = function(obj) {
           document.getElementById('preview').src = obj.target.result;
-          console.log('obj.target.result >>>>>> ', obj.target.result)
         };
         reader.readAsDataURL(input.files[0]);
       } else {
@@ -343,6 +378,8 @@ function overlapId() {
         userpwGuide.innerText = ''
       }
     };
+
+    
 
     // 주소찾기 
     function findAddr() {
@@ -394,6 +431,12 @@ function overlapId() {
           // document.location.href란?
           // javascript에서 페이지 이동할 수 있는 방법
           // document 객체를 사용하기 때문에 프론트에서 사용 가능
+          form.userid.value = ''
+          form.pw.value = ''
+          form.nickname.value = ''
+          form.address.value = ''
+          const disBtn = document.querySelector('#disBtn')
+          disBtn.disabled = true;
           document.location.href = '/login';
         });
     }
