@@ -16,8 +16,6 @@ exports.getRegister = (req, res) => {
   res.render("register");
 };
 
-
-
 exports.getChat =  (req, res) => {
   res.render("chat")
 };
@@ -56,3 +54,35 @@ exports.postSignin = (req, res) => {
   });
 };
 
+
+
+exports.overlapId = (req, res) => {
+console.log(req.body.userid);
+  models.Muser.findOne({
+    where: { userid: req.body.userid },
+  }).then((result) => {
+    console.log("findOne >> ", result);
+      if (result === null){
+      res.send(false); // 중복검사 통과
+    } else{
+      res.send(true); // 중복검사 불통과
+    }
+  });
+};
+
+
+
+exports.overlapNick = (req, res) => {
+  console.log(req.body.nickname);
+    models.Muser.findOne({
+      where: { nickname: req.body.nickname },
+    }).then((result) => {
+      console.log("findOne >> ", result);
+        if (result === null){
+        res.send(false); // 중복검사 통과
+      } else{
+        res.send(true); // 중복검사 불통과
+      }
+    });
+  };
+  

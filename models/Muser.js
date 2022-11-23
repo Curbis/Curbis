@@ -24,7 +24,7 @@ const User = function (Sequelize, DataTypes) {
 
         // comment MEDIUMTEXT
         picture: {
-          type: DataTypes.STRING(100),
+          type: DataTypes.TEXT('medium'),
           allowNull: false,
         },
         // comment MEDIUMTEXT

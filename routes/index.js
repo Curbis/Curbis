@@ -47,6 +47,7 @@ router.get("/groupCreate", controller.getGroupCreate);
 
 router.get("/register", controller.getRegister);
 
+
 // router.get("/create", controller.Creater);
 
 router.get("/chat", controller.getChat);
@@ -59,12 +60,17 @@ router.get("/login", controller.login); // 전체 조회
 router.post(
   "/dynamicFile",
   uploadDetail.single("dynamicFile"),
-  controller.postProfileImg
+  controller.postProfileImg 
 );
+
 
 router.post("/signup", controller.postSignup);
 
-router.post("/signin", controller.postSignin);
+router.post('/signin', controller.postSignin)
+
+router.post('/overlapNick', controller.overlapNick)
+router.post('/overlapId', controller.overlapId)
+
 
 // router.post('/upload', controller.postUpload)///
 
