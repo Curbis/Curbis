@@ -96,6 +96,7 @@
       border: 1px solid gray;
       color: transparent;
       margin-bottom: 10px;
+      margin-left: 35px;
     }
 
     form input::file-selector-button {
@@ -145,13 +146,15 @@
       text-decoration: none;
     }
 
-    .profile-div .profile-save-btn {
+    .profile-box .profile-save-btn {
       display: none;
     }
 
     .profile-box {
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
   </style>
@@ -177,8 +180,8 @@
           <img id="preview" src="../static/img/profile-basic.png">
           <input type="file" name="dynamicFile" id="dynamicFile" onchange="readURL(this);">
             <label for="dynamicFile"></label>
-            <button class="profile-save-btn" type="button" onclick="fileUpload();">저장</button>
-        </div>
+          </div>
+      <button class="profile-save-btn" type="button" onclick="fileUpload();">저장</button>
         </div>
       </div>
 
@@ -206,7 +209,7 @@
 
       <div class="form-div">
         <label for="nickname" class="form-item">닉네임</label>
-        <input type="text" name="nickname" id="nickname" required onkeyup="charCheck(this, max);">
+        <input type="text" name="nickname" id="nickname" required onkeyup="charCheck(this, max);" placeholder="닉네임을 입력해주세요">
         <button type="button" class="check-btn" onclick="overlapNick()">중복확인</button>
       </div>
 
@@ -214,7 +217,7 @@
         <label for="address" class="form-item">주소</label>
         <!-- <input type="text" name="address" id="address" required> -->
         <!-- <input id="member_post"  type="text" placeholder="Zip Code" readonly onclick="findAddr()"> -->
-        <input id="address" name="address" type="text" placeholder="Address" readonly > <br>
+        <input id="address" name="address" type="text" placeholder="주소를 선택해주세요" readonly > <br>
         <button type="button" class="check-btn" onclick="findAddr()">주소검색</button>
         <!-- <input type="text" placeholder="Detailed Address"> -->
       </div>
@@ -242,7 +245,7 @@
   }
   // let check = false;
 function overlapId() {
-
+  
   const form = document.forms['register-form'];
     console.log(form.userid.value);
     axios({
