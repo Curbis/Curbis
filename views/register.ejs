@@ -224,11 +224,10 @@
     let pwConfirm = document.querySelector('#pw-confirm');
     let useridGuide = document.querySelector('.guide-id');
     let userpwGuide = document.querySelector('.guide-pw');
-    const disBtn = document.querySelector('#disBtn')
-
+    let disBtn = document.querySelector('#disBtn')
 
   function changeId() {
-    const disBtn = document.querySelector('#disBtn')
+
     disBtn.disabled = true;
   }
   // let check = false;
@@ -358,8 +357,10 @@ function overlapId() {
       if (input.files[0]) {
         let reader = new FileReader();
         reader.onload = function(obj) {
+
           document.getElementById('preview').src = obj.target.result;
         };
+
         reader.readAsDataURL(input.files[0]);
       } else {
         document.getElementById('preview').src = "/static/img/profileBasic.png";
