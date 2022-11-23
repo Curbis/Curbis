@@ -378,7 +378,7 @@ function overlapId() {
 
         reader.readAsDataURL(input.files[0]);
       } else {
-        document.getElementById('preview').src = "/static/img/profileBasic.png";
+        document.getElementById('preview').src = "/static/img/profile-basic.png";
       }
       document.querySelector('.profile-save-btn').style.display = 'block'
 
@@ -429,7 +429,6 @@ function overlapId() {
           url: '/signup',
           data: {
             profile: document.getElementById('preview').src,
-
             userid: form.userid.value,
             pw: form.pw.value,
             nickname: form.nickname.value,
