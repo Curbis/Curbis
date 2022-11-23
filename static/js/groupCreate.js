@@ -1,155 +1,42 @@
-const goShare = () => {
-  if (pcMQL.matches) {
-    qna.style.animation = "";
-    const interval = setInterval(() => {
-      qna.style.opacity -= 0.1;
-      qna.style.transform = "translateY(-1px)";
-    }, 50);
-    setTimeout(() => clearTimeout(interval), 500);
-    setTimeout(() => (qna.style.display = "none"), 500);
-  }
+const next = document.querySelector(".goNext");
+const First = document.querySelector(".sectionFirst");
+const Second = document.querySelector(".sectionSecond");
+const Third = document.querySelector(".sectionThird");
+const stop1 = document.querySelector(".sectionstop1");
+const stop2 = document.querySelector(".sectionstop2");
+const stop3 = document.querySelector(".sectionstop3");
 
-  const result = document.getElementById("shareResult");
-  const grade = sortResult(point);
-  const pTitle = document.querySelector(".p");
-  const res_point = document.querySelector(".point");
-  const pin = document.querySelector(".pin");
-  const img_url = grade + ".png";
-  const res_img = document.createElement("img");
-  const location = document.querySelector(".result");
-  const desc = document.querySelector(".res");
+// 버튼
+function step2() {
+  First.style.display = "none";
+  Second.style.display = "block";
+  Third.style.display = "none";
+  step1.style.color = "#3498db";
+}
+function step3() {
+  First.style.display = "none";
+  Second.style.display = "none";
+  Third.style.display = "block";
+}
 
-  setTimeout(() => {
-    header.style.display = "block";
-    result.style.display = "block";
-    header.style.animation = "fade-in 0.3s forwards";
-    result.style.animation = "going-up 0.5s, " + "fade-in 0.5s forwards";
-  }, 600);
-};
+// 주소찾기
+function findAddr() {
+  new daum.Postcode({
+    oncomplete: function (data) {
+      console.log(data);
 
-const end = () => {
-  console.log(result);
-  result.style.display = "block";
-  qna.style.animation = "";
-  const interval = setInterval(() => {
-    qna.style.opacity -= 0.1;
-    qna.style.transform = "translateY(-1px)";
-  }, 50);
-  setTimeout(() => clearTimeout(interval), 500);
-  setTimeout(() => (qna.style.display = "none"), 500);
-};
-
-const addAnswer = (answerTxt, idx) => {
-  const answer = document.createElement("button");
-  const a = document.querySelector(".answer");
-  answer.className += "a box";
-  answer.innerHTML = answerTxt;
-  answer.addEventListener("click", () => {
-    const parent = answer.parentNode;
-    const children = parent.childNodes;
-    for (let i in children) {
-      children[i].disabled = true;
-    }
-    parent.classList.add("fade-out-5-4");
-    setTimeout(() => {
-      select[qIdx] = idx;
-      a.innerHTML = "";
-      parent.classList.remove("fade-out-5-4");
-      goNext();
-    }, 800);
-  });
-
-  setTimeout(
-    () =>
-      (answer.style.animation =
-        "going-down 0.25s forwards, fade-in 0.25s forwards"),
-    50
-  );
-  a.appendChild(answer);
-};
-
-const goNext = () => {
-  console.log(qnaList.length); // 8
-  console.log(qnaList); // 배열 8개
-  console.log(qIdx); // 0 ~ 7
-  if (qIdx++ === qnaList.length - 1) {
-    end();
-    return;
-  }
-
-  const status = document.querySelector(".status");
-  const qNum = qnaList[qIdx];
-  const q = document.querySelector(".q");
-
-  status.style.width = ENDPOINT * (qIdx + 2) + "%";
-  q.innerHTML = qNum.q;
-  qna.style.animation =
-    "fade-in 0.3s ease-in-out 0.4s forwards, " +
-    "going-down 0.3s ease-in-out 0.4s forwards";
-
-  setTimeout(() => {
-    const endIdx = qNum.a.length - 1;
-    for (let i in qNum.a) {
-      addAnswer(qNum.a[i].answer, i);
-    }
-    qna.style.opacity = 1;
-  }, 700);
-};
-
-const begin = () => {
-  const welcome = document.getElementById("welcome");
-  header.style.animation =
-    "going-up 0.4s forwards, " + "fade-out 0.4s forwards";
-  setTimeout(
-    () =>
-      (welcome.style.animation =
-        "going-up 0.4s ease-in-out forwards, " +
-        "fade-out 0.4s ease-in-out forwards"),
-    500
-  );
-  setTimeout(() => {
-    header.style.display = "none";
-    welcome.style.display = "none";
-    qna.style.display = "block";
-    if (pcMQL.matches) {
-      console.log("PC");
-      wrap.style.marginTop = "50px";
-    } else if (tabletMQL.matches) {
-      console.log("tablet");
-      wrap.style.marginTop = "30px";
-    }
-    goNext();
-  }, 1000);
-};
-
-const load = () => {
-  const msg = document.querySelector(".check-name");
-  const start_btn = document.querySelector(".start");
-
-  u_name.addEventListener("blur", () => {
-    try {
-      if (u_name.value.length < 1) {
-        throw "이름을 입력하고 시작해 주세요.";
+      // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+      // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+      var roadAddr = data.roadAddress; // 도로명 주소 변수
+      var jibunAddr = data.jibunAddress; // 지번 주소 변수
+      // 우편번호와 주소 정보를 해당 필드에 넣는다.
+      // document.getElementById('member_post').value = data.zonecode;
+      if (roadAddr !== "") {
+        document.getElementById("address").value = roadAddr;
+      } else if (jibunAddr !== "") {
+        document.getElementById("address").value = jibunAddr;
       }
-      msg.innerHTML = "";
-    } catch (err) {
-      msg.innerHTML = err;
-    }
-  });
-
-  start_btn.addEventListener("click", () => {
-    try {
-      if (u_name.value.length < 1) {
-        throw "이름을 입력하고 시작해 주세요.";
-      }
-      msg.innerHTML = "";
-      start_btn.disabled = true;
-      begin();
-    } catch (err) {
-      console.log(err);
-      msg.innerHTML = err;
-    }
-  });
-};
-
-window.onload = load();
+    },
+  }).open();
+}
