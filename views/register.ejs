@@ -6,6 +6,84 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
+
+
+   <!-- favicon -->
+   <link
+   rel="apple-touch-icon"
+   sizes="57x57"
+   href="/static/img/favicon/apple-icon-57x57.png"
+ />
+ <link
+   rel="apple-touch-icon"
+   sizes="60x60"
+   href="/static/img/favicon/apple-icon-60x60.png"
+ />
+ <link
+   rel="apple-touch-icon"
+   sizes="72x72"
+   href="/static/img/favicon/apple-icon-72x72.png"
+ />
+ <link
+   rel="apple-touch-icon"
+   sizes="76x76"
+   href="/static/img/favicon/apple-icon-76x76.png"
+ />
+ <link
+   rel="apple-touch-icon"
+   sizes="114x114"
+   href="/static/img/favicon/apple-icon-114x114.png"
+ />
+ <link
+   rel="apple-touch-icon"
+   sizes="120x120"
+   href="/static/img/favicon/apple-icon-120x120.png"
+ />
+ <link
+   rel="apple-touch-icon"
+   sizes="144x144"
+   href="/static/img/favicon/apple-icon-144x144.png"
+ />
+ <link
+   rel="apple-touch-icon"
+   sizes="152x152"
+   href="/static/img/favicon/apple-icon-152x152.png"
+ />
+ <link
+   rel="apple-touch-icon"
+   sizes="180x180"
+   href="/static/img/favicon/apple-icon-180x180.png"
+ />
+ <link
+   rel="icon"
+   type="image/png"
+   sizes="192x192"
+   href="/static/img/favicon/android-icon-192x192.png"
+ />
+ <link
+   rel="icon"
+   type="image/png"
+   sizes="32x32"
+   href="/static/img/favicon/favicon-32x32.png"
+ />
+ <link
+   rel="icon"
+   type="image/png"
+   sizes="96x96"
+   href="/static/img/favicon/favicon-96x96.png"
+ />
+ <link
+   rel="icon"
+   type="image/png"
+   sizes="16x16"
+   href="/static/img/favicon/favicon-16x16.png"
+ />
+ <link rel="manifest" href="/static/img/favicon/manifest.json" />
+ <meta name="msapplication-TileColor" content="#ffffff" />
+ <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+ <meta name="theme-color" content="#ffffff" />
+ 
+
   <!-- font CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,7 +186,8 @@
       padding: 0;
     }
 
-    .profile-box label {
+    .profile-box label{ 
+
       display: inline-block;
       background-color: rgba(255, 255, 255, 0.548);
       cursor: pointer;
@@ -157,6 +236,7 @@
       flex-direction: column;
       align-items: center;
     }
+
   </style>
   <!-- axios CDN -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -179,6 +259,7 @@
         <div class="profile-div">
           <img id="preview" src="../static/img/profile-basic.png">
           <input type="file" name="dynamicFile" id="dynamicFile" onchange="readURL(this);">
+
           <label for="dynamicFile"></label>
         </div>
         <button class="profile-save-btn" type="button" onclick="fileUpload();">저장</button>
@@ -225,6 +306,7 @@
         <!-- <input type="text" placeholder="Detailed Address"> -->
       </div>
       <br>
+
 
       <div class="form-div-btn">
         <!-- 버튼 타입 button submit? -->
@@ -303,9 +385,11 @@
           method: 'POST',
           url: '/overlapNick',
           data: {
+
             nickname: form.nickname.value,
           },
         })
+
         .then((res) => {
           return res.data;
         })
@@ -498,7 +582,9 @@
         document.location.href = '/login';
       });
     }
+
   </script>
 </body>
 
 </html>
+
