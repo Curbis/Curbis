@@ -1,13 +1,19 @@
 SHOW databases;
 
 CREATE DATABASE curbis DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
 USE curbis;
+
 
 -- 기존 테이블 지움 (필요없음)
 DROP TABLE list;
 
 SHOW tables;
-alter table user DROP column name;
+alter table user DROP column picture;
+ALTER TABLE list ADD picture mediumtext NOT NULL;
+ALTER TABLE user ADD day VARCHAR(50) NOT NULL;
+ALTER TABLE user ADD hour VARCHAR(10) NOT NULL;
+
 
 -- TODO: 새로운 데이터베이스 생성
 CREATE TABLE user (
@@ -25,6 +31,9 @@ CREATE TABLE list (
     introduce MEDIUMTEXT NOT NULL,
     address VARCHAR(50) NOT NULL,
     headcount INT,
+    day VARCHAR(20) NOT NULL,
+    hour VARCHAR(10) NOT NULL,
+    picture MEDIUMTEXT NOT NULL,
     user_id VARCHAR(15) NOT NULL,
     FOREIGN KEY(user_id) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -57,13 +66,16 @@ CREATE TABLE favorite (
 );
 
 -- user 데이블 데이터 추가
-INSERT INTO Mlist (name, topic, intoduce, address, headcount) VALUES ('ㅇㅇ동호회', '운동', '운동을 좋아하는 모임입니다.', '경기 성남시 분당구 소판교로32','6');
-INSERT INTO Mlist (name, topic, intoduce, address, headcount) VALUES ('ㅇㅇ동호회', '운동', '운동을 좋아하는 모임입니다.', '경기 성남시 분당구 소판교로32','6');
-INSERT INTO Mlist (name, topic, intoduce, address, headcount) VALUES ('ㅇㅇ동호회', '운동', '운동을 좋아하는 모임입니다.', '경기 성남시 분당구 소판교로32','6');
-INSERT INTO Mlist (name, topic, intoduce, address, headcount) VALUES ('ㅇㅇ동호회', '운동', '운동을 좋아하는 모임입니다.', '경기 성남시 분당구 소판교로32','6');
+INSERT INTO list (name, topic, introduce, picture, address, day, hour, headcount, user_id) VALUES ('낚시하실래요?', '낚시' ,'같이 낚시하실분들 모여주세요', 'http://localhost:8090/uploads/calzone1669115323399.jpg','서울시 동작구 구배동 112', '2022-11-25', '17:30', '6', 'aa');
 INSERT INTO user (userid, name, pw) VALUES ('test', 'test', '1234');
 INSERT INTO user (userid, name, pw) VALUES ('apple', 'apple', '1234');
-INSERT INTO user (userid, name, pw) VALUES ('hello', 'hello', '1234');
+INSERT INTO member (user_id, list_id) VALUES ('aa', '7');
+INSERT INTO member (user_id, list_id) VALUES ('aaa', '9');
+INSERT INTO member (user_id, list_id) VALUES ('aaaa', '8');
+INSERT INTO member (user_id, list_id) VALUES ('aa', '9');
+INSERT INTO member (user_id, list_id) VALUES ('aaaaa', '7');
+INSERT INTO member (user_id, list_id) VALUES ('aaaaa', '6');
+
 
 
 -- user 테이블 구조 보기
@@ -74,8 +86,7 @@ DESC chat;
 DESC member; 
 
 -- user 테이블 데이터 조회
-SELECT * FROM user;
+SELECT * FROM list;
 
--- 테이블 수정
-alter table user DROP column email;
-ALTER TABLE user ADD address VARCHAR(100) NOT NULL;
+
+DELETE FROM list WHERE id > 0;

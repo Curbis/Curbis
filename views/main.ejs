@@ -27,7 +27,6 @@
         ><img id = 'profile'src=
         <% if (isLogin) { %>
         '<%= userInfo.picture %>'
-      
         <% } else { %>
           "/static/img/profile-basic.png" 
         <% } %>
@@ -43,128 +42,41 @@
       </div>
 
       <div class="container">
+        <% for (i = 0; i < Object.keys(result).length; i++){ %>
         <div class="cards">
           <article type="total" class="cardArticle">
-            <div class="card">
-              <img src="../static/img/concert-g3e959554c_1280.jpg" alt="" />
-              <h3><%= result[0].name %></h3>
+            <div class="card" id='<%= result[i].id %>' onclick='profileMove(this)'>
+              <img src="<%= result[i].picture %>" alt="" />
+              <h3><%= result[i].name %></h3>
               <br />
               <div class="profiledata">
                 <div>장소 :</div>
-                <div>마포역 4번출구</div>
+                <div><%= result[i].address %></div>
               </div>
               <div class="profiledata">
                 <div>날짜 :</div>
-                <div>2022.11.26</div>
+                <div><%= result[i].day %></div>
               </div>
               <div class="profiledata">
                 <div>시간 :</div>
-                <div>18:30</div>
+                <div><%= result[i].hour %></div>
               </div>
               <div class="profiledata">
                 <div>인원 :</div>
-                <div>4/5</div>
+                <div><%= Object.keys(result[i].members).length %>/<%= result[i].headcount %></div>
               </div>
               <br />
               <div class="membersImg">
+                <% for (j = 0; j < Object.keys(result[i].members).length && j < 3; j++){ %>
                 <img
                   class="profileImg"
-                  src="../static/img/profileBasic.png"
+                  src="<%= result[i].members[j].user.picture %>"
                   alt=""
                 />
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
+                <% } %>
               </div>
             </div>
-            <div class="card">
-              <img src="../static/img/concert-g3e959554c_1280.jpg" alt="" />
-              <span>모임 제목1</span>
-              <span>위치, 날짜, 시간, 모임인원</span>
-              <div>
-                <p>#해쉬테그</p>
-                <p>#해쉬테그</p>
-              </div>
-              <br />
-              <div class="membersImg">
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="card">
-              <img src="../static/img/concert-g3e959554c_1280.jpg" alt="" />
-              <span>모임 제목1</span>
-              <span>위치, 날짜, 시간, 모임인원</span>
-              <div>
-                <p>#해쉬테그</p>
-                <p>#해쉬테그</p>
-              </div>
-              <br />
-              <div class="membersImg">
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="card">
-              <img src="../static/img/concert-g3e959554c_1280.jpg" alt="" />
-              <span>모임 제목1</span>
-              <span>위치, 날짜, 시간, 모임인원</span>
-              <div>
-                <p>#해쉬테그</p>
-                <p>#해쉬테그</p>
-              </div>
-              <br />
-              <div class="membersImg">
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-                <img
-                  class="profileImg"
-                  src="../static/img/profileBasic.png"
-                  alt=""
-                />
-              </div>
-            </div>
+            <% } %>
           </article>
         </div>
         <div class="controls">
@@ -173,7 +85,6 @@
         </div>
       </div>
     </div>
-
-    <script src="../static/js/main.js"></script>
+    <script src="/static/js/main.js"></script>
   </body>
 </html>
