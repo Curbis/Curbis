@@ -307,7 +307,6 @@
           if (myNick == data.nick) {
             div.classList.add('my-chat')
 
-            // console.log('요소선택', chatList.lastChild.querySelector('span').dataset.value)
             if(chatList.lastChild.querySelector('span')){
             chatList.lastChild.querySelector('span').remove()
             }
@@ -386,7 +385,7 @@
             div.classList.add('other-chat')
 
             div.appendChild(nickDiv)
-            // nickDiv.appendChild(kakaoImg)
+  
 
             innerDiv.appendChild(divChat)
             innerDiv.appendChild(timeDiv);

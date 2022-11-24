@@ -34,6 +34,18 @@ const List = function (Sequelize, DataTypes) {
           type: DataTypes.STRING(50),
           allowNull: false,
         },
+        day: {
+          type: DataTypes.STRING(50),
+          allowNull: false,
+        },
+        hour: {
+          type: DataTypes.STRING(10),
+          allowNull: false,
+        },
+        picture: {
+          type: DataTypes.TEXT('medium'),
+          allowNull: false,
+        },
         // comment MEDIUMTEXT
         headcount: {
             type: DataTypes.INTEGER,

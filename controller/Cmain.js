@@ -3,21 +3,53 @@ const models = require("../models");
 exports.main = async(req, res) => {
 console.log('세션', req.session.user);
   const user = req.session.user;
+  // const result = await models.Mlist.findAll(); // 전체  [ {}, {}, {}, {} ]
+  // let memberArray= {};
+  // // for (i = 0; i < Object.keys(result).length; i++){ // 4
+  //   const members = await models.Mmember.findAll({
+  //     include: [
+  //       // { model: models.Orderlist, attributes: ['product_name', 'quantity'] },
+  //       { model: models.Mlist,
+  //         where: { id: result[i].id }
+  //       },
+  //     ],
+  //     raw: true,
+  //   })
+  //   console.log('****', members)
 
-  const result = await models.Mlist.findAll();
+  //   // for (j = 0; j < Object.keys(members).length; j++){
+  //   //   // memberArray[result[i].id] = memberss[j].user_id
 
+  //   // }
+  //   // console.log('memberArray',memberArray);
+  // }
+
+  const members = await models.Mlist.findAll({
+    include: [
+      {model: models.Mmember,
+      include: [
+        {
+          model: models.Muser
+        }
+      ]
+      }
+    ],
+    // raw: true
+  })
+  // res.send(members);
+
+
+// console.log('memberArray >>>', memberArray);
   if (user !== undefined){
     const userInfo = await models.Muser.findOne({
       where: { 
         userid: user
       },
   })
-
-    res.render('main', {isLogin: true, userInfo: userInfo, result: result})
-    console.log(result);
+    res.render('main', {isLogin: true, userInfo: userInfo, result: members});
+    console.log(userInfo);
   } else {
-    res.render('main', {isLogin: false,  result: result})
-
+    res.render('main', {isLogin: false, result: members});
   }
 };
 
