@@ -57,7 +57,10 @@ CREATE TABLE favorite (
 );
 
 -- user 데이블 데이터 추가
-INSERT INTO user (userid, name, pw) VALUES ('sean', 'sean', '1234');
+INSERT INTO Mlist (name, topic, intoduce, address, headcount) VALUES ('ㅇㅇ동호회', '운동', '운동을 좋아하는 모임입니다.', '경기 성남시 분당구 소판교로32','6');
+INSERT INTO Mlist (name, topic, intoduce, address, headcount) VALUES ('ㅇㅇ동호회', '운동', '운동을 좋아하는 모임입니다.', '경기 성남시 분당구 소판교로32','6');
+INSERT INTO Mlist (name, topic, intoduce, address, headcount) VALUES ('ㅇㅇ동호회', '운동', '운동을 좋아하는 모임입니다.', '경기 성남시 분당구 소판교로32','6');
+INSERT INTO Mlist (name, topic, intoduce, address, headcount) VALUES ('ㅇㅇ동호회', '운동', '운동을 좋아하는 모임입니다.', '경기 성남시 분당구 소판교로32','6');
 INSERT INTO user (userid, name, pw) VALUES ('test', 'test', '1234');
 INSERT INTO user (userid, name, pw) VALUES ('apple', 'apple', '1234');
 INSERT INTO user (userid, name, pw) VALUES ('hello', 'hello', '1234');

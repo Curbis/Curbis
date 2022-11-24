@@ -25,7 +25,7 @@ const List = function (Sequelize, DataTypes) {
           allowNull: false,
         },
         // name VARCHAR(10) NOT NULL,
-        intoduce: {
+        introduce: {
           type: DataTypes.STRING(100),
           allowNull: false,
         },
