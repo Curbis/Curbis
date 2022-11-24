@@ -87,8 +87,6 @@ console.log(req.body.userid);
   });
 };
 
-
-
 exports.overlapNick = (req, res) => {
   console.log(req.body.nickname);
     models.Muser.findOne({
@@ -103,3 +101,33 @@ exports.overlapNick = (req, res) => {
     });
   };
   
+  exports.getLogout = (req, res) => {
+    const user = req.session.user;
+    console.log('요청받은 세션 유저 >>>>>', user)
+  
+    if (user !== undefined) {
+      req.session.destroy((err) => {
+        if(err) {
+          throw err;
+        }
+        console.log('세션을 지운 후, req.seesion.user >>', user);
+        res.send(`
+          <script>
+            alert('로그아웃 되었어요');
+            document.location.href = '/'; 
+          </script>
+        `)
+      });
+    } else {
+      // 유저가 브라우저에서 /logout 경로로 직접 접근
+      // res.send()
+      // - alert()
+      // - / 경로로 이동
+      res.send(`
+        <script>
+          alert('잘못된 접근입니다');
+          document.location.href = '/'; 
+        </script>
+      `)
+    }
+  }
