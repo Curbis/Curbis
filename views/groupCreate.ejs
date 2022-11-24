@@ -6,6 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>소모임 생성</title>
     <link rel="stylesheet" href="/static/CSS/groupCreate.css" />
+
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/static/img/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/static/img/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/static/img/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/static/img/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/static/img/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/static/img/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/static/img/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/static/img/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/img/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/static/img/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/static/img/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/img/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
     <!-- bootstrap cdn -->
     <link
       rel="stylesheet"
@@ -22,6 +98,8 @@
 
     <!-- 다음주소검색 api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   </head>
   <body>
     <div class="container">
@@ -31,37 +109,57 @@
           <li class="stop2">2 단계</li>
           <li class="stop3">3 단계</li>
         </ul>
-        <form class="form-wrapper">
+        <form class="form-wrapper" name="groupCreat" method="POST">
           <fieldset class="sectionFirst">
             <h3>모임의 성격을 알려주세요!</h3>
             <div class="row cf">
               <div class="three col">
-                <input type="radio" name="r1" id="r1" checked />
+                <input
+                  type="radio"
+                  name="r1"
+                  id="r1"
+                  onchange="selectImg1(this)"
+                  checked
+                />
                 <label for="r1">
                   <h4>성장/자기계발</h4>
                 </label>
               </div>
               <div class="three col">
-                <input type="radio" name="r1" id="r2" /><label for="r2">
+                <input
+                  type="radio"
+                  name="r1"
+                  id="r2"
+                  onchange="selectImg2(this)"
+                /><label for="r2">
                   <h4>운동/액티비티</h4>
                 </label>
               </div>
               <div class="three col">
-                <input type="radio" name="r1" id="r3" /><label for="r3">
+                <input
+                  type="radio"
+                  name="r1"
+                  id="r3"
+                  onchange="selectImg3(this)"
+                /><label for="r3">
                   <h4>파티/술</h4>
                 </label>
               </div>
             </div>
             <br /><br /><br />
-            <button class="button" onclick="secondStep()">Next</button>
+            <button type="button" class="button" onclick="secondStep()">
+              Next
+            </button>
           </fieldset>
           <fieldset class="sectionSecond">
-            <h3>모임 생성하기</h3>
+            <!-- 이미지 지정 -->
+            모임 이미지를 지정해주세요
             <div class="profile-box form-div">
+              <!-- <p class="form-item"></p> -->
               <div class="profile-div">
                 <img
                   id="preview"
-                  src="../static/img/concert-g3e959554c_1280.jpg"
+                  src="../static/img/mountain-g7d103621e_1280.jpg"
                 />
                 <input
                   type="file"
@@ -76,13 +174,19 @@
                 type="button"
                 onclick="fileUpload();"
               >
-                저장
+                확인
               </button>
             </div>
 
-            <input type="text" placeholder="모임 소게글을 작성해주세요!" />
-            <input class="datetime" type="datetime-local" />
-            <!-- <input type="text" /> -->
+            <!-- 모임 제목  -->
+            <input type="text" placeholder="모임 제목을 작성해주세요!" />
+            <!-- 모임 소개글  -->
+            <input type="text" placeholder="모임 소개글을 작성해주세요!" />
+            <!-- 날짜, 시간 -->
+            날짜: <input type="date" />
+
+            시간: <input type="time" />
+            <!-- 장소  -->
             <div class="form-div">
               <input
                 id="address"
@@ -90,22 +194,50 @@
                 type="text"
                 placeholder="모임장소를 입력해주세요"
               />
-              <!-- <input type="text" placeholder="Detailed Address"> -->
             </div>
-            <button class="button" onclick="ThirdStep()">Next</button>
+            <!-- 모임 인원수 -->
+            <input
+              type="number"
+              class="button"
+              placeholder="모임 인원수를 입력해주세요"
+              min="3"
+              max="6"
+            />
+
+            <button type="button" class="button" onclick="ThirdStep()">
+              Next
+            </button>
           </fieldset>
           <fieldset class="sectionThird">
             <h3>모임 생성 완료!</h3>
             <p>이제 모임을 공유해보아요!</p>
-            <div class="urlWrap">
-              <!-- 페이스북 공유하기 -->
+            <div class="snsIcon">
+              <a
+                id="btnTwitter"
+                class="link-icon twitter"
+                href="javascript:shareTwitter();"
+                ><img src="/static/img/icon-twitter.png" alt=""
+              /></a>
+              <a
+                id="btnFacebook"
+                class="link-icon facebook"
+                href="javascript:shareFacebook();"
+                ><img src="/static/img/icon-facebook.png" alt=""
+              /></a>
+              <a
+                id="btnKakao"
+                class="link-icon kakao"
+                href="javascript:shareKakao();"
+                ><img src="/static/img/icon-kakao.png" alt=""
+              /></a>
               <a
                 href="#"
-                onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                target="_blank"
-                alt="Share on Facebook"
+                id="sns_urlCoby"
+                class="btn_share_sns"
+                title="새창"
+                onclick="clip(); return false;"
               >
-                페이스북
+                <img src="/static/img/link.png" alt="" />
               </a>
             </div>
           </fieldset>
