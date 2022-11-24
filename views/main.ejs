@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CURBIS</title>
+    <title>Main</title>
 
     <!-- static 연결 -->
     <link rel="stylesheet" href="/static/CSS/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-      rel="stylesheet"
-    />
+    
+    <!-- font CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -25,21 +26,20 @@
         <a href="/login" class="buttons" id="login"
         ><img id = 'profile'src=
         <% if (isLogin) { %>
-      '<%= userInfo.picture %>'
-      <% } else { %>
-        "/static/img/login.png" 
-      <% } %>
+        '<%= userInfo.picture %>'
+      
+        <% } else { %>
+          "/static/img/profile-basic.png" 
+        <% } %>
         alt=""
-      /></a>
+        /></a>
       </div>
 
       <div class="categories">
-
         <button class="categori_1">문화 예술</button>
         <button class="categori_2">운동/액티비티</button>
         <button class="categori_3">파티/술</button>
         <button class="categori_4">성장/자기계발</button>
-
       </div>
 
       <div class="container">
@@ -47,7 +47,7 @@
           <article type="total" class="cardArticle">
             <div class="card">
               <img src="../static/img/concert-g3e959554c_1280.jpg" alt="" />
-              <h3>"같이 놀아요"</h3>
+              <h3><%= result[0].name %></h3>
               <br />
               <div class="profiledata">
                 <div>장소 :</div>
@@ -168,8 +168,8 @@
           </article>
         </div>
         <div class="controls">
-          <button class="prev"></button>
-          <button class="next"></button>
+          <button class="prev">왼쪽으로</button>
+          <button class="next">오른쪽으로</button>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ exports.main = async(req, res) => {
 console.log('세션', req.session.user);
   const user = req.session.user;
   // console.log(user);
-  // const result = await models.Mlist.findAll()
+  const result = await models.Mlist.findAll()
 
 // result: result
   if (user !== undefined){
@@ -14,10 +14,10 @@ console.log('세션', req.session.user);
         userid: user
       },
   })
-    res.render('main', {isLogin: true, userInfo: userInfo})
-    console.log(userInfo);
+    res.render('main', {isLogin: true, userInfo: userInfo, result: result})
+    console.log(result);
   } else {
-    res.render('main', {isLogin: false})
+    res.render('main', {isLogin: false,  result: result})
   }
   // console.log(req.session.user);
   // res.render('index');
