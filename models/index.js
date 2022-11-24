@@ -107,12 +107,6 @@ db.Mlist.hasMany(db.Mchat, {
     targetKey: 'id',
   });
 
-
-
-
-
-
-
   module.exports = db;
   
 

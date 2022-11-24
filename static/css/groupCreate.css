@@ -22,6 +22,7 @@ p,
 li,
 a {
   font-size: 14px;
+  padding: 10px;
 }
 
 fieldset {
@@ -110,7 +111,11 @@ fieldset {
 
 .wrapper {
   width: 100%;
-  margin: 30px 0;
+  margin: 100px 0;
+  height: 600px;
+  padding: 100px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* STEPS */
@@ -126,13 +131,7 @@ fieldset {
 .steps li {
   display: inline-block;
   margin: 20px;
-  color: #ccc;
   padding-bottom: 5px;
-}
-
-.steps li.is-active {
-  border-bottom: 1px solid #ff9671;
-  color: #ff9671;
 }
 
 /* FORM */
@@ -198,6 +197,12 @@ fieldset {
   position: absolute;
   right: 20px;
   bottom: 20px;
+  width: 150px;
+  height: 40px;
+}
+
+.button {
+  margin-top: 200px;
 }
 
 .form-wrapper .submit {
@@ -270,4 +275,159 @@ fieldset {
 
 .form-wrapper input[type="radio"]:checked + label h4 {
   color: #ff9671;
+}
+
+.profile-box input[type="file"] {
+  padding: 0;
+}
+
+/* 이미지 추가 */
+.profile-box label {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.548);
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  margin: 5px 0 5px;
+  /* background-image: url("../static/img/img.png"); */
+  background-size: 36px;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  right: 50px;
+}
+
+form input::file-selector-button {
+  display: none;
+}
+
+.profile-img {
+  width: 300px;
+  height: 170px;
+  object-fit: cover;
+}
+
+.profile-div {
+  height: 180px;
+}
+
+#preview {
+  /* background-image: url('/static/img/profileBasic.png'); */
+  background-size: 170px;
+  width: 300px;
+  height: 170px;
+  color: transparent;
+  margin-bottom: 10px;
+  margin-left: 35px;
+  object-fit: cover;
+}
+
+.sectionFirst {
+  display: block;
+}
+
+.sectionSecond {
+  display: none;
+}
+
+.sectionThird {
+  display: none;
+}
+
+.stop1 {
+  color: #ff9671;
+}
+
+.stop2 {
+  color: #ccc;
+}
+
+.stop3 {
+  color: #ccc;
+}
+
+[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#dynamicFile {
+  display: none;
+}
+
+form input::file-selector-button {
+  display: none;
+}
+
+.profile-box input[type="file"] {
+  padding: 0;
+}
+
+.profile-box label {
+  display: inline-block;
+  filter: opacity(50%);
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  margin: 5px 0 5px;
+  background-image: url(/static/img/img.png);
+  background-size: 36px;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  align-content: center;
+  right: 0;
+  top: 50%;
+}
+
+.profile-save-btn {
+  display: inline-block;
+  filter: opacity(50%);
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  margin: 5px 0 5px;
+  text-align: center;
+  align-content: center;
+  position: absolute;
+  right: 28%;
+  top: 55%;
+  border: none;
+  background-color: unset;
+}
+
+.profile-img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+
+.profile-div {
+  height: 180px;
+}
+
+/* 공유하기 */
+
+.btn_share_sns > img {
+  vertical-align: middle;
+  height: 50px;
+  border: #ff9671 4px solid;
+  background-color: rgba(255, 166, 0, 0.507);
+  border-radius: 50%;
+  padding: 10px;
+  filter: opacity(70%);
+}
+
+.snsIcon {
+  padding: 50px 0;
+}
+
+.sectionSecond {
+  height: 800px;
+  justify-content: space-around;
 }
