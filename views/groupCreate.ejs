@@ -53,32 +53,46 @@
               </div>
             </div>
             <br /><br /><br />
-            <button class="button" onclick="step2()">Next</button>
+            <button class="button" onclick="secondStep()">Next</button>
           </fieldset>
           <fieldset class="sectionSecond">
             <h3>모임 생성하기</h3>
+            <div class="profile-box form-div">
+              <div class="profile-div">
+                <img
+                  id="preview"
+                  src="../static/img/concert-g3e959554c_1280.jpg"
+                />
+                <input
+                  type="file"
+                  name="dynamicFile"
+                  id="dynamicFile"
+                  onchange="readURL(this);"
+                />
+                <label for="dynamicFile"></label>
+              </div>
+              <button
+                class="profile-save-btn"
+                type="button"
+                onclick="fileUpload();"
+              >
+                저장
+              </button>
+            </div>
+
             <input type="text" placeholder="모임 소게글을 작성해주세요!" />
             <input class="datetime" type="datetime-local" />
             <!-- <input type="text" /> -->
             <div class="form-div">
-              <button type="button" class="checkAdd" onclick="findAddr()">
-                <label for="address" class="form-item"></label>
-                <!-- <input type="text" name="address" id="address" required> -->
-
-                <!-- <input id="member_post"  type="text" placeholder="Zip Code" readonly onclick="findAddr()"> -->
-                <input
-                  id="address"
-                  name="address"
-                  type="text"
-                  placeholder="모임장소를 입력해주세요"
-                  readonly
-                />
-                <br />
-                주소검색
-              </button>
+              <input
+                id="address"
+                name="address"
+                type="text"
+                placeholder="모임장소를 입력해주세요"
+              />
               <!-- <input type="text" placeholder="Detailed Address"> -->
             </div>
-            <button class="button" onclick="step3()">Next</button>
+            <button class="button" onclick="ThirdStep()">Next</button>
           </fieldset>
           <fieldset class="sectionThird">
             <h3>모임 생성 완료!</h3>
@@ -98,6 +112,7 @@
         </form>
       </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/static/js/groupCreate.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </body>
 </html>

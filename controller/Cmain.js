@@ -3,8 +3,8 @@ const models = require("../models");
 exports.main = async(req, res) => {
 console.log('세션', req.session.user);
   const user = req.session.user;
+
   const result = await models.Mlist.findAll();
-  // 
 
   if (user !== undefined){
     const userInfo = await models.Muser.findOne({
@@ -12,10 +12,12 @@ console.log('세션', req.session.user);
         userid: user
       },
   })
-    res.render('main', {isLogin: true, userInfo: userInfo, result: result});
-    console.log(userInfo);
+
+    res.render('main', {isLogin: true, userInfo: userInfo, result: result})
+    console.log(result);
   } else {
-    res.render('main', {isLogin: false});
+    res.render('main', {isLogin: false,  result: result})
+
   }
 };
 

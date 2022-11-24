@@ -1,20 +1,14 @@
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
 * {
   padding: 0;
   margin: 0;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
+
 body {
   background-color: rgb(26, 31, 39);
   -ms-overflow-style: none;
 }
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -25,9 +19,9 @@ body {
   flex-direction: column;
   -webkit-box-pack: center;
   justify-content: center;
-  width: 100vh;
+  width: 80%;
   height: 100vh;
-  padding-bottom: 5%;
+  /* padding-bottom: 5%; */
   margin: 0px auto;
 }
 
@@ -41,54 +35,62 @@ body {
 }
 
 .buttonBox {
-  left: 50vh;
   position: relative;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: flex-end;
+  /* max-width: 400px;
+  min-width: 250px; */
+  margin: 10px;
+  /* left: 50vh; */
+  /* justify-content: space-around; */
   -webkit-box-pack: justify;
   -webkit-box-align: center;
-  align-items: center;
-  width: 100%;
-  height: 70px;
-  max-width: 400px;
-  min-width: 250px;
-  margin: 50px;
+  /* width: 100%;/ */
+  /* height: 70px; */
+
 }
 
 .buttons > img {
-  padding: 50px;
+  margin: 0 15px;
   height: 40px;
-  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 #ff9671);
+  /* color: #ff9671; */
   filter: opacity(0.5) drop-shadow(0 0 0 #ff9671);
+  /* -webkit-filter: opacity(0.5) drop-shadow(0 0 0 #ff9671); */
+}
+
+#profile {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid black;
 }
 
 .categories {
-  position: relative;
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  align-items: center;
-  width: 100%;
-  max-width: 1000px;
-  min-width: 280px;
-  margin: 0px auto 4rem;
-  border-radius: 50px;
+  display: none;
+  /* display: flex; */
+  justify-content: center;
+  width: 600px;
+  border-radius: 30%;
+  border: 1px solid white;
   background-color: #ff9671;
   box-shadow: rgb(95, 95, 95);
 }
 
 .categories > button {
-  width: calc(33.3333%);
+  /* width: calc(33.3333%); */
+  width: 100%;
   height: 47px;
   min-height: 25px;
   cursor: pointer;
-  display: flex;
+  /* display: flex; */
   -webkit-box-align: center;
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
   background-color: #ff9671;
+  border: 1px solid white;
+  border-radius: 30%;
 }
 
 .cardArticle {
@@ -102,6 +104,7 @@ body {
   overflow-x: auto;
   transition: transform 0.5s;
 }
+
 .card {
   position: relative;
   /* padding: 10px; */
@@ -172,22 +175,20 @@ body {
 }
 
 .controls {
-  width: 100%;
+  /* width: 100%;
   display: flex;
   justify-content: space-around;
+  position: relative; */
 }
 
 .controls > button {
-  height: 40px;
+  /* height: 40px;
   width: 40px;
   background-color: rgba(245, 222, 179, 0.089);
   border-radius: 50%;
-  padding: 15px;
+  padding: 15px; */
 }
 
-.controls {
-  position: relative;
-}
 .after {
   position: absolute;
   left: 900px;
@@ -230,4 +231,9 @@ body {
   border-top: 5px solid #000; /* 선 두께 */
   border-right: 5px solid #000; /* 선 두께 */
   transform: rotate(45deg); /* 각도 */
+}
+
+.prev {
+  background-image: url('../img/left-arrow.png');
+  background-position: center;
 }
