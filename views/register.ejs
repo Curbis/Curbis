@@ -1,171 +1,169 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>회원가입</title>
-    <!-- font CDN -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        background-color: rgb(26, 31, 39);
-        color: white;
-        font-family: "Noto Sans KR", sans-serif;
-      }
 
-      form {
-        margin: 0 auto;
-        width: 650px;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <!-- font CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgb(26, 31, 39);
+      color: white;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
 
-      .register-div div {
-        text-align: center;
-        font-size: 25px;
-        padding-bottom: 30px;
-      }
+    form {
+      margin: 0 auto;
+      width: 650px;
+    }
 
-      .register-form .form-required {
-        text-align: right;
-        margin: 0 auto;
-      }
+    .register-div div {
+      text-align: center;
+      font-size: 25px;
+      padding-bottom: 30px;
+    }
 
-      .register-form fieldset {
-        border: 0;
-        padding: 10px;
-      }
+    .register-form .form-required {
+      text-align: right;
+      margin: 0 auto;
+    }
 
-      .register-form .form-div {
-        display: flex;
-        padding: 5px;
-        margin: 10px 20px;
-      }
+    .register-form fieldset {
+      border: 0;
+      padding: 10px;
+    }
 
-      .register-form .form-item {
-        width: 130px;
-        padding: 5px;
-      }
+    .register-form .form-div {
+      display: flex;
+      padding: 5px;
+      margin: 10px 20px;
+    }
 
-      .register-form input {
-        width: 350px;
-        margin-right: 10px;
-        height: 40px;
-        border: 1px solid rgb(221, 221, 221);
-        border-radius: 4px;
-        padding: 0px 11px 0px 15px;
-        background-color: transparent;
-        color: white;
-      }
+    .register-form .form-item {
+      width: 130px;
+      padding: 5px;
+    }
 
-      .register-form .check-btn,
-      .profile-box label,
-      .profile-box button {
-        width: 80px;
-        height: 42px;
-        border-radius: 4px;
-        font-family: "Noto Sans KR", sans-serif;
-        background-color: #ff9671;
-        color: white;
-        font-size: 14px;
-      }
+    .register-form input {
+      width: 350px;
+      margin-right: 10px;
+      height: 40px;
+      border: 1px solid rgb(221, 221, 221);
+      border-radius: 4px;
+      padding: 0px 11px 0px 15px;
+      background-color: transparent;
+      color: white;
+    }
 
-      .register-form .form-div-btn {
-        display: flex;
-        justify-content: center;
-      }
+    .register-form .check-btn,
+    .profile-box label,
+    .profile-box button {
+      width: 80px;
+      height: 42px;
+      border-radius: 4px;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #FF9671;
+      color: white;
+      font-size: 14px;
+    }
 
-      .register-form .guide {
-        font-size: 13px;
-        color: skyblue;
-        padding: 10px 0;
-        margin: 0;
-      }
+    .register-form .form-div-btn {
+      display: flex;
+      justify-content: center;
+    }
 
-      #dynamicFile {
-        display: none;
-      }
+    .register-form .guide {
+      font-size: 13px;
+      color: skyblue;
+      padding: 10px 0;
+      margin: 0;
+    }
 
-      #preview {
-        /* background-image: url('/static/img/profileBasic.png'); */
-        background-size: 170px;
-        width: 170px;
-        height: 170px;
-        border-radius: 50%;
-        border: 1px solid gray;
-        color: transparent;
-        margin-bottom: 10px;
-        margin-left: 35px;
-      }
+    #dynamicFile {
+      display: none;
+    }
 
-      form input::file-selector-button {
-        display: none;
-      }
+    #preview {
+      /* background-image: url('/static/img/profileBasic.png'); */
+      background-size: 170px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      border: 1px solid gray;
+      color: transparent;
+      margin-bottom: 10px;
+      margin-left: 35px;
+    }
 
-      .profile-box input[type="file"] {
-        padding: 0;
-      }
+    form input::file-selector-button {
+      display: none;
+    }
 
-      .profile-box label {
-        display: inline-block;
-        background-color: rgba(255, 255, 255, 0.548);
-        cursor: pointer;
-        width: 45px;
-        height: 45px;
-        margin: 5px 0 5px;
-        background-image: url("../static/img/img.png");
-        background-size: 36px;
-        background-repeat: no-repeat;
-        background-position: center;
-        position: relative;
-        right: 50px;
-        border-radius: 50%;
-      }
+    .profile-box input[type="file"] {
+      padding: 0;
+    }
 
-      .profile-img {
-        width: 170px;
-        height: 170px;
-        border-radius: 50%;
-        border: 1px solid gray;
-      }
+    .profile-box label {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.548);
+      cursor: pointer;
+      width: 45px;
+      height: 45px;
+      margin: 5px 0 5px;
+      background-image: url("../static/img/img.png");
+      background-size: 36px;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+      right: 50px;
+      border-radius: 50%;
+    }
 
-      .profile-div {
-        height: 180px;
-      }
+    .profile-img {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      border: 1px solid gray;
+    }
 
-      .back-main {
-        height: 50px;
-        padding-left: 20px;
-        display: flex;
-        align-items: center;
-      }
+    .profile-div {
+      height: 180px;
+    }
 
-      .back-main a {
-        color: white;
-        text-decoration: none;
-      }
+    .back-main {
+      height: 50px;
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+    }
 
-      .profile-box .profile-save-btn {
-        display: none;
-      }
+    .back-main a {
+      color: white;
+      text-decoration: none;
+    }
 
-      .profile-box {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-      }
-    </style>
-    <!-- axios CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    .profile-box .profile-save-btn {
+      display: none;
+    }
 
-    <!-- 다음주소검색 api -->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  </head>
+    .profile-box {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+  <!-- axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- 다음주소검색 api -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
 
 <body>
   <div class="back-main">
@@ -182,58 +180,32 @@
           <img id="preview" src="../static/img/profile-basic.png">
           <input type="file" name="dynamicFile" id="dynamicFile" onchange="readURL(this);">
           <label for="dynamicFile"></label>
-        
+        </div>
         <button class="profile-save-btn" type="button" onclick="fileUpload();">저장</button>
-        </div>
       </div>
       </div>
 
-
-        <div class="form-div">
-          <label for="userid" class="form-item">아이디</label>
-          <div class="form-guide">
-            <input
-              type="text"
-              name="userid"
-              id="userid"
-              placeholder="아이디를 입력해주세요"
-              required
-              onchange="changeId()"
-              onkeyup="idInputCheck(this, 10);"
-            />
-            <p class="guide-id guide"></p>
-          </div>
-          <button type="button" class="check-btn" onclick="overlapId()">
-            중복확인
-          </button>
-
+      <div class="form-div">
+        <label for="userid" class="form-item">아이디</label>
+        <div class="form-guide">
+          <input type="text" name="userid" id="userid" placeholder="아이디를 입력해주세요" required onchange="changeId()" onkeyup="idInputCheck(this, 10);">
+          <p class="guide-id guide"></p>
         </div>
+        <button type="button" class="check-btn" onclick="overlapId()">중복확인</button>
+      </div>
 
-        <div class="form-div">
-          <label for="pw" class="form-item">비밀번호</label>
-          <input
-            type="password"
-            name="pw"
-            id="pw"
-            placeholder="비밀번호를 입력해주세요"
-            required
-            onkeyup="checkPw(this);"
-          />
-        </div>
+      <div class="form-div">
+        <label for="pw" class="form-item">비밀번호</label>
+        <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요" required onkeyup="checkPw(this);">
+      </div>
 
-        <div class="form-div">
-          <label for="pw" class="form-item">비밀번호 확인</label>
-          <div class="form-guide">
-            <input
-              type="password"
-              id="pw-confirm"
-              placeholder="비밀번호를 한번 더 입력해주세요"
-              required
-              onkeyup="checkPw(this);"
-            />
-            <p class="guide-pw guide"></p>
-          </div>
+      <div class="form-div">
+        <label for="pw" class="form-item">비밀번호 확인</label>
+        <div class="form-guide">
+          <input type="password" id="pw-confirm" placeholder="비밀번호를 한번 더 입력해주세요" required onkeyup="checkPw(this);">
+          <p class="guide-pw guide"></p>
         </div>
+      </div>
 
       <div class="form-div">
         <label for="nickname" class="form-item">닉네임</label>
@@ -354,50 +326,17 @@
         });
     }
 
+    function charCheck(obj) {
+      // 특수문자 판별
+      var specialChar = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
 
-      function idInputCheck(obj, max) {
-        charCheck(obj);
-        handleInputLength(obj, max);
+      // 배열에서 하나씩 값을 비교
+      if (specialChar.test(obj.value)) {
+        // 값이 일치하면 문자를 삭제
+        obj.value = obj.value.substring(0, obj.value.length - 1);
 
-        // 조건을 만족하지 않으면 가이드 보임
-        if ((useridInput.value.length = 0 || useridInput.value.length < 3)) {
-          useridGuide.innerText = "아이디는 3 - 10자로 만들어주세요";
-          // 6자 이상 16자 이하로 특수문자 제외
-        } else {
-          useridGuide.innerText = "";
-        }
-      }
-
-      function fileUpload() {
-        console.log("click fileUpload");
-
-        // 멀티미디어 데이터는 비동기 데이터를 보여줄 때 폼 데이터를 만들어서 함
-        const formData = new FormData(); // 폼 객체 생성
-        const file = document.getElementById("dynamicFile"); // file input
-        console.dir(file.files[0]); // 파일 input에 들어간 파일 정보
-
-        // formData.append(name, value);
-        // input의 name과 input의 value
-        formData.append("dynamicFile", file.files[0]);
-
-        // axios 통신
-        axios({
-          method: "POST",
-          url: "/dynamicFile",
-          data: formData,
-          headers: {
-            "Content-Type": "multipart/form-data", // enctype: "multipart/form-data"
-          },
-        }).then(function (res) {
-          // res : 클라이언트의 POST /dynamicFile 요청을 보낸 응답 결과
-          document.getElementById(
-            "preview"
-          ).src = `/uploads/${res.data.filename}`;
-          alert("프로필 저장이 완료되었어요!");
-        });
       }
     };
-
 
     // maxlength 넘었을 때 텍스트를 잘라서 value값에 넣어줌
     function handleInputLength(el, max) {
