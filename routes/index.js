@@ -71,6 +71,8 @@ router.post('/signin', controller.postSignin)
 router.post('/overlapNick', controller.overlapNick)
 router.post('/overlapId', controller.overlapId)
 
+router.get('/logout', controller.getLogout)
+
 // router.post('/profile', controller.profile)
 
 
