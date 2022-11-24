@@ -28,7 +28,6 @@ const uploadDetail = multer({
       console.log(file.originalname); // peach.jpg
       console.log(ext); // .jpg
       console.log(path.basename(file.originalname, ext)); // path.basename('peach.jpg', '.jpg') => 'peach'
-
       done(null, path.basename(file.originalname, ext) + Date.now() + ext); // peach + 123123123123 + .jpg
 
       // [파일명+현재시간.확장자] 이름으로 바꿔서 파일 업로드
@@ -38,54 +37,28 @@ const uploadDetail = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-// 기본주소: localhost:PORT
-
-// GET / => localhost:PORT/
 router.get("/", controller.main);
 
 router.get("/groupCreate", controller.getGroupCreate);
 
 router.get("/register", controller.getRegister);
 
-
-// router.get("/create", controller.Creater);
-
 router.get("/chat", controller.getChat);
 
-// router.post('/register', controller.postRegister);
-
-// // GET /visitor => localhost:PORT/visitor
-router.get("/login", controller.login); // 전체 조회
+router.get("/login", controller.login);
 
 router.post(
   "/dynamicFile",
   uploadDetail.single("dynamicFile"),
-  controller.postProfileImg 
+  controller.postProfileImg
 );
-
 
 router.post("/signup", controller.postSignup);
 
-router.post('/signin', controller.postSignin)
+router.post('/signin', controller.postSignin);
 
-router.post('/overlapNick', controller.overlapNick)
-router.post('/overlapId', controller.overlapId)
+router.post('/overlapNick', controller.overlapNick);
 
-// router.post('/profile', controller.profile)
-
-
-// router.post('/upload', controller.postUpload)///
-
-// // GET /visitor/get => localhost:PORT/visitor/get
-// router.get('/visitor/get', controller.getVisitor); // 하나 조회
-
-// // POST /visitor/write => localhost:PORT/visitor/write
-// router.post('/visitor/write', controller.postVisitor); // 하나 추가
-
-// // PATCH /visitor/edit => localhost:PORT/visitor/edit
-// router.patch('/visitor/edit', controller.patchVisitor);  // 하나 수정
-
-// // DELETE / visitor/delete => localhost:PORT/visitor/delete
-// router.delete('/visitor/delete', controller.deleteVisitor)  // 하나 삭제
+router.post('/overlapId', controller.overlapId);
 
 module.exports = router;

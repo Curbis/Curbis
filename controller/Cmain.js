@@ -1,26 +1,22 @@
-// const session = require("express-session");
 const models = require("../models");
 
 exports.main = async(req, res) => {
 console.log('세션', req.session.user);
   const user = req.session.user;
-  // console.log(user);
-  // const result = await models.Mlist.findAll()
+  const result = await models.Mlist.findAll();
+  // 
 
-// result: result
   if (user !== undefined){
     const userInfo = await models.Muser.findOne({
       where: { 
         userid: user
       },
   })
-    res.render('main', {isLogin: true, userInfo: userInfo})
+    res.render('main', {isLogin: true, userInfo: userInfo, result: result});
     console.log(userInfo);
   } else {
-    res.render('main', {isLogin: false})
+    res.render('main', {isLogin: false});
   }
-  // console.log(req.session.user);
-  // res.render('index');
 };
 
 exports.login = (req, res) => {
@@ -36,7 +32,7 @@ exports.getRegister = (req, res) => {
 };
 
 exports.getChat =  (req, res) => {
-  res.render("chat")
+  res.render("chat");
 };
 
 exports.postProfileImg = (req, res) => {
@@ -75,23 +71,6 @@ exports.postSignin = (req, res) => {
   });
 };
 
-// exports.profile = (req, res) => {
-
-//   models.Muser.findOne({
-//     where: {
-//       userid: req.body.userid,
-//     },
-//   }).then((result) => {
-//     console.log(result);
-//     if (result == undefined) {
-//       res.redirect("/login");
-//     } else {
-//       res.redirect("/" );
-//     }
-//   });
-// };
-
-
 exports.overlapId = (req, res) => {
 console.log(req.body.userid);
   models.Muser.findOne({
@@ -102,7 +81,7 @@ console.log(req.body.userid);
       res.send(false); // 중복검사 통과
     } else{
       res.send(true); // 중복검사 불통과
-    }
+    };
   });
 };
 
@@ -118,7 +97,7 @@ exports.overlapNick = (req, res) => {
         res.send(false); // 중복검사 통과
       } else{
         res.send(true); // 중복검사 불통과
-      }
+      };
     });
   };
   
