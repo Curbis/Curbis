@@ -70,9 +70,9 @@
           <article type="total" class="cardArticle">
 
         <% for (i = 0; i < Object.keys(result).length; i++){ %>
-          <a href="/chatMove/<%= result[i].id %>">
+            <!-- <a href="/chatMove/<%= result[i].id %>"> -->
             <div class="card">
-
+         
               <img src="<%= result[i].picture %>" alt="" />
               <h3><%= result[i].name %></h3>
               <br />
@@ -102,9 +102,10 @@
                 />
                 <% } %>
               </div>
+            <!-- </a> -->
             </div>
 
- </a>
+
             <% } %>
       </div>
       </div>
