@@ -1,8 +1,10 @@
 const models = require("../models");
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 exports.main = async(req, res) => {
 console.log('세션', req.session.user);
-  const user = req.session.user;
+  let user = req.session.user;
   // const result = await models.Mlist.findAll(); // 전체  [ {}, {}, {}, {} ]
   // let memberArray= {};
   // // for (i = 0; i < Object.keys(result).length; i++){ // 4
@@ -38,20 +40,104 @@ console.log('세션', req.session.user);
   })
   // res.send(members);
 
+    if (user !== undefined){
+      const userInfo = await models.Muser.findOne({
+        where: { 
+          userid: user
+        },
+    })
+      res.render('main', {isLogin: true, userInfo: userInfo, result: members});
+      console.log(userInfo);
+    } else {
+      res.render('main', {isLogin: false, result: members});
+    }
+
+  }
 
 // console.log('memberArray >>>', memberArray);
+
+
+
+exports.postSerch = async(req, res) => {
+  let user = req.session.user;
+  let groups = await models.Mlist.findAll({
+    include: [
+      {model: models.Mmember,
+      include: [
+        {
+          model: models.Muser
+        }
+      ]
+      }
+    ],
+    where: {
+      name: {
+      [Op.like]: `%${req.body.serch}%`}
+    }
+
+  })
+  console.log('members는 이거다', groups)
+  if (groups == ''){
+    groups = await models.Mlist.findAll({
+      include: [
+        {model: models.Mmember,
+        include: [
+          {
+            model: models.Muser
+          }
+        ]
+        }
+      ],
+      where: {
+        topic: {
+        [Op.like]: `%${req.body.serch}%`}
+      }
+  
+    })
+  }
+
+  if (groups == ''){
+    groups = await models.Mlist.findAll({
+      include: [
+        {model: models.Mmember,
+        include: [
+          {
+            model: models.Muser
+          }
+        ]
+        }
+      ],
+      where: {
+        address: {
+        [Op.like]: `%${req.body.serch}%`}
+      }
+
+    })
+  }
+
+
+  if (groups == ''){
+    res.send(`
+        <script>
+          alert('검색 결과가 없어요');
+          document.location.href = '/'; 
+        </script>
+      `)
+  } else {
   if (user !== undefined){
     const userInfo = await models.Muser.findOne({
       where: { 
         userid: user
       },
-  })
-    res.render('main', {isLogin: true, userInfo: userInfo, result: members});
+    })
+
+    res.render('main', {isLogin: true, userInfo: userInfo, result: groups});
     console.log(userInfo);
   } else {
-    res.render('main', {isLogin: false, result: members});
+    res.render('main', {isLogin: false, result: groups});
   }
-};
+  }
+}
 
 exports.login = (req, res) => {
   res.render("login");
@@ -163,3 +249,15 @@ exports.overlapNick = (req, res) => {
       `)
     }
   }
+
+  // if (user !== undefined){
+  //   const userInfo = await models.Muser.findOne({
+  //     where: { 
+  //       userid: user
+  //     },
+  // })
+  //   res.render('main', {isLogin: true, userInfo: userInfo, result: members});
+  //   console.log(userInfo);
+  // } else {
+  //   res.render('main', {isLogin: false, result: members});
+  // }
