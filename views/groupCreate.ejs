@@ -53,6 +53,7 @@
                   type="radio"
                   name="r1"
                   id="r1"
+                  value = '성장/자기계발'
                   onchange="selectImg1(this)"
                   checked
                 />
@@ -65,6 +66,7 @@
                   type="radio"
                   name="r1"
                   id="r2"
+                  value = '운동/액티비티'
                   onchange="selectImg2(this)"
                 /><label for="r2">
                   <h4>운동/액티비티</h4>
@@ -75,6 +77,7 @@
                   type="radio"
                   name="r1"
                   id="r3"
+                  value = '파티/술'
                   onchange="selectImg3(this)"
                 /><label for="r3">
                   <h4>파티/술</h4>
@@ -134,7 +137,7 @@
 
               <!-- 날짜, 시간 -->
               <div class="travelDate">
-                <input type="text" id="startDate" readonly />
+                <input type="text" name='date' id="startDate" readonly />
               </div>
 
               <div class="time">
@@ -145,7 +148,7 @@
               <!-- 모임 인원수 -->
 
               <span>인원수:</span>
-              <input required type="number" name="number" min="3" max="6" />
+              <input required type="number" name="headcount" min="3" max="6" />
 
               <br />
 
