@@ -55,17 +55,16 @@ router.post(
 
 router.post("/signup", controller.postSignup);
 
-router.post('/signin', controller.postSignin)
+router.post("/signin", controller.postSignin);
 
-router.post('/overlapNick', controller.overlapNick)
-router.post('/overlapId', controller.overlapId)
+router.post("/overlapNick", controller.overlapNick);
+router.post("/overlapId", controller.overlapId);
 
-router.get('/logout', controller.getLogout)
+router.get("/logout", controller.getLogout);
 
 router.post('/serch', controller.postSerch)
 
 // router.post('/profile', controller.profile)
-
 
 // router.post('/upload', controller.postUpload)///
 
@@ -75,9 +74,8 @@ router.post('/serch', controller.postSerch)
 // // POST /visitor/write => localhost:PORT/visitor/write
 // router.post('/visitor/write', controller.postVisitor); // 하나 추가
 
+router.post("/overlapNick", controller.overlapNick);
 
-router.post('/overlapNick', controller.overlapNick);
-
-router.post('/overlapId', controller.overlapId);
+router.post("/overlapId", controller.overlapId);
 
 module.exports = router;

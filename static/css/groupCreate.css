@@ -4,14 +4,19 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: "Open Sans", sans-serif;
-  background-color: #ff9671;
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: rgb(26, 31, 39);
   text-align: center;
+  color: #ccc;
 }
 
 h3,
 h4 {
   font-weight: 200;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: relative;
 }
 
 a {
@@ -93,26 +98,10 @@ fieldset {
   padding: 20px 0;
 }
 
-/* CLEARFIX */
-
-.cf:before,
-.cf:after {
-  content: " ";
-  display: table;
-}
-
-.cf:after {
-  clear: both;
-}
-
-.cf {
-  *zoom: 1;
-}
-
 .wrapper {
   width: 100%;
-  margin: 100px 0;
-  height: 600px;
+  margin: -30px 0;
+  height: 400px;
   padding: 100px;
   justify-content: center;
   align-items: center;
@@ -124,7 +113,7 @@ fieldset {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: rgb(26, 31, 39);
   text-align: center;
 }
 
@@ -136,24 +125,12 @@ fieldset {
 
 /* FORM */
 
-.datetime::-webkit-calendar-picker-indicator {
-  color: rgba(0, 0, 0, 0);
-  opacity: 1;
-  display: block;
-  background: url(https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/calendar-16.png)
-    center/80% no-repeat white;
-  width: 20px;
-  height: 20px;
-  border-width: thin;
-  cursor: pointer;
-}
-
 .form-wrapper .section {
   padding: 0px 20px 30px 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: rgb(26, 31, 39);
   opacity: 0;
   -webkit-transform: scale(1, 0);
   -ms-transform: scale(1, 0);
@@ -187,22 +164,21 @@ fieldset {
 
 .form-wrapper .button,
 .form-wrapper .submit {
-  background-color: #ff9671;
+  border: #ff9671;
   display: inline-block;
   padding: 8px 30px;
   color: #fff;
   cursor: pointer;
-  font-size: 14px !important;
-  font-family: "Open Sans", sans-serif !important;
-  position: absolute;
+  font-size: 14px;
   right: 20px;
   bottom: 20px;
   width: 150px;
+  background-color: #ff9671;
   height: 40px;
 }
 
 .button {
-  margin-top: 200px;
+  margin-top: 100px;
 }
 
 .form-wrapper .submit {
@@ -221,21 +197,55 @@ fieldset {
   display: block;
   padding: 10px;
   margin: 10px auto;
-  background-color: #ff977167;
+  border: #ff9671;
   border: none;
+  border-radius: 7px;
   width: 50%;
   outline: none;
   font-size: 14px !important;
-  font-family: "Open Sans", sans-serif !important;
+  background-color: #cccccc40;
+  color: white;
 }
 
 .form-wrapper input[type="radio"] {
   display: none;
 }
 
+.form-wrapper input[type="time"] {
+  display: block;
+  padding: 10px;
+  margin: 15px;
+  border: #ff9671;
+  border: none;
+  border-radius: 7px;
+  width: 44%;
+  margin-left: 175px;
+  outline: none;
+  font-size: 14px !important;
+  background-color: #cccccc40;
+  color: white;
+}
+
+.form-wrapper input[type="number"] {
+  display: block;
+  padding: 10px;
+  margin: 10px auto;
+  border: #ff9671;
+  border: none;
+  border-radius: 7px;
+  width: 44%;
+  margin-left: 207px;
+  outline: none;
+  font-size: 14px !important;
+  background-color: #cccccc40;
+  color: white;
+}
+
 .form-wrapper input[type="radio"] + label {
   display: block;
-  border: 1px solid #ccc;
+  position: absolute;
+  left: 80px;
+  border: 1px solid #ff9671;
   width: 100%;
   max-width: 100%;
   padding: 10px;
@@ -255,7 +265,7 @@ fieldset {
   height: 30px;
   line-height: 30px;
   border-radius: 100%;
-  background-color: #ff9671;
+  background-color: #cccccc40;
   color: #fff;
   display: none;
 }
@@ -271,6 +281,8 @@ fieldset {
 
 .form-wrapper input[type="radio"]:checked + label {
   border: 1px solid #ff9671;
+  background-color: #ff97713b;
+  color: white;
 }
 
 .form-wrapper input[type="radio"]:checked + label h4 {
@@ -314,20 +326,25 @@ form input::file-selector-button {
 #preview {
   /* background-image: url('/static/img/profileBasic.png'); */
   background-size: 170px;
-  width: 300px;
+  width: 370px;
   height: 170px;
   color: transparent;
   margin-bottom: 10px;
-  margin-left: 35px;
+  margin-left: 60px;
   object-fit: cover;
 }
 
 .sectionFirst {
   display: block;
+  justify-content: center;
 }
 
 .sectionSecond {
   display: none;
+}
+
+.secondFild {
+  height: 800px;
 }
 
 .sectionThird {
@@ -367,37 +384,30 @@ form input::file-selector-button {
 
 .profile-box label {
   display: inline-block;
-  filter: opacity(50%);
   cursor: pointer;
   width: 50px;
-  height: 50px;
-  border-radius: 40%;
+  height: 25px;
+  border-radius: 10%;
   margin: 5px 0 5px;
-  background-image: url(/static/img/img.png);
-  background-size: 36px;
-  background-repeat: no-repeat;
-  background-position: center;
   text-align: center;
   align-content: center;
-  right: 0;
-  top: 50%;
+  right: -12%;
+  top: -8%;
 }
 
 .profile-save-btn {
   display: inline-block;
-  filter: opacity(50%);
   cursor: pointer;
   width: 50px;
-  height: 50px;
-  border-radius: 40%;
+  height: 25px;
+  border-radius: 10%;
   margin: 5px 0 5px;
   text-align: center;
   align-content: center;
   position: absolute;
-  right: 28%;
-  top: 55%;
+  right: -2%;
+  top: 63.8%;
   border: none;
-  background-color: unset;
 }
 
 .profile-img {
@@ -415,19 +425,88 @@ form input::file-selector-button {
 
 .btn_share_sns > img {
   vertical-align: middle;
-  height: 50px;
-  border: #ff9671 4px solid;
-  background-color: rgba(255, 166, 0, 0.507);
+  height: 20px;
+  background-color: #ff9671;
   border-radius: 50%;
   padding: 10px;
   filter: opacity(70%);
+  position: absolute;
 }
 
 .snsIcon {
   padding: 50px 0;
 }
 
-.sectionSecond {
-  height: 800px;
-  justify-content: space-around;
+.three col {
+  position: absolute;
+}
+
+.sectionThird {
+  margin-top: -750px;
+}
+
+.moreText {
+  height: 100px;
+}
+
+#startDate {
+  width: 307px;
+  margin-right: 166px;
+}
+
+.ui-datepicker-trigger {
+  position: absolute;
+  top: 775px;
+  right: 418px;
+  width: 30px;
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 rgb(255, 255, 255));
+  filter: opacity(0.5) drop-shadow(0 0 0 gray);
+}
+.travelDate {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.mainButton {
+  border: #ff9671;
+  display: inline-block;
+  padding: 8px 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  right: 20px;
+  bottom: 20px;
+  width: 150px;
+  background-color: #ff97716e;
+  height: 40px;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+  display: none;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field {
+  display: none;
+}
+
+input[type="date"]::-webkit-datetime-edit-day-field {
+  display: none;
+}
+
+input[type="date"]::-webkit-datetime-edit-year-field {
+  display: none;
+}
+input[type="date"]:valid {
+  color: #c9c9c9;
+}
+input[type="date"] {
+  position: relative;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  z-index: 1;
+}
+
+.time {
+  display: flex;
 }
