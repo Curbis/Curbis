@@ -31,7 +31,50 @@ function ThirdStep() {
   stop1.style.color = "#ccc";
   stop2.style.color = "#ccc";
   stop3.style.color = "#ff9671";
-}
+  const form = document.forms['groupCreat'];
+ console.log('dad',form.r1.value); 
+ console.log('dad',form.moreText.value); 
+ console.log('dad',form.date.value); 
+ console.log('dad',form.address.value); 
+ console.log('dad',form.time.value); 
+ console.log('dad',form.text.value); 
+ console.log('dad',form.headcount.value); 
+ console.log('dad',document.getElementById('preview').src); 
+  axios({
+    method: 'POST',
+    url: '/makeGroup',
+    data: {
+      name: form.text.value,
+      picture: document.getElementById('preview').src,
+      topic: form.r1.value,
+      introduce: form.moreText.value,
+      address: form.address.value,
+      day: form.date.value,
+      hour: form.time.value,
+      headcount: form.headcount.value,
+    },
+  }).then((res) => {
+    // console.log(res);
+    // console.log(res.data);
+    return res.data;
+  }).then((data) => {
+    // (1) alert 띄우기
+    alert('생성 되신 것을 축하해요!');
+    // (2) 가입 성공시 로그인 페이지로 이동
+    // document.location.href란?
+    // javascript에서 페이지 이동할 수 있는 방법
+    // document 객체를 사용하기 때문에 프론트에서 사용 가능
+    // form.userid.value = '';
+    // form.pw.value = '';
+    // form.nickname.value = '';
+    // form.address.value = '';
+    // const disBtn = document.querySelector('#disBtn');
+    // disBtn.disabled = true;
+    // document.location.href = '/login';
+  });
+};
+
+console.log("dd", $("input[name='r1']:checked").val());
 
 function goMain() {
   document.location.href = "/";
@@ -197,13 +240,13 @@ function groupCreat() {
 
   axios({
     method: "POST",
-    url: "/groupCreate",
+    url: "/makeGroup",
     data: {
       profile: document.getElementById("preview").src,
       text: form.text.value,
       moreText: form.moreText.value,
-      date: form.date.value,
-      time: form.time.value,
+      day: form.date.value,
+      hour: form.time.value,
       number: form.number.value,
       address: form.address.value,
     },
@@ -231,4 +274,4 @@ $(function () {
   // $("#startDate").val(getToday());
 });
 
-console.log("dd", $("input[name='r1']:checked").val());
+
