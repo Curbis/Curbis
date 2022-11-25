@@ -62,6 +62,8 @@ router.post("/overlapId", controller.overlapId);
 
 router.get("/logout", controller.getLogout);
 
+router.post('/serch', controller.postSerch)
+
 // router.post('/profile', controller.profile)
 
 // router.post('/upload', controller.postUpload)///
