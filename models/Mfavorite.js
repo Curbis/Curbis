@@ -13,6 +13,8 @@ const Favorite = function (Sequelize, DataTypes) {
         // id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
         id: {
           type: DataTypes.INTEGER,
+  
+          autoIncrement: true,
           allowNull: false,
           primaryKey: true,
         },
