@@ -8,21 +8,7 @@ scrollLeft.onclick = () => {
 };
 
 scrollRight.onclick = () => {
+
   cardArticle.scrollLeft += 1020;
 };
 
-// function serchGroup() {
-//   axios({
-//     method: 'POST',
-//     url: '/serch',
-//     data: {
-//       serchValue : serchInput.value,
-//     }
-//   })
-
-//   .then((res => {
-//     console.log(res.result)
-//     // return res.data;
-//   })
-//   )
-// }

@@ -136,8 +136,10 @@ exports.postSerch = async(req, res) => {
   } else {
     res.render('main', {isLogin: false, result: groups});
   }
+
   }
 }
+
 
 exports.login = (req, res) => {
   res.render("login");
@@ -250,14 +252,9 @@ exports.overlapNick = (req, res) => {
     }
   }
 
-  // if (user !== undefined){
-  //   const userInfo = await models.Muser.findOne({
-  //     where: { 
-  //       userid: user
-  //     },
-  // })
-  //   res.render('main', {isLogin: true, userInfo: userInfo, result: members});
-  //   console.log(userInfo);
-  // } else {
-  //   res.render('main', {isLogin: false, result: members});
-  // }
+
+  exports.chatMove = (req, res) => {
+    console.log(req.params.id);
+
+    res.render('chat',{result : req.params.id})
+  }
