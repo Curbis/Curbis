@@ -13,6 +13,11 @@ alter table user DROP column picture;
 ALTER TABLE list ADD picture mediumtext NOT NULL;
 ALTER TABLE user ADD day VARCHAR(50) NOT NULL;
 ALTER TABLE user ADD hour VARCHAR(10) NOT NULL;
+ALTER TABLE list ADD picture mediumtext NOT NULL;
+ALTER TABLE list ADD day VARCHAR(50) NOT NULL;
+ALTER TABLE list ADD hour VARCHAR(10) NOT NULL;
+ALTER TABLE list ADD host VARCHAR(15) NOT NULL;
+
 
 
 -- TODO: 새로운 데이터베이스 생성
@@ -35,6 +40,7 @@ CREATE TABLE list (
     hour VARCHAR(10) NOT NULL,
     picture MEDIUMTEXT NOT NULL,
     user_id VARCHAR(15) NOT NULL,
+    host VARCHAR(15) NOT NULL,
     FOREIGN KEY(user_id) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE
 );
 

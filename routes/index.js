@@ -62,6 +62,7 @@ router.post('/overlapId', controller.overlapId)
 
 router.get('/logout', controller.getLogout)
 
+router.get('/chatMove/:id', controller.chatMove)
 // router.post('/profile', controller.profile)
 
 

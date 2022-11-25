@@ -51,6 +51,22 @@ console.log('세션', req.session.user);
   } else {
     res.render('main', {isLogin: false, result: members});
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 };
 
 exports.login = (req, res) => {
@@ -162,4 +178,10 @@ exports.overlapNick = (req, res) => {
         </script>
       `)
     }
+  }
+
+  exports.chatMove = (req, res) => {
+    console.log(req.params.id);
+
+    res.render('chat',{result : req.params.id})
   }

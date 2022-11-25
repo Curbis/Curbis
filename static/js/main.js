@@ -29,3 +29,21 @@ scrollLeft.onclick = () => {
 scrollRight.onclick = () => {
   cardArticle.scrollLeft = cardArticle.scrollWidth;
 };
+
+// function profileMove(data){
+//   console.log(data.id);
+//   axios({
+//     method: 'POST',
+//     url: '/chatMove',
+//     data: {
+//       userid: data.id,
+//     },
+//   })
+  // .then((res) => {
+  //   return res.data;
+  // })
+  // .then((data) => { // true, false
+  //   console.log(data)
+  
+  // });
+// }
