@@ -84,5 +84,7 @@ router.post("/overlapId", controller.overlapId);
 
 router.post("/makeGroup", controller.makeGroup);
 
+router.post("/groupIn", controller.groupIn);
+
 module.exports = router;
 

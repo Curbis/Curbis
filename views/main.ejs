@@ -28,7 +28,7 @@
 
   </head>
   <body>
-    <div class="container">
+    <div class="container" >
       <a href="/">
         <img src="../static/img/logo.png" class="logo">
       </a>
@@ -39,12 +39,14 @@
           </a>
           <img id ='profile' src=
           '<%= userInfo.picture %>'>
-          <div class="hi">
+          <div class="hi"  id ='<%= userInfo.userid %>' >
             <%= userInfo.userid %>님 안녕하세요
           </div>
           <a href="/logout" class="logout-btn">로그아웃</a>
         <% } else {%>
           <a href="/login" class="login-btn">로그인</a>
+          <div class="hi"  id = 'id' >
+          </div>  
         <% } %>
       </div>
 
@@ -127,7 +129,9 @@
           <div class="group-hour">여기는 시간</div>
           <div class="group-headcount">여기는 인원</div>
           
-          <button class="group-in-btn">회원 신청하기</button>
+          <button class="group-in-btn" onclick="groupIn();">모임 참여</button>
+          <button class="group-out-btn" onclick="groupOut();">모임 탈퇴</button>
+          <button class="group-delete-btn" onclick="groupDelete();">모임 삭제</button>
         </div>
       </div>
     </div>

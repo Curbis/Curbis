@@ -8,7 +8,11 @@ let GIntro = document.querySelector('.group-intro')
 let GDay = document.querySelector('.group-day')
 let Ghour = document.querySelector('.group-hour')
 let Gmember = document.querySelector('.group-headcount')
-
+let Gin = document.querySelector('.group-in-btn')
+let Gdel = document.querySelector('.group-delete-btn')
+let Gout = document.querySelector('.group-out-btn')
+let sessionId = document.querySelector('.hi').id
+let userMember = []
 scrollLeft.onclick = () => {
   cardArticle.scrollLeft -= 1020;
 };
@@ -16,8 +20,6 @@ scrollLeft.onclick = () => {
 scrollRight.onclick = () => {
   cardArticle.scrollLeft += 1020;
 };
-
-let card = document.card
 
 function detail(data) {
   modal.style.display = "flex";
@@ -34,30 +36,89 @@ function detail(data) {
     return res.data;
   })
   .then((data) => {
-    console.log(data)
-    GPic.src = data.picture;
-    GIntro.innerText = data.introduce;
-    GDay.innerText = data.day;
-    Ghour.innerText = data.hour;
-    Gmember.innerText = data.headcount;
 
-    for (j = 0; j < Object.keys(data.members).length; j++){
-    let profileImg = document.createElement('img');
-    profileImg.classList.add('profileImg');
-    profileImg.src = data.members[j].user.picture;
-    Gmember.appendChild(profileImg)
+    GPic.src = data.result.picture;
+    GIntro.innerText = data.result.introduce;
+    GDay.innerText = data.result.day;
+    Ghour.innerText = data.result.hour;
+    Gmember.innerText = data.result.headcount;
+    Gin.id = data.result.id
+    
+    for (j = 0; j < Object.keys(data.result.members).length; j++){
+      let profileImg = document.createElement('img');
+      profileImg.classList.add('profileImg');
+      profileImg.src = data.result.members[j].user.picture;
+      Gmember.appendChild(profileImg);
+    
+      if (data.btn == 'host'){
+        let Gde = document.querySelector('.group-in-btn')
+        Gdel.style.display = 'block'
+      } else {
+      userMember.push(data.result.members[j].user.userid);
+     
+      // console.log(userInfo)
+
+    
+      let find = userMember.find((element) => {
+          return element == sessionId
+        }
+      )
+
+      if (find !== undefined){
+        Gout.style.display = 'block'
+    } else if (sessionId != 'id' ){
+      Gin.style.display = 'block'
     }
+  }
+    
+    }
+
   })
 }
 
-
 closeBtn.addEventListener("click", e => {
-    modal.style.display = "none"
+    modal.style.display = "none";
+    userMember = [];
+    outModal() 
 })
 
 modal.addEventListener("click", e => {
   const evTarget = e.target
   if(evTarget.classList.contains("modal-overlay")) {
-      modal.style.display = "none"
+      modal.style.display = "none";
+      userMember = [];
+      outModal() 
   }
 })
+
+function outModal() {
+  Gin.style.display = 'none'
+  Gdel.style.display = 'none'
+  Gout.style.display = 'none'
+}
+
+function groupIn() {
+  console.log(Gin.id, sessionId)
+  axios({
+    method: 'POST',
+    url: '/groupIn',
+    data: {
+      listId: Gin.id,
+      userId: sessionId
+    }
+  })
+  .then((res) => {
+    alert('모임생성 완료')
+    
+  })
+
+}
+
+
+function groupOut() {
+  console.log(Gin.id, sessionId)
+}
+
+function groupDelete() {
+  console.log(Gin.id, sessionId)
+}
