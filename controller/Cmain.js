@@ -283,6 +283,7 @@ exports.profile =  (req, res) => {
 
 exports.passPw =  (req, res) => {
   let user = req.session.user
+  let pw = req.body.pw
   if (user !== undefined) {
     models.Muser.findOne({
       where: {
@@ -290,10 +291,10 @@ exports.passPw =  (req, res) => {
       },
     }).then((result) => {
       console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..',result.pw)
-      if(result == null || result == undefined || result == ''){
-    res.send(false)
-      } else {
+      if(result.pw == pw){
         res.send(true)
+      } else {
+        res.send(false)
       }
     })
   } else {
