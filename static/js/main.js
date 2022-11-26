@@ -12,3 +12,6 @@ scrollRight.onclick = () => {
   cardArticle.scrollLeft += 1020;
 };
 
+function mypage() {
+  document.location.href = '/profile';
+}

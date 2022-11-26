@@ -38,10 +38,10 @@
           <a href="/groupCreate" class="buttons" id="add">
             <img src="/static/img/add.png" title="모임 만들기">
           </a>
-          <img id ='profile' src=
+          <img onclick="mypage()" id ='profile' src=
           '<%= userInfo.picture %>'>
-          <div class="hi">
-            <%= userInfo.userid %>님 안녕하세요
+          <div class="hi" onclick="mypage()">
+            <%= userInfo.nickname %>님 안녕하세요
           </div>
           <a href="/logout" class="logout-btn">로그아웃</a>
         <% } else {%>
