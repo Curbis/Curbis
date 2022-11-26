@@ -1,6 +1,7 @@
 html,
 body {
   width: 100%;
+  max-width: 1900px;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -8,6 +9,11 @@ body {
   background-color: rgb(26, 31, 39);
   text-align: center;
   color: #ccc;
+}
+
+input::placeholder {
+  font-size: 13px;
+  text-align: center;
 }
 
 h3,
@@ -26,7 +32,7 @@ a {
 p,
 li,
 a {
-  font-size: 14px;
+  font-size: 17px;
   padding: 10px;
 }
 
@@ -102,7 +108,7 @@ fieldset {
   width: 100%;
   margin: -30px 0;
   height: 400px;
-  padding: 100px;
+  padding: 100px 0;
   justify-content: center;
   align-items: center;
 }
@@ -117,10 +123,22 @@ fieldset {
   text-align: center;
 }
 
-.steps li {
+.steps button {
   display: inline-block;
   margin: 20px;
   padding-bottom: 5px;
+  background-color: none;
+  border: none;
+  appearance: none;
+  border: #ff9671;
+  cursor: pointer;
+  font-size: 14px;
+  right: 20px;
+  bottom: 20px;
+  width: 150px;
+  background-color: rgba(255, 255, 255, 0);
+  height: 40px;
+  border-radius: 15px;
 }
 
 /* FORM */
@@ -170,15 +188,43 @@ fieldset {
   color: #fff;
   cursor: pointer;
   font-size: 14px;
+  position: relative;
+  right: -1px;
+  border-radius: 15px;
+  bottom: -204px;
+  width: 150px;
+  background-color: #ff9671ad;
+  height: 40px;
+}
+
+.backStep {
+  border: #ff9671;
+  position: absolute;
+  top: 70px;
+  left: -164px;
+  padding: 8px 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  right: 5px;
+  bottom: 20px;
+  width: 150px;
+  background-color: #ff9671;
+  height: 40px;
+  display: none;
+}
+
+#goBack {
+  display: block;
+  padding: 8px 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
   right: 20px;
   bottom: 20px;
   width: 150px;
   background-color: #ff9671;
   height: 40px;
-}
-
-.button {
-  margin-top: 100px;
 }
 
 .profile-box .profile-save-btn {
@@ -201,10 +247,9 @@ fieldset {
   display: block;
   padding: 10px;
   margin: 10px auto;
-  border: #ff9671;
-  border: none;
+  border: 1px solid gray;
   border-radius: 7px;
-  width: 50%;
+  width: 93%;
   outline: none;
   font-size: 14px !important;
   background-color: #cccccc40;
@@ -218,12 +263,14 @@ fieldset {
 .form-wrapper input[type="time"] {
   display: block;
   padding: 10px;
+  top: 740px;
+  left: 517px;
+  position: absolute;
   margin: 15px;
-  border: #ff9671;
-  border: none;
+  border: 1px solid gray;
   border-radius: 7px;
-  width: 44%;
-  margin-left: 175px;
+  width: 100px;
+  margin-left: 148px;
   outline: none;
   font-size: 14px !important;
   background-color: #cccccc40;
@@ -234,11 +281,13 @@ fieldset {
   display: block;
   padding: 10px;
   margin: 10px auto;
-  border: #ff9671;
-  border: none;
+  border: 1px solid gray;
   border-radius: 7px;
-  width: 44%;
-  margin-left: 207px;
+  position: absolute;
+  top: 748px;
+  left: 366px;
+  width: 6%;
+  margin-left: 167px;
   outline: none;
   font-size: 14px !important;
   background-color: #cccccc40;
@@ -299,18 +348,16 @@ fieldset {
 
 /* 이미지 추가 */
 .profile-box label {
-  display: block;
-  background-color: rgba(255, 255, 255, 0.548);
+  display: inline-block;
   cursor: pointer;
-  width: 45px;
-  height: 45px;
+  width: 80px;
+  height: 25px;
+  border-radius: 10px;
   margin: 5px 0 5px;
-  /* background-image: url("../static/img/img.png"); */
-  background-size: 36px;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-  right: 50px;
+  text-align: center;
+  align-content: center;
+  right: 21%;
+  top: 14%;
 }
 
 form input::file-selector-button {
@@ -330,11 +377,11 @@ form input::file-selector-button {
 #preview {
   /* background-image: url('/static/img/profileBasic.png'); */
   background-size: 170px;
-  width: 370px;
+  width: 500px;
   height: 170px;
   color: transparent;
   margin-bottom: 10px;
-  margin-left: 60px;
+  /* margin-left: 60px; */
   object-fit: cover;
 }
 
@@ -374,10 +421,6 @@ form input::file-selector-button {
   height: 0;
 }
 
-#dynamicFile {
-  display: none;
-}
-
 form input::file-selector-button {
   display: none;
 }
@@ -390,27 +433,33 @@ form input::file-selector-button {
   display: inline-block;
   cursor: pointer;
   width: 50px;
-  height: 25px;
-  border-radius: 10%;
-  margin: 5px 0 5px;
+  height: 28px;
+  border-radius: 9px;
+  background-color: #f5f5f554;
+  margin: -23px -124px 0;
+  color: white;
   text-align: center;
   align-content: center;
-  right: -12%;
-  top: -8%;
+  position: relative;
+  right: -25%;
+  top: 2%;
 }
 
 .profile-save-btn {
-  display: inline-block;
+  display: none;
   cursor: pointer;
   width: 50px;
-  height: 25px;
-  border-radius: 10%;
-  margin: 5px 0 5px;
+  height: 31px;
+  border-radius: 10px;
+  background-color: #808080ad;
+  color: white;
+  font-size: 15px;
+  margin: -118px 0px 5px;
   text-align: center;
   align-content: center;
   position: absolute;
-  right: -2%;
-  top: 63.8%;
+  right: -1%;
+  top: 90.8%;
   border: none;
 }
 
@@ -439,6 +488,8 @@ form input::file-selector-button {
 
 .snsIcon {
   padding: 50px 0;
+  position: absolute;
+  right: 267px;
 }
 
 .three col {
@@ -454,14 +505,17 @@ form input::file-selector-button {
 }
 
 #startDate {
-  width: 307px;
-  margin-right: 166px;
+  width: 237px;
+  position: absolute;
+  top: 748px;
+  left: 184px;
+  margin-right: 14px;
 }
 
 .ui-datepicker-trigger {
   position: absolute;
-  top: 775px;
-  right: 418px;
+  top: 754px;
+  right: 458px;
   width: 30px;
   -webkit-filter: opacity(0.5) drop-shadow(0 0 0 rgb(255, 255, 255));
   filter: opacity(0.5) drop-shadow(0 0 0 gray);
@@ -475,12 +529,15 @@ form input::file-selector-button {
   border: #ff9671;
   display: inline-block;
   padding: 8px 30px;
-  color: #fff;
+  position: relative;
+  top: 186px;
+  left: 2px;
   cursor: pointer;
   font-size: 14px;
   right: 20px;
   bottom: 20px;
   width: 150px;
+  border-radius: 15px;
   background-color: #ff97716e;
   height: 40px;
 }
@@ -511,6 +568,50 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   z-index: 1;
 }
 
-.time {
-  display: flex;
+#address {
+  position: absolute;
+  top: 872px;
+  left: 117px;
+}
+
+.headcount {
+  position: absolute;
+  top: 763px;
+  right: 175px;
+}
+
+.addressP {
+  position: absolute;
+  top: 823px;
+  right: 151px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.dateP {
+  text-align: center;
+  position: absolute;
+  top: 763px;
+  right: 530px;
+  font-size: 15px;
+}
+
+.timeP {
+  position: absolute;
+  top: 764px;
+  right: 48px;
+  font-size: 15px;
+}
+
+.inputwrap {
+  position: relative;
+  top: -744px;
+  left: -100px;
+}
+
+.logo {
+  height: 100px;
+  position: absolute;
+  top: 17px;
+  left: 15%;
 }
