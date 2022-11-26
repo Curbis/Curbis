@@ -10,7 +10,7 @@
     <link rel="shoctcut icon" type="image/x-icon" href="../static/img/favicon/favicon.ico">
 
     <!-- static 연결 -->
-    <link rel="stylesheet" href="/static/CSS/main.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
@@ -70,8 +70,9 @@
           <article type="total" class="cardArticle">
 
         <% for (i = 0; i < Object.keys(result).length; i++){ %>
-            <div class="card">
 
+            <div class="card">
+         
               <img src="<%= result[i].picture %>" alt="" />
               <h3><%= result[i].name %></h3>
               <br />
@@ -101,7 +102,9 @@
                 />
                 <% } %>
               </div>
+            <!-- </a> -->
             </div>
+
             <% } %>
       </div>
       </div>

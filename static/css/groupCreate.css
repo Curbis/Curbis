@@ -227,6 +227,10 @@ fieldset {
   height: 40px;
 }
 
+.profile-box .profile-save-btn {
+  display: none;
+}
+
 .form-wrapper .submit {
   border: none;
   outline: none;

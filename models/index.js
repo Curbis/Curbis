@@ -66,6 +66,15 @@ db.Mlist.hasMany(db.Mchat, {
     targetKey: 'userid',
   });
 
+  db.Muser.hasMany(db.Mlist, {
+    foreignKey: 'host',
+    sourceKey: 'userid',
+  });
+  db.Mlist.belongsTo(db.Muser, {
+    foreignKey: 'host',
+    targetKey: 'userid',
+  });
+
 
 
 // Mfavorite에서 FK 가져오기
