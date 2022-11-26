@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>소모임 생성</title>
-    <link rel="stylesheet" href="/static/CSS/groupCreate.css" />
+    <link rel="stylesheet" href="/static/css/groupCreate.css" />
 
     <!-- favicon -->
 
@@ -44,7 +44,7 @@
           <li class="stop3">3 단계</li>
         </ul>
         <hr />
-        <form class="form-wrapper" name="groupCreat" method="POST">
+        <form class="form-wrapper" name="groupCreat">
           <fieldset class="sectionFirst">
             <h1>모임의 성격을 알려주세요!</h1>
             <div class="row cf">
@@ -53,7 +53,8 @@
                   type="radio"
                   name="r1"
                   id="r1"
-                  onchange="selectImg1(this)"
+                  value = '성장/자기계발'
+                  onchange="selectImg1()"
                   checked
                 />
                 <label for="r1">
@@ -65,7 +66,8 @@
                   type="radio"
                   name="r1"
                   id="r2"
-                  onchange="selectImg2(this)"
+                  value = '운동/액티비티'
+                  onchange="selectImg2()"
                 /><label for="r2">
                   <h4>운동/액티비티</h4>
                 </label>
@@ -75,7 +77,8 @@
                   type="radio"
                   name="r1"
                   id="r3"
-                  onchange="selectImg3(this)"
+                  value = '파티/술'
+                  onchange="selectImg3()"
                 /><label for="r3">
                   <h4>파티/술</h4>
                 </label>
@@ -134,7 +137,7 @@
 
               <!-- 날짜, 시간 -->
               <div class="travelDate">
-                <input type="text" id="startDate" readonly />
+                <input type="text" name='date' id="startDate" readonly />
               </div>
 
               <div class="time">
@@ -145,14 +148,14 @@
               <!-- 모임 인원수 -->
 
               <span>인원수:</span>
-              <input required type="number" name="number" min="3" max="6" />
+              <input required type="number" name="headcount" id="headcount" min="3" max="6' onchange="numlock()"/>
 
               <br />
 
               <!-- 장소  -->
               모임장소를 입력해주세요
               <div class="form-div">
-                <input required id="address" name="address" type="text" />
+                <input required id="address" name="address" type="text"  />
               </div>
 
               <!-- 2단계 이동 버튼 -->

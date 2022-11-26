@@ -12,9 +12,9 @@ const List = function (Sequelize, DataTypes) {
       {
         // id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
         id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-          primaryKey: true,
+          type: DataTypes.INTEGER, 
+          primaryKey: true, 
+          autoIncrement: true,
         },
         name: {
             type: DataTypes.STRING(20),
@@ -26,7 +26,7 @@ const List = function (Sequelize, DataTypes) {
         },
         // name VARCHAR(10) NOT NULL,
         introduce: {
-          type: DataTypes.STRING(100),
+          type: DataTypes.TEXT('medium'),
           allowNull: false,
         },
         // comment MEDIUMTEXT
