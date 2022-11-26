@@ -86,7 +86,10 @@ router.post("/overlapId", controller.overlapId);
 
 router.post("/makeGroup", controller.makeGroup);
 
+router.post("/groupIn", controller.groupIn);
+
 router.post("/passPw", controller.passPw);
+
 
 module.exports = router;
 

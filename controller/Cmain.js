@@ -3,7 +3,7 @@ const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
 exports.main = async (req, res) => {
-  console.log("세션", req.session.user);
+  // console.log("세션", req.session.user);
   let user = req.session.user;
   const members = await models.Mlist.findAll({
     include: [
@@ -25,7 +25,7 @@ exports.main = async (req, res) => {
       },
     });
     res.render("main", { isLogin: true, userInfo: userInfo, result: members });
-    console.log(userInfo);
+  
   } else {
     res.render("main", { isLogin: false, result: members });
   }
@@ -50,7 +50,7 @@ exports.postSerch = async (req, res) => {
       },
     },
   });
-  console.log("members는 이거다", groups);
+ 
   if (groups == "") {
     groups = await models.Mlist.findAll({
       include: [
@@ -107,7 +107,7 @@ exports.postSerch = async (req, res) => {
       });
 
       res.render("main", { isLogin: true, userInfo: userInfo, result: groups });
-      console.log(userInfo);
+     
     } else {
       res.render("main", { isLogin: false, result: groups });
     }
@@ -147,7 +147,7 @@ exports.postProfileImg = (req, res) => {
 };
 
 exports.postSignup = (req, res) => {
-  console.log("postSignup", req.body);
+
   models.Muser.create({
     picture: req.body.profile,
     userid: req.body.userid,
@@ -155,7 +155,7 @@ exports.postSignup = (req, res) => {
     nickname: req.body.nickname,
     address: req.body.address,
   }).then((result) => {
-    console.log("create >> ", result);
+    
     res.send(result);
   });
 };
@@ -171,18 +171,18 @@ exports.postSignin = (req, res) => {
       res.send(false);
     } else {
       req.session.user = result.userid;
-      console.log("로그인", req.session.user);
+  
       res.send(true);
     }
   });
 };
 
 exports.overlapId = (req, res) => {
-  console.log(req.body.userid);
+ 
   models.Muser.findOne({
     where: { userid: req.body.userid },
   }).then((result) => {
-    console.log("findOne >> ", result);
+ 
     if (result === null) {
       res.send(false); // 중복검사 통과
     } else {
@@ -192,11 +192,11 @@ exports.overlapId = (req, res) => {
 };
 
 exports.overlapNick = (req, res) => {
-  console.log(req.body.nickname);
+  
   models.Muser.findOne({
     where: { nickname: req.body.nickname },
   }).then((result) => {
-    console.log("findOne >> ", result);
+   
     if (result === null) {
       res.send(false); // 중복검사 통과
     } else {
@@ -207,14 +207,14 @@ exports.overlapNick = (req, res) => {
 
 exports.getLogout = (req, res) => {
   const user = req.session.user;
-  console.log("요청받은 세션 유저 >>>>>", user);
+ 
 
   if (user !== undefined) {
     req.session.destroy((err) => {
       if (err) {
         throw err;
       }
-      console.log("세션을 지운 후, req.seesion.user >>", user);
+      
       res.send(`
           <script>
             alert('로그아웃 되었어요');
@@ -261,7 +261,7 @@ exports.makeGroup =  (req, res) => {
       res.send(true)
     })
   } else {
-    res.send(false)
+    res.send(false);
   }
 };
 
@@ -303,6 +303,7 @@ exports.passPw =  (req, res) => {
 }
 
 exports.postDetail = (req, res) => {
+  let user = req.session.user;
   models.Mlist.findOne({
     include: [
       {
@@ -318,6 +319,27 @@ exports.postDetail = (req, res) => {
       id: req.body.groupId,
     },
   }).then((result) => {
-    res.send(result);
-  });
+    if (result.host == user){
+     res.send({result: result, btn: 'host'});
+   } else {
+      res.send({result: result, btn: 'nohost'});
+   }
+  })
+};
+
+exports.groupIn = (req, res) => {
+  let user = req.session.user;
+
+  if (user !== undefined) {
+    models.Mmember.create({
+      user_id: user,
+      list_id: req.body.listId
+    })
+     
+      .then((result) => {
+        res.send(true);
+      });
+  } else {
+    res.send(false);
+  }
 };
