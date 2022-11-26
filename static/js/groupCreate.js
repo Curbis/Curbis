@@ -5,7 +5,7 @@ const Third = document.querySelector(".sectionThird");
 const stop1 = document.querySelector(".stop1");
 const stop2 = document.querySelector(".stop2");
 const stop3 = document.querySelector(".stop3");
-
+const profileDiv = document.querySelector('.profile-div')
 // 보이기;
 
 function secondStep() {
@@ -25,21 +25,43 @@ function backStep() {
 }
 
 function ThirdStep() {
-  First.style.display = "none";
-  Second.style.display = "none";
-  Third.style.display = "block";
-  stop1.style.color = "#ccc";
-  stop2.style.color = "#ccc";
-  stop3.style.color = "#ff9671";
+
   const form = document.forms['groupCreat'];
- console.log('dad',form.r1.value); 
- console.log('dad',form.moreText.value); 
- console.log('dad',form.date.value); 
- console.log('dad',form.address.value); 
- console.log('dad',form.time.value); 
- console.log('dad',form.text.value); 
- console.log('dad',form.headcount.value); 
- console.log('dad',document.getElementById('preview').src); 
+ console.log('topic',form.r1.value); 
+ console.log('introduce',form.moreText.value); 
+ console.log('day',form.date.value); 
+ console.log('address',form.address.value); 
+ console.log('hour',form.time.value); 
+ console.log('name',form.text.value); 
+ console.log('headcount',form.headcount.value); 
+ console.log('picture',document.getElementById('preview').src); 
+
+ if (
+  form.text.value == "" ||
+  form.moreText.value == "" ||
+  form.date.value == "" ||
+  form.time.value == "" ||
+  form.headcount.value == "" ||
+  form.address.value == ""
+) {
+  return alert("공백이 존재합니다");
+}
+
+if (profileDiv.dataset.value == 'true') {
+  return alert('프로필 저장을 완료해주세요')
+};
+
+if (form.headcount.value > 6 || form.headcount.value < 3){
+  return alert('인원수는 3 - 6 명으로 설정해주세요')
+}
+
+First.style.display = "none";
+Second.style.display = "none";
+Third.style.display = "block";
+stop1.style.color = "#ccc";
+stop2.style.color = "#ccc";
+stop3.style.color = "#ff9671";
+
   axios({
     method: 'POST',
     url: '/makeGroup',
@@ -59,18 +81,14 @@ function ThirdStep() {
     return res.data;
   }).then((data) => {
     // (1) alert 띄우기
-    alert('생성 되신 것을 축하해요!');
-    // (2) 가입 성공시 로그인 페이지로 이동
-    // document.location.href란?
-    // javascript에서 페이지 이동할 수 있는 방법
-    // document 객체를 사용하기 때문에 프론트에서 사용 가능
-    // form.userid.value = '';
-    // form.pw.value = '';
-    // form.nickname.value = '';
-    // form.address.value = '';
-    // const disBtn = document.querySelector('#disBtn');
-    // disBtn.disabled = true;
-    // document.location.href = '/login';
+    
+    if (data) {
+      alert('그룹 생성 성공')
+    } else {
+      alert('로그인 시간이 만료되었습니다')
+      document.location.href = "/login";
+    }
+
   });
 };
 
@@ -83,14 +101,12 @@ function goMain() {
 function selectImg1() {
   const pickImg = document.getElementById("preview");
   const select2 = document.getElementById("r2");
-
   pickImg.src = "/static/img/mountain-g7d103621e_1280.jpg";
 }
 
 function selectImg2() {
   const pickImg = document.getElementById("preview");
   const select2 = document.getElementById("r2");
-
   pickImg.src = "/static/img/woman-g62120f928_1280.jpg";
 }
 function selectImg3() {
@@ -123,46 +139,54 @@ window.onload = function () {
     }).open();
   });
 };
+
 function fileUpload() {
-  console.log("click fileUpload");
+  console.log('click fileUpload')
 
   // 멀티미디어 데이터는 비동기 데이터를 보여줄 때 폼 데이터를 만들어서 함
   const formData = new FormData(); // 폼 객체 생성
-  const file = document.getElementById("dynamicFile"); // file input
+  const file = document.getElementById('dynamicFile'); // file input
   console.dir(file.files[0]); // 파일 input에 들어간 파일 정보
 
   // formData.append(name, value);
   // input의 name과 input의 value
-  formData.append("dynamicFile", file.files[0]);
+  formData.append('dynamicFile', file.files[0])
 
   // axios 통신
   axios({
-    method: "POST",
-    url: "/dynamicFile",
+    method: 'POST',
+    url: '/dynamicFile',
     data: formData,
     headers: {
-      "Content-Type": "multipart/form-data", // enctype: "multipart/form-data"
+      'Content-Type': 'multipart/form-data', // enctype: "multipart/form-data"
     },
-  }).then(function (res) {
+  }).then(function(res) {
     // res : 클라이언트의 POST /dynamicFile 요청을 보낸 응답 결과
-    document.getElementById("preview").src = `/uploads/${res.data.filename}`;
-  });
+    document.getElementById('preview').src = `/uploads/${res.data.filename}`
+    profileDiv.setAttribute('data-value', false);
+    console.log('저장완료', profileDiv.dataset.value);
+
+    alert('프로필 저장이 완료되었어요!');
+  })
 }
 
 // 이미지 미리보기
 function readURL(input) {
   if (input.files[0]) {
     let reader = new FileReader();
-    reader.onload = function (obj) {
-      document.getElementById("preview").src = obj.target.result;
+    reader.onload = function(obj) {
+      document.getElementById('preview').src = obj.target.result;
     };
 
     reader.readAsDataURL(input.files[0]);
+
   } else {
-    document.getElementById("preview").src =
-      "/static/img/woman-g62120f928_1280.jpg";
+    // document.getElementById('preview').src = "/static/img/profile-basic.png";
   }
-  document.querySelector(".profile-save-btn").style.display = "block";
+  profileDiv.setAttribute('data-value', true);
+  console.log('미리보기', profileDiv.dataset.value);
+  document.querySelector('.profile-save-btn').style.display = 'block'
+
 }
 
 const popoverTriggerList = document.querySelectorAll(
@@ -205,6 +229,8 @@ function shareKakao() {
   });
 }
 
+
+
 function clip() {
   var url = ""; // <a>태그에서 호출한 함수인 clip 생성
   var textarea = document.createElement("textarea");
@@ -220,42 +246,7 @@ function clip() {
   alert("URL이 복사되었습니다."); // 알림창
 }
 
-function groupCreat() {
-  // console.log('porfile<<',profileDiv.dataset.value);
 
-  const form = document.forms["form-wrappers"];
-  const imgFile = document.getElementById("dynamicFile");
-  const dynamicFile = document.imgFile.value;
-
-  if (
-    form.text.value == "" ||
-    form.moreText.value == "" ||
-    form.date.value == "" ||
-    form.time.value == "" ||
-    form.number.value == "" ||
-    form.address.value == ""
-  ) {
-    return alert("값을 입력해주세요");
-  }
-
-  axios({
-    method: "POST",
-    url: "/makeGroup",
-    data: {
-      profile: document.getElementById("preview").src,
-      text: form.text.value,
-      moreText: form.moreText.value,
-      day: form.date.value,
-      hour: form.time.value,
-      number: form.number.value,
-      address: form.address.value,
-    },
-  }).then((res) => {
-    console.log(res);
-    console.log(res.data);
-    return res.data;
-  });
-}
 
 $(function () {
   const now = new Date();
@@ -273,5 +264,4 @@ $(function () {
 
   // $("#startDate").val(getToday());
 });
-
 

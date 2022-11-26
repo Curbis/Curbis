@@ -144,8 +144,27 @@ exports.login = (req, res) => {
 };
 
 exports.getGroupCreate = (req, res) => {
-  res.render("groupCreate");
+  let user = req.session.user
+ 
+  if (user !== undefined) {
+ 
+      res.render("groupCreate");
+    
+  } else {
+    // 유저가 브라우저에서 /logout 경로로 직접 접근
+    // res.send()
+    // - alert()
+    // - / 경로로 이동
+    res.send(`
+        <script>
+          alert('로그인 후 모임 생성이 가능합니다');
+          document.location.href = '/'; 
+        </script>
+      `);
+  }
 };
+
+
 
 exports.getRegister = (req, res) => {
   res.render("register");
@@ -257,22 +276,40 @@ exports.getLogout = (req, res) => {
 // }
 
 exports.makeGroup =  (req, res) => {
-  console.log("postSignup", req.body);
-   models.Mlist.create({
-    picture: req.body.picture,
-    topic: req.body.topic,
-    introduce: req.body.introduce,
-    address: req.body.address,
-    name: req.body.name,
-    day: req.body.day,
-    hour: req.body.hour,
-    headcount: req.body.headcount,
-    user_id: req.session.user,
-    host: req.session.user,
-  }).then((result) => {
-    models.Mmember.create({
+
+  let user = req.session.user
+ 
+  if (user !== undefined) {
+
+    models.Mlist.create({
+      picture: req.body.picture,
+      topic: req.body.topic,
+      introduce: req.body.introduce,
+      address: req.body.address,
+      name: req.body.name,
+      day: req.body.day,
+      hour: req.body.hour,
+      headcount: req.body.headcount,
       user_id: req.session.user,
-      list_id: result.dataValues.id,
+      host: req.session.user,
+    }).then((result) => {
+      models.Mmember.create({
+        user_id: req.session.user,
+        list_id: result.dataValues.id,
+      })
+    }).then((result) => {
+      res.send(true)
     })
-  });
+
+  } else {
+    // 유저가 브라우저에서 /logout 경로로 직접 접근
+    // res.send()
+    // - alert()
+    // - / 경로로 이동
+    res.send(false)
+  }
+
+  
+
+
 };
