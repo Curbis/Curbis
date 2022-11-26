@@ -12,7 +12,7 @@ const Member = function (Sequelize, DataTypes) {
       {
         // id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
         id: {
-     type: DataTypes.INTEGER, 
+          type: DataTypes.INTEGER, 
           primaryKey: true, 
           autoIncrement: true,
         },
