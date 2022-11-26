@@ -9,7 +9,7 @@ USE curbis;
 DROP TABLE list;
 
 SHOW tables;
-alter table user DROP column picture;
+alter table list DROP column introduce;
 ALTER TABLE list ADD picture mediumtext NOT NULL;
 ALTER TABLE user ADD day VARCHAR(50) NOT NULL;
 ALTER TABLE user ADD hour VARCHAR(10) NOT NULL;
@@ -17,6 +17,7 @@ ALTER TABLE list ADD picture mediumtext NOT NULL;
 ALTER TABLE list ADD day VARCHAR(50) NOT NULL;
 ALTER TABLE list ADD hour VARCHAR(10) NOT NULL;
 ALTER TABLE list ADD host VARCHAR(15) NOT NULL;
+ALTER TABLE list ADD introduce mediumtext NOT NULL;
 
 
 
@@ -25,7 +26,7 @@ CREATE TABLE user (
     userid VARCHAR(15) NOT NULL PRIMARY KEY,
     pw VARCHAR(20) NOT NULL,
     address VARCHAR(50) NOT NULL,
-    picture VARCHAR(100) NOT NULL,
+    picture MEDIUMTEXT NOT NULL,
     nickname VARCHAR(10) NOT NULL
 );
 
@@ -36,7 +37,7 @@ CREATE TABLE list (
     introduce MEDIUMTEXT NOT NULL,
     address VARCHAR(50) NOT NULL,
     headcount INT,
-    day VARCHAR(20) NOT NULL,
+    day VARCHAR(50) NOT NULL,
     hour VARCHAR(10) NOT NULL,
     picture MEDIUMTEXT NOT NULL,
     user_id VARCHAR(15) NOT NULL,

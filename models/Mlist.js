@@ -26,7 +26,7 @@ const List = function (Sequelize, DataTypes) {
         },
         // name VARCHAR(10) NOT NULL,
         introduce: {
-          type: DataTypes.STRING(100),
+          type: DataTypes.TEXT('medium'),
           allowNull: false,
         },
         // comment MEDIUMTEXT
