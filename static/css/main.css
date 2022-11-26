@@ -405,3 +405,7 @@ body {
 .group-in-btn {
   color: black;
 }
+
+.after-check {
+  display: none;
+}

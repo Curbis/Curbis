@@ -47,6 +47,12 @@
       margin: 10px 20px;
     }
 
+    .register-form .form-div-pw {
+      display: flex;
+      padding: 5px;
+      margin: 10px 20px;
+    }
+
     .register-form .form-item {
       width: 130px;
       padding: 5px;
@@ -64,7 +70,7 @@
     }
 
     .register-form .check-btn,
-    .profile-box label,
+    /* .profile-box label, */
     .profile-box button {
       width: 80px;
       height: 42px;
@@ -111,9 +117,8 @@
       padding: 0;
     }
 
-    .profile-box label{ 
-
-      display: inline-block;
+    .profile-box .profilelabel{ 
+      display: none;
       background-color: rgba(255, 255, 255, 0.548);
       cursor: pointer;
       width: 45px;
@@ -162,12 +167,13 @@
       align-items: center;
     }
 
-    .register-form .editForm {
+    .after-check {
         display: none;
     }
 
-
-
+    .inline-block {
+        display: inline-block;
+    }
 
   </style>
   <!-- axios CDN -->
@@ -191,60 +197,60 @@
         <div class="profile-div">
           <img id="preview" src="<%= result.picture %>">
           <input type="file" name="dynamicFile" id="dynamicFile" onchange="readURL(this);">
-
-          <label for="dynamicFile" class = "editForm"></label>
+            <label for="dynamicFile" class = "profilelabel after-check "></label>
         </div>
-        <button class="profile-save-btn" type="button" onclick="fileUpload();">저장</button>
+            <button class="profile-save-btn" type="button" onclick="fileUpload();">저장</button>
       </div>
       </div>
 
 
-      <div class="form-div">
+      <div class="form-div-pw">
         <label for="pw" class="form-item">현재 비밀번호</label>
         <input type="password" name="nowPw" id="nowPw" placeholder="비밀번호를 입력해주세요" required">
       </div>
-
-      <div class="form-div editForm">
+      
+      <div class="after-check">
+      <div class="form-div check">
         <label for="pw" class="form-item">변경 비밀번호</label>
         <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요" required onkeyup="checkPw(this);">
       </div>
 
-      <div class="form-div editForm">
-        <label for="pw" class="form-item">비밀번호 확인</label>
-        <div class="form-guide">
-          <input type="password" id="pw-confirm" placeholder="비밀번호를 한번 더 입력해주세요" required onkeyup="checkPw(this);">
-          <p class="guide-pw guide"></p>
-        </div>
-
-        <button type="button" class="check-btn" id="editPw" onclick="editPw()">수정</button>
+          <div class="form-div">
+            <label for="pw" class="form-item">비밀번호 확인</label>
+            <div class="form-guide">
+              <input type="password" id="pw-confirm" placeholder="비밀번호를 한번 더 입력해주세요" required onkeyup="checkPw(this);">
+              <p class="guide-pw guide"></p>
+            </div>
+    
+            <button type="button" class="check-btn" id="editPw" onclick="editPw()">수정</button>
+          </div>
+          <br>
+    
+          <div class="form-div">
+            <label for="nickname" class="form-item">닉네임</label>
+            <div class="form-guide">
+              <input type="text" name="nickname" id="nickname" value='<%=result.nickname %>'  required onkeyup="nickInputCheck(this, 10);" placeholder="닉네임을 입력해주세요">
+              <p class="guide-nick guide"></p>
+            </div>
+            <button type="button" class="check-btn" onclick="overlapNick()">중복확인</button>
+          </div>
+    
+          <div class="form-div">
+            <label for="address" class="form-item">주소</label>
+            <!-- <input type="text" name="address" id="address" required> -->
+            <!-- <input id="member_post"  type="text" placeholder="Zip Code" readonly onclick="findAddr()"> -->
+            <input id="address" name="address" type="text" value='<%= result.address %>'placeholder="주소를 선택해주세요" readonly> <br>
+            <button type="button" class="check-btn" onclick="findAddr()">주소검색</button>
+            <!-- <input type="text" placeholder="Detailed Address"> -->
+          </div>
+          <br>
       </div>
-      <br>
-
-      <div class="form-div editForm">
-        <label for="nickname" class="form-item">닉네임</label>
-        <div class="form-guide">
-          <input type="text" name="nickname" id="nickname" value='<%=result.nickname %>'  required onkeyup="nickInputCheck(this, 10);" placeholder="닉네임을 입력해주세요">
-          <p class="guide-nick guide"></p>
-        </div>
-        <button type="button" class="check-btn" onclick="overlapNick()">중복확인</button>
-      </div>
-
-      <div class="form-div editForm">
-        <label for="address" class="form-item">주소</label>
-        <!-- <input type="text" name="address" id="address" required> -->
-        <!-- <input id="member_post"  type="text" placeholder="Zip Code" readonly onclick="findAddr()"> -->
-        <input id="address" name="address" type="text" value='<%= result.address %>'placeholder="주소를 선택해주세요" readonly> <br>
-        <button type="button" class="check-btn" onclick="findAddr()">주소검색</button>
-        <!-- <input type="text" placeholder="Detailed Address"> -->
-      </div>
-      <br>
 
 
       <div class="form-div-btn">
         <!-- 버튼 타입 button submit? -->
         <button  type="button" onclick="passPw();" class="check-btn">확인</button>
-        <button id="disBtn" type="button" class= 'editForm' onclick="register();" class="check-btn" disabled>수정 하기</button>
-
+        <button id="disBtn" type="button" onclick="register();" class="check-btn after-check" disabled>수정 하기</button>
       </div>
     </fieldset>
   </form>
@@ -264,7 +270,7 @@
 
     function passPw() {
         const form = document.forms['register-form'];
-        const editForm = document.querySelector('.editForm')
+        const editForm = document.querySelectorAll('.register-form .form-div')
         axios({
           method: 'POST',
           url: '/passPw',
@@ -272,18 +278,27 @@
             pw: form.nowPw.value
           },
         })
-
         .then((res) => {
           return res.data;
         })
         .then((data) => { // true, false
           console.log('중복된 닉네임인가요? ', data)
           if (data) {
-            alert('비밀번호 확인이 완료되었습니다')
+            // for (i = 0; i < editForm.length; i++) {
+            //     const edit = editForm.item(i);
+            //     editForm.style.display = 'none'
+            // }       
+            alert('비밀번호 확인이 완료되었습니다');
+            let afterCheck1 = document.querySelector('.after-check');
+            let afterCheck2 = documnet.querySelector('.profilelabel');
+
+            // afterCheck1.style.display = 'inline-block';
+            // afterCheck2.style.display = 'block'
+            afterCheck1.classList.remove('after-check');
+            afterCheck2.classList.add('inline-block');
             
           } else {
             alert('비밀번호를 다시 입력해주세요')
-        
           }
         });
     }
