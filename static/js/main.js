@@ -17,6 +17,10 @@ scrollRight.onclick = () => {
   cardArticle.scrollLeft += 1020;
 };
 
+function mypage() {
+  document.location.href = '/profile';
+}
+
 let card = document.card
 
 function detail(data) {
@@ -61,3 +65,4 @@ modal.addEventListener("click", e => {
       modal.style.display = "none"
   }
 })
+
