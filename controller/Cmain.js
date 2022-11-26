@@ -119,6 +119,7 @@ exports.login = (req, res) => {
 };
 
 exports.getGroupCreate = (req, res) => {
+
   let user = req.session.user
   if (user !== undefined) {
       res.render("groupCreate");
@@ -131,8 +132,6 @@ exports.getGroupCreate = (req, res) => {
       `);
   }
 };
-
-
 
 exports.getRegister = (req, res) => {
   res.render("register");
@@ -236,13 +235,6 @@ exports.getLogout = (req, res) => {
       `);
   }
 };
-
-// exports.chatMove = (req, res) => {
-//   console.log(req.params.id);
-
-//   res.render('chat',{result : req.params.id})
-// }
-
 exports.makeGroup =  (req, res) => {
 
   let user = req.session.user
@@ -308,3 +300,23 @@ exports.passPw =  (req, res) => {
     res.redirect('/')
   }
 }
+
+exports.postDetail = (req, res) => {
+  models.Mlist.findOne({
+    include: [
+      {
+        model: models.Mmember,
+        include: [
+          {
+            model: models.Muser,
+          },
+        ],
+      },
+    ],
+    where: {
+      id: req.body.groupId,
+    },
+  }).then((result) => {
+    res.send(result);
+  });
+};
