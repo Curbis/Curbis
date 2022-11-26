@@ -5,27 +5,6 @@ const Op = sequelize.Op;
 exports.main = async (req, res) => {
   // console.log("세션", req.session.user);
   let user = req.session.user;
-  // const result = await models.Mlist.findAll(); // 전체  [ {}, {}, {}, {} ]
-  // let memberArray= {};
-  // // for (i = 0; i < Object.keys(result).length; i++){ // 4
-  //   const members = await models.Mmember.findAll({
-  //     include: [
-  //       // { model: models.Orderlist, attributes: ['product_name', 'quantity'] },
-  //       { model: models.Mlist,
-  //         where: { id: result[i].id }
-  //       },
-  //     ],
-  //     raw: true,
-  //   })
-  //   console.log('****', members)
-
-  //   // for (j = 0; j < Object.keys(members).length; j++){
-  //   //   // memberArray[result[i].id] = memberss[j].user_id
-
-  //   // }
-  //   // console.log('memberArray',memberArray);
-  // }
-
   const members = await models.Mlist.findAll({
     include: [
       {
@@ -37,9 +16,7 @@ exports.main = async (req, res) => {
         ],
       },
     ],
-    // raw: true
   });
-  // res.send(members);
 
   if (user !== undefined) {
     const userInfo = await models.Muser.findOne({
@@ -53,8 +30,6 @@ exports.main = async (req, res) => {
     res.render("main", { isLogin: false, result: members });
   }
 };
-
-// console.log('memberArray >>>', memberArray);
 
 exports.postSerch = async (req, res) => {
   let user = req.session.user;
@@ -144,15 +119,11 @@ exports.login = (req, res) => {
 };
 
 exports.getGroupCreate = (req, res) => {
-  let user = req.session.user;
 
+  let user = req.session.user
   if (user !== undefined) {
-    res.render("groupCreate");
+      res.render("groupCreate");
   } else {
-    // 유저가 브라우저에서 /logout 경로로 직접 접근
-    // res.send()
-    // - alert()
-    // - / 경로로 이동
     res.send(`
         <script>
           alert('로그인 후 모임 생성이 가능합니다');
@@ -264,11 +235,12 @@ exports.getLogout = (req, res) => {
       `);
   }
 };
+exports.makeGroup =  (req, res) => {
 
-exports.makeGroup = (req, res) => {
-  let user = req.session.user;
-
+  let user = req.session.user
+ 
   if (user !== undefined) {
+
     models.Mlist.create({
       picture: req.body.picture,
       topic: req.body.topic,
@@ -280,20 +252,55 @@ exports.makeGroup = (req, res) => {
       headcount: req.body.headcount,
       user_id: req.session.user,
       host: req.session.user,
-    })
-      .then((result) => {
-        models.Mmember.create({
-          user_id: req.session.user,
-          list_id: result.dataValues.id,
-        });
+    }).then((result) => {
+      models.Mmember.create({
+        user_id: req.session.user,
+        list_id: result.dataValues.id,
       })
-      .then((result) => {
-        res.send(true);
-      });
+    }).then((result) => {
+      res.send(true)
+    })
   } else {
     res.send(false);
   }
 };
+
+
+exports.profile =  (req, res) => {
+  let user = req.session.user
+  if (user !== undefined) {
+    models.Muser.findOne({
+      where: {
+        userid: user,
+      },
+    }).then((result) => {
+    res.render('profile',{result:result})
+    })
+  } else {
+    res.redirect('/')
+  }
+}
+
+exports.passPw =  (req, res) => {
+  let user = req.session.user
+  let pw = req.body.pw
+  if (user !== undefined) {
+    models.Muser.findOne({
+      where: {
+        userid: user,
+      },
+    }).then((result) => {
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..',result.pw)
+      if(result.pw == pw){
+        res.send(true)
+      } else {
+        res.send(false)
+      }
+    })
+  } else {
+    res.redirect('/')
+  }
+}
 
 exports.postDetail = (req, res) => {
   let user = req.session.user;

@@ -402,6 +402,10 @@ body {
   height: 20%;
 }
 
-.content button {
+.group-in-btn {
+  color: black;
+}
+
+.after-check {
   display: none;
 }

@@ -21,6 +21,13 @@ scrollRight.onclick = () => {
   cardArticle.scrollLeft += 1020;
 };
 
+
+function mypage() {
+  document.location.href = '/profile';
+}
+
+let card = document.card
+
 function detail(data) {
   modal.style.display = "flex";
   console.log('각각의 그룹 아이디 >>>', data.id)
@@ -91,6 +98,7 @@ modal.addEventListener("click", e => {
   }
 })
 
+
 function outModal() {
   Gin.style.display = 'none'
   Gdel.style.display = 'none'
@@ -122,3 +130,4 @@ function groupOut() {
 function groupDelete() {
   console.log(Gin.id, sessionId)
 }
+
