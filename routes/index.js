@@ -64,6 +64,8 @@ router.get("/logout", controller.getLogout);
 
 router.post('/serch', controller.postSerch)
 
+router.post('/detail', controller.postDetail)
+
 
 // router.post('/profile', controller.profile)
 
@@ -79,6 +81,8 @@ router.post("/overlapNick", controller.overlapNick);
 
 router.post("/overlapId", controller.overlapId);
 
+
 router.post("/makeGroup", controller.makeGroup);
 
 module.exports = router;
+
