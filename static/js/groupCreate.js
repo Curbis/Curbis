@@ -5,8 +5,40 @@ const Third = document.querySelector(".sectionThird");
 const stop1 = document.querySelector(".stop1");
 const stop2 = document.querySelector(".stop2");
 const stop3 = document.querySelector(".stop3");
+
+const goBack = document.getElementById("goBack");
+const buttonback = document.querySelector("buttonBack");
+
 const profileDiv = document.querySelector('.profile-div')
+
 // 보이기;
+function goFirst() {
+  First.style.display = "block";
+  Second.style.display = "none";
+  Third.style.display = "none";
+  stop1.style.color = "#ff9671";
+  stop2.style.color = "#ccc";
+  stop3.style.color = "#ccc";
+}
+
+function goSecond() {
+  First.style.display = "none";
+  Second.style.display = "block";
+  Third.style.display = "none";
+  stop1.style.color = "#ccc";
+  stop2.style.color = "#ff9671";
+  stop3.style.color = "#ccc";
+  buttonback.style.display = "block";
+}
+
+function gothird() {
+  First.style.display = "none";
+  Second.style.display = "none";
+  Third.style.display = "block";
+  stop1.style.color = "#ccc";
+  stop2.style.color = "#ccc";
+  stop3.style.color = "#ff9671";
+}
 
 function secondStep() {
   First.style.display = "none";
@@ -101,12 +133,14 @@ function goMain() {
 function selectImg1() {
   const pickImg = document.getElementById("preview");
   const select2 = document.getElementById("r2");
+
   pickImg.src = "/static/img/mountain-g7d103621e_1280.jpg";
 }
 
 function selectImg2() {
   const pickImg = document.getElementById("preview");
   const select2 = document.getElementById("r2");
+
   pickImg.src = "/static/img/woman-g62120f928_1280.jpg";
 }
 function selectImg3() {
@@ -140,6 +174,7 @@ window.onload = function () {
   });
 };
 
+
 function fileUpload() {
   console.log('click fileUpload')
 
@@ -168,12 +203,14 @@ function fileUpload() {
 
     alert('프로필 저장이 완료되었어요!');
   })
+
 }
 
 // 이미지 미리보기
 function readURL(input) {
   if (input.files[0]) {
     let reader = new FileReader();
+
     reader.onload = function(obj) {
       document.getElementById('preview').src = obj.target.result;
     };
@@ -189,6 +226,7 @@ function readURL(input) {
 
 }
 
+
 const popoverTriggerList = document.querySelectorAll(
   '[data-bs-toggle="popover"]'
 );
@@ -199,14 +237,18 @@ const popoverList = [...popoverTriggerList].map(
 
 function shareTwitter() {
   var sendText = "Curbis 소모임 커뮤니티"; // 전달할 텍스트
-  var sendUrl = "devpad.tistory.com/"; // 전달할 URL
+
+  var sendUrl = "http://118.67.142.249:8090/"; // 전달할 URL
+
   window.open(
     "https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl
   );
 }
 
 function shareFacebook() {
-  var sendUrl = "devpad.tistory.com/"; // 전달할 URL
+
+  var sendUrl = "http://118.67.142.249:8090/"; // 전달할 URL
+
   window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 }
 
@@ -220,14 +262,17 @@ function shareKakao() {
     content: {
       title: "Curbis 소모임 커뮤니티", // 보여질 제목
       description: "취미를 공유하는 사람들과 함께하는 시간", // 보여질 설명
-      imageUrl: "localhost:8090/", // 콘텐츠 URL
+
+      imageUrl: "http://118.67.142.249:8090/", // 콘텐츠 URL
       link: {
-        mobileWebUrl: "localhost:8090/",
-        webUrl: "localhost:8090/",
+        mobileWebUrl: "http://118.67.142.249:8090/",
+        webUrl: "http://118.67.142.249:8090/",
+
       },
     },
   });
 }
+
 
 
 
@@ -252,16 +297,46 @@ $(function () {
   const now = new Date();
   $("#startDate").datepicker({
     dateFormat: "yy-mm-dd",
-    minDate: 0,
-    setDate: now,
-    showOn: "button",
-    buttonImageOnly: true,
-    buttonImage: "/static/img/calendar.png",
-    onClose: function (selectedDate) {
-      $("#endDate").datepicker("option", "minDate", selectedDate);
-    },
+    prevText: "이전 달",
+    nextText: "다음 달",
+    monthNames: [
+      "1월",
+      "2월",
+      "3월",
+      "4월",
+      "5월",
+      "6월",
+      "7월",
+      "8월",
+      "9월",
+      "10월",
+      "11월",
+      "12월",
+    ],
+    monthNamesShort: [
+      "1월",
+      "2월",
+      "3월",
+      "4월",
+      "5월",
+      "6월",
+      "7월",
+      "8월",
+      "9월",
+      "10월",
+      "11월",
+      "12월",
+    ],
+    dayNames: ["일", "월", "화", "수", "목", "금", "토"],
+    dayNamesShort: ["일", "월", "화", "수", "목", "금", "토"],
+    dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+    showMonthAfterYear: true,
+    yearSuffix: "년",
+    minDate: 1,
   });
 
-  // $("#startDate").val(getToday());
+  $(function () {
+    $("#datepicker1").datepicker();
+  });
 });
 
