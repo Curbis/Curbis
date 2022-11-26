@@ -252,9 +252,28 @@ exports.overlapNick = (req, res) => {
     }
   }
 
-
   exports.chatMove = (req, res) => {
     console.log(req.params.id);
 
     res.render('chat',{result : req.params.id})
+  }
+
+  
+  exports.postDetail = (req, res) => {
+    models.Mlist.findOne({
+      include: [
+        {model: models.Mmember,
+        include: [
+          {
+            model: models.Muser
+          }
+        ]
+        }
+      ],
+      where: { 
+        id: req.body.groupId
+      }
+    }).then((result) => {
+      res.send(result);
+    })
   }

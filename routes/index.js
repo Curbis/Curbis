@@ -65,6 +65,9 @@ router.get("/logout", controller.getLogout);
 router.post('/serch', controller.postSerch)
 
 router.get('/chatMove/:id', controller.chatMove)
+
+router.post('/detail', controller.postDetail)
+
 // router.post('/profile', controller.profile)
 
 // router.post('/upload', controller.postUpload)///
