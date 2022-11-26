@@ -144,12 +144,10 @@ exports.login = (req, res) => {
 };
 
 exports.getGroupCreate = (req, res) => {
-  let user = req.session.user
- 
+  let user = req.session.user;
+
   if (user !== undefined) {
- 
-      res.render("groupCreate");
-    
+    res.render("groupCreate");
   } else {
     // 유저가 브라우저에서 /logout 경로로 직접 접근
     // res.send()
@@ -163,8 +161,6 @@ exports.getGroupCreate = (req, res) => {
       `);
   }
 };
-
-
 
 exports.getRegister = (req, res) => {
   res.render("register");
@@ -269,15 +265,10 @@ exports.getLogout = (req, res) => {
   }
 };
 
+exports.makeGroup = (req, res) => {
+  let user = req.session.user;
 
-
-exports.makeGroup =  (req, res) => {
-
-
-  let user = req.session.user
- 
   if (user !== undefined) {
-
     models.Mlist.create({
       picture: req.body.picture,
       topic: req.body.topic,
@@ -289,43 +280,41 @@ exports.makeGroup =  (req, res) => {
       headcount: req.body.headcount,
       user_id: req.session.user,
       host: req.session.user,
-    }).then((result) => {
-      models.Mmember.create({
-        user_id: req.session.user,
-        list_id: result.dataValues.id,
-      })
-    }).then((result) => {
-      res.send(true)
     })
-
+      .then((result) => {
+        models.Mmember.create({
+          user_id: req.session.user,
+          list_id: result.dataValues.id,
+        });
+      })
+      .then((result) => {
+        res.send(true);
+      });
   } else {
     // 유저가 브라우저에서 /logout 경로로 직접 접근
     // res.send()
     // - alert()
     // - / 경로로 이동
-    res.send(false)
+    res.send(false);
   }
+};
 
-  
-
-  exports.postDetail = (req, res) => {
-    models.Mlist.findOne({
-      include: [
-        {model: models.Mmember,
+exports.postDetail = (req, res) => {
+  models.Mlist.findOne({
+    include: [
+      {
+        model: models.Mmember,
         include: [
           {
-            model: models.Muser
-          }
-        ]
-        }
-      ],
-      where: { 
-        id: req.body.groupId
-      }
-    }).then((result) => {
-      res.send(result);
-    })
-  }
-
-
-
+            model: models.Muser,
+          },
+        ],
+      },
+    ],
+    where: {
+      id: req.body.groupId,
+    },
+  }).then((result) => {
+    res.send(result);
+  });
+};
