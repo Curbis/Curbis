@@ -36,10 +36,10 @@
       </a>
       <div class="buttonBox">
         <% if (isLogin) { %>
-          <a href="/groupCreate" class="buttons" id="add">
-            <img src="/static/img/add.png" title="모임 만들기">
-          </a>
-          <img onclick="mypage()" id ='profile' src=
+
+          
+          <img id ='profile' src=
+
           '<%= userInfo.picture %>'>
 
           <div class="hi" onclick="mypage()" id ='<%= userInfo.userid %>' >
@@ -69,6 +69,15 @@
         <button class="categori_3">파티/술</button>
         <button class="categori_4">성장/자기계발</button>
       </div>
+
+      <a href="/groupCreate" class="buttons" id="add">
+        <button class="groupCreate">모임 만들기</button>
+        <!-- <img src="/static/img/add.png" title="모임 만들기"> -->
+      </a>
+
+      <button class="groupFind" id="serch">
+        내 모임
+      </button>
 
       <div class="card-box">
         <div class="cards">
@@ -120,23 +129,60 @@
     </div>
     <div id="modal" class="modal-overlay">
       <div class="modal-window">
-        <div class="title">
-          <h2 class="group-name">모임 이름</h2>
-        </div>
         <div class="close-area">X</div>
+        
         <div class="content">
           <img class="group-pic" src="../static/img/mountain-g7d103621e_1280.jpg"></img>
           <!-- <div class="group-topic">여기는 토픽</div> -->
-          <div class="group-intro">여기는 소개</div>
-          <div class="group-address">여기는 주소</div>
-          <div class="group-day">여기는 날짜</div>
-          <div class="group-hour">여기는 시간</div>
-          <div class="group-headcount">여기는 인원</div>
-          
-          <button class="group-in-btn" onclick="groupIn();">모임 참여</button>
-          <button class="group-out-btn" onclick="groupOut();">모임 탈퇴</button>
-          <button class="group-delete-btn" onclick="groupDelete();">모임 삭제</button>
+
+          <h2 class="group-name">사진 찍으러 갈 사람</h2>
+          <div class="group-intro">소개는 여기에 이렇게 적는거에용</div>
+          <div class="group-notice">
+            <div class="group-address">
+              <img class="icon-location" src="/static/img/location-sign.png" alt="">
+              <div class="address">
+                서울특별시 강남구 대치동
+              </div>
+            </div>
+            <div class="group-day">
+              <img class="icon-calendar" src="/static/img/calendar.png" alt="">
+              <div class="date">
+                2022.11.27</div>
+              </div>
+            <div class="group-hour">
+              <img class="icon-clock" src="/static/img/clock.png" alt="">
+              <div class="time">
+                오전 11:20</div>
+              </div>
+            <div class="group-headcount">
+              <img class="icon-user" src="/static/img/user.png" alt="">
+              <div class="userCount">
+                2/5명</div>          
+              </div>
+          </div>
+          <div class="profils">
+            <div class="profil-user">
+              <img class="userProfileImg" src="/static/img/profile-basic.png" alt="">
+            </div>
+            <div class="profil-user">
+              <img class="userProfileImg" src="/static/img/profile-basic.png" alt="">
+            </div>
+            <div class="profil-user">
+              <img class="userProfileImg" src="/static/img/profile-basic.png" alt="">
+            </div>
+            <!-- <div class="profil-user">
+              <img class="userProfileImg" src="/static/img/profile-basic.png" alt="">
+            </div>
+            <div class="profil-user">
+              <img class="userProfileImg" src="/static/img/profile-basic.png" alt="">
+            </div>
+            <div class="profil-user">
+              <img class="userProfileImg" src="/static/img/profile-basic.png" alt="">
+            </div> -->
+          </div>
+
         </div>
+        <button class="group-in-btn">회원 신청하기</button>
       </div>
     </div>
 

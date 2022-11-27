@@ -72,10 +72,8 @@
                   type="radio"
                   name="r1"
                   id="r1"
-
-                  value = '성장/자기계발'
+                  value="성장/자기계발"
                   onchange="selectImg1()"
-
                   checked
                 />
                 <label for="r1">
@@ -87,10 +85,8 @@
                   type="radio"
                   name="r1"
                   id="r2"
-
-                  value = '운동/액티비티'
+                  value="운동/액티비티"
                   onchange="selectImg2()"
-
                 /><label for="r2">
                   <h4>운동/액티비티</h4>
                 </label>
@@ -100,10 +96,8 @@
                   type="radio"
                   name="r1"
                   id="r3"
-
-                  value = '파티/술'
+                  value="파티/술"
                   onchange="selectImg3()"
-
                 /><label for="r3">
                   <h4>파티/술</h4>
                 </label>
@@ -124,7 +118,7 @@
             <fieldset class="sectionSecond">
               <!-- 이미지 지정 -->
 
-              1. 모임 이미지를 지정해주세요
+              <span class="inputSpan"> 1. 모임 이미지 </span>
               <br /><br />
               <div class="profile-box form-div">
                 <!-- <p class="form-item"></p> -->
@@ -157,23 +151,23 @@
               </div>
               <br /><br />
               <!-- 모임 제목  -->
-              2. 모임 제목을 작성해주세요.
+              <span class="inputSpan"> 2. 모임 제목 </span>
               <input required type="text" name="text" />
               <br />
 
               <!-- 모임 소개글  -->
 
-              3. 모임 소개글을 작성해주세요.
+              <span class="inputSpan"> 3. 모임 소개글 </span>
               <div class="introduce">
                 <label for="introduce"></label>
                 <input required type="text" name="moreText" class="moreText" />
-
               </div>
               <br />
 
               <div class="inputwrap">
                 <!-- 날짜, 시간 -->
                 <div class="date">
+                  <span class="inputSp"> 4. 장소 및 세부 일정 </span>
                   <label for="date" class="dateP"> 날짜 :</label>
                   <input
                     type="text"
@@ -190,7 +184,6 @@
 
                 <!-- 모임 인원수 -->
 
-
                 <label for="time" class="headcount">인원수: </label>
                 <input
                   required
@@ -199,26 +192,23 @@
                   min="3"
                   max="6"
                   placeholder="3-6"
-                   onchange="numlock()"
+                  onchange="numlock()"
                 />
-
 
                 <br />
 
-
                 <!-- 장소  -->
                 <div class="form-div">
-                  <p class="addressP">모임장소를 입력해주세요.</p>
+                  <p class="addressP">장소 :</p>
                   <input
                     required
                     id="address"
                     class="address"
                     name="address"
                     type="text"
-                    placeholder="입력창을 클릭해주세요."
+                    placeholder="주소를 선택해주세요"
                   />
                 </div>
-
               </div>
 
               <!-- 3단계 이동 버튼 -->

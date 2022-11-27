@@ -48,7 +48,7 @@
     }
 
     .register-form .form-div-pw {
-      display: flex;
+      /* display: flex; */
       padding: 5px;
       margin: 10px 20px;
     }
@@ -117,8 +117,8 @@
       padding: 0;
     }
 
-    .profile-box .profilelabel{ 
-      display: none;
+    .profilelabel{ 
+      display: block;
       background-color: rgba(255, 255, 255, 0.548);
       cursor: pointer;
       width: 45px;
@@ -129,7 +129,8 @@
       background-repeat: no-repeat;
       background-position: center;
       position: relative;
-      right: 50px;
+      left: 160px;
+      bottom: 70px;
       border-radius: 50%;
     }
 
@@ -168,11 +169,11 @@
     }
 
     .after-check {
-        display: none;
+      display: none;
     }
 
     .inline-block {
-        display: inline-block;
+      display: inline-block;
     }
 
   </style>
@@ -197,23 +198,23 @@
         <div class="profile-div">
           <img id="preview" src="<%= result.picture %>">
           <input type="file" name="dynamicFile" id="dynamicFile" onchange="readURL(this);">
-            <label for="dynamicFile" class = "profilelabel after-check "></label>
+            <label for="dynamicFile" class = "profilelabel after-check"></label>
         </div>
             <button class="profile-save-btn" type="button" onclick="fileUpload();">저장</button>
       </div>
       </div>
 
 
-      <div class="form-div-pw">
+      <div class="form-div-pw now-pw">
         <label for="pw" class="form-item">현재 비밀번호</label>
         <input type="password" name="nowPw" id="nowPw" placeholder="비밀번호를 입력해주세요" required">
       </div>
       
       <div class="after-check">
-      <div class="form-div check">
-        <label for="pw" class="form-item">변경 비밀번호</label>
-        <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요" required onkeyup="checkPw(this);">
-      </div>
+        <div class="form-div check">
+          <label for="pw" class="form-item">변경 비밀번호</label>
+          <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요" required onkeyup="checkPw(this);">
+        </div>
 
           <div class="form-div">
             <label for="pw" class="form-item">비밀번호 확인</label>
@@ -246,10 +247,9 @@
           <br>
       </div>
 
-
       <div class="form-div-btn">
         <!-- 버튼 타입 button submit? -->
-        <button  type="button" onclick="passPw();" class="check-btn">확인</button>
+        <button type="button" onclick="passPw();" class="check-btn confirm-btn">확인</button>
         <button id="disBtn" type="button" onclick="register();" class="check-btn after-check" disabled>수정 하기</button>
       </div>
     </fieldset>
@@ -289,13 +289,23 @@
             //     editForm.style.display = 'none'
             // }       
             alert('비밀번호 확인이 완료되었습니다');
-            let afterCheck1 = document.querySelector('.after-check');
-            let afterCheck2 = documnet.querySelector('.profilelabel');
+            let afterCheck1 = document.querySelectorAll('.after-check');
+            let checkBtn = document.querySelector('.confirm-btn')
+            let nowPw = document.querySelector('.now-pw')
+            // console.log(checkBtn)
+            // let afterCheck2 = document.querySelector('.profilelabel'); 
+            
+            afterCheck1[0].classList.remove("after-check");
+            afterCheck1[1].classList.remove("after-check");
+            afterCheck1[2].classList.remove("after-check");
+            checkBtn.classList.add("after-check");
+            nowPw.classList.add("after-check");
 
-            // afterCheck1.style.display = 'inline-block';
-            // afterCheck2.style.display = 'block'
-            afterCheck1.classList.remove('after-check');
-            afterCheck2.classList.add('inline-block');
+            // afterCheck2.classList.remove('after-check');///
+
+            // afterCheck2.classList.remove('.profilelabel','after-check');
+            // afterCheck1.classList.remove('.profilelabel','after-check');
+            // div.classList.remove("foo");
             
           } else {
             alert('비밀번호를 다시 입력해주세요')
