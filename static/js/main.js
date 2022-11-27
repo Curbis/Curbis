@@ -7,6 +7,7 @@ let GPic = document.querySelector(".group-pic");
 let GIntro = document.querySelector(".group-intro");
 let GDay = document.querySelector(".group-day");
 let Ghour = document.querySelector(".group-hour");
+let profileDiv = document.querySelector(".profil-user");
 let Gmember = document.querySelector(".group-headcount");
 let Gin = document.querySelector(".group-in-btn");
 let Gdel = document.querySelector(".group-delete-btn");
@@ -47,13 +48,14 @@ function detail(data) {
       GDay.innerText = data.result.day;
       Ghour.innerText = data.result.hour;
       Gmember.innerText = data.result.headcount;
+      profileDiv.innerText = ''
       Gin.id = data.result.id;
       outModal();
       for (j = 0; j < Object.keys(data.result.members).length; j++) {
         let profileImg = document.createElement("img");
         profileImg.classList.add("profileImg");
         profileImg.src = data.result.members[j].user.picture;
-        Gmember.appendChild(profileImg);
+        profileDiv.appendChild(profileImg);
 
         if (data.btn == "host") {
           let Gde = document.querySelector(".group-in-btn");
