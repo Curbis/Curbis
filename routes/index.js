@@ -47,6 +47,8 @@ router.get("/chat", controller.getChat);
 
 router.get("/login", controller.login);
 
+router.get("/profile", controller.profile);
+
 router.post(
   "/dynamicFile",
   uploadDetail.single("dynamicFile"),
@@ -83,6 +85,11 @@ router.post("/overlapId", controller.overlapId);
 
 
 router.post("/makeGroup", controller.makeGroup);
+
+router.post("/groupIn", controller.groupIn);
+
+router.post("/passPw", controller.passPw);
+
 
 module.exports = router;
 

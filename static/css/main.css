@@ -423,6 +423,7 @@ body {
 }
 
 .group-in-btn {
+
   color: #ffffff;
   position: relative;
   top: 10px;
@@ -463,3 +464,11 @@ body {
   margin: 4px;
   justify-content: center;
 }
+
+  color: black;
+}
+
+.after-check {
+  display: none;
+}
+

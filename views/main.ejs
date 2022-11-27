@@ -28,21 +28,27 @@
 
   </head>
   <body>
-    <div class="container">
+    <div class="container" >
       <a href="/">
         <img src="../static/img/logo.png" class="logo">
       </a>
       <div class="buttonBox">
         <% if (isLogin) { %>
+
           
           <img id ='profile' src=
+
           '<%= userInfo.picture %>'>
-          <div class="hi">
+
+          <div class="hi" onclick="mypage()" id ='<%= userInfo.userid %>' >
             <%= userInfo.userid %>님 안녕하세요
+
           </div>
           <a href="/logout" class="logout-btn">로그아웃</a>
         <% } else {%>
           <a href="/login" class="login-btn">로그인</a>
+          <div class="hi"  id = 'id' >
+          </div>  
         <% } %>
       </div>
 
@@ -126,6 +132,7 @@
         <div class="content">
           <img class="group-pic" src="../static/img/mountain-g7d103621e_1280.jpg"></img>
           <!-- <div class="group-topic">여기는 토픽</div> -->
+
           <h2 class="group-name">사진 찍으러 갈 사람</h2>
           <div class="group-intro">소개는 여기에 이렇게 적는거에용</div>
           <div class="group-notice">
@@ -171,6 +178,7 @@
               <img class="userProfileImg" src="/static/img/profile-basic.png" alt="">
             </div> -->
           </div>
+
         </div>
         <button class="group-in-btn">회원 신청하기</button>
       </div>
