@@ -25,7 +25,6 @@ exports.main = async (req, res) => {
       },
     });
     res.render("main", { isLogin: true, userInfo: userInfo, result: members });
-  
   } else {
     res.render("main", { isLogin: false, result: members });
   }
@@ -50,7 +49,7 @@ exports.postSerch = async (req, res) => {
       },
     },
   });
- 
+
   if (groups == "") {
     groups = await models.Mlist.findAll({
       include: [
@@ -109,7 +108,6 @@ exports.postSerch = async (req, res) => {
       });
 
       res.render("main", { isLogin: true, userInfo: userInfo, result: groups });
-     
     } else {
       res.render("main", { isLogin: false, result: groups });
     }
@@ -121,16 +119,14 @@ exports.login = (req, res) => {
 };
 
 exports.getGroupCreate = (req, res) => {
-
-  let user = req.session.user
+  let user = req.session.user;
   if (user !== undefined) {
-      res.render("groupCreate");
+    res.render("groupCreate");
   } else {
     res.send(`
         <script>
-          swal('로그인 후 모임 생성이 가능합니다').then(function(){
-            document.location.href = '/'; 
-          })
+          alert('로그인 후 모임 생성이 가능합니다');
+          document.location.href = '/'; 
         </script>
       `);
   }
@@ -150,7 +146,6 @@ exports.postProfileImg = (req, res) => {
 };
 
 exports.postSignup = (req, res) => {
-
   models.Muser.create({
     picture: req.body.profile,
     userid: req.body.userid,
@@ -158,7 +153,6 @@ exports.postSignup = (req, res) => {
     nickname: req.body.nickname,
     address: req.body.address,
   }).then((result) => {
-    
     res.send(result);
   });
 };
@@ -171,21 +165,19 @@ exports.postSignin = (req, res) => {
     },
   }).then((result) => {
     if (result == null) {
-      res.send({islogin: false});
+      res.send({ islogin: false });
     } else {
       req.session.user = result.userid;
-      
-      res.send({islogin: true, nick: result.nickname});
+
+      res.send({ islogin: true, nick: result.nickname });
     }
   });
 };
 
 exports.overlapId = (req, res) => {
- 
   models.Muser.findOne({
     where: { userid: req.body.userid },
   }).then((result) => {
- 
     if (result === null) {
       res.send(false); // 중복검사 통과
     } else {
@@ -195,11 +187,9 @@ exports.overlapId = (req, res) => {
 };
 
 exports.overlapNick = (req, res) => {
-  
   models.Muser.findOne({
     where: { nickname: req.body.nickname },
   }).then((result) => {
-   
     if (result === null) {
       res.send(false); // 중복검사 통과
     } else {
@@ -210,14 +200,13 @@ exports.overlapNick = (req, res) => {
 
 exports.getLogout = (req, res) => {
   const user = req.session.user;
- 
 
   if (user !== undefined) {
     req.session.destroy((err) => {
       if (err) {
         throw err;
       }
-      
+
       res.send(`
           <script>
           alert('로그아웃되었습니다.')
@@ -227,7 +216,6 @@ exports.getLogout = (req, res) => {
         `);
     });
   } else {
-
     res.send(`
         <script>
         alert('잘못된 접근입니다')
@@ -237,12 +225,10 @@ exports.getLogout = (req, res) => {
       `);
   }
 };
-exports.makeGroup =  (req, res) => {
+exports.makeGroup = (req, res) => {
+  let user = req.session.user;
 
-  let user = req.session.user
- 
   if (user !== undefined) {
-
     models.Mlist.create({
       picture: req.body.picture,
       topic: req.body.topic,
@@ -254,55 +240,55 @@ exports.makeGroup =  (req, res) => {
       headcount: req.body.headcount,
       user_id: req.session.user,
       host: req.session.user,
-    }).then((result) => {
-      models.Mmember.create({
-        user_id: req.session.user,
-        list_id: result.dataValues.id,
-      })
-    }).then((result) => {
-      res.send(true)
     })
+      .then((result) => {
+        models.Mmember.create({
+          user_id: req.session.user,
+          list_id: result.dataValues.id,
+        });
+      })
+      .then((result) => {
+        res.send(true);
+      });
   } else {
     res.send(false);
   }
 };
 
-
-exports.profile =  (req, res) => {
-  let user = req.session.user
+exports.profile = (req, res) => {
+  let user = req.session.user;
   if (user !== undefined) {
     models.Muser.findOne({
       where: {
         userid: user,
       },
     }).then((result) => {
-    res.render('profile',{result:result})
-    })
+      res.render("profile", { result: result });
+    });
   } else {
-    res.redirect('/')
+    res.redirect("/");
   }
-}
+};
 
-exports.passPw =  (req, res) => {
-  let user = req.session.user
-  let pw = req.body.pw
+exports.passPw = (req, res) => {
+  let user = req.session.user;
+  let pw = req.body.pw;
   if (user !== undefined) {
     models.Muser.findOne({
       where: {
         userid: user,
       },
     }).then((result) => {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..',result.pw)
-      if(result.pw == pw){
-        res.send(true)
+      if (result.pw == pw) {
+        res.send(true);
       } else {
-        res.send(false)
+        res.send(false);
       }
-    })
+    });
   } else {
-    res.redirect('/')
+    res.redirect("/");
   }
-}
+};
 
 exports.postDetail = (req, res) => {
   let user = req.session.user;
@@ -321,12 +307,12 @@ exports.postDetail = (req, res) => {
       id: req.body.groupId,
     },
   }).then((result) => {
-    if (result.host == user){
-     res.send({result: result, btn: 'host'});
-   } else {
-      res.send({result: result, btn: 'nohost'});
-   }
-  })
+    if (result.host == user) {
+      res.send({ result: result, btn: "host" });
+    } else {
+      res.send({ result: result, btn: "nohost" });
+    }
+  });
 };
 
 exports.groupIn = (req, res) => {
@@ -335,12 +321,10 @@ exports.groupIn = (req, res) => {
   if (user !== undefined) {
     models.Mmember.create({
       user_id: user,
-      list_id: req.body.listId
-    })
-     
-      .then((result) => {
-        res.send(true);
-      });
+      list_id: req.body.listId,
+    }).then((result) => {
+      res.send(true);
+    });
   } else {
     res.send(false);
   }
@@ -351,12 +335,10 @@ exports.groupOut = (req, res) => {
 
   if (user !== undefined) {
     models.Mmember.destroy({
-      where : { user_id: user,
-                list_id: req.body.listId
-              }
+      where: { user_id: user, list_id: req.body.listId },
     }).then((result) => {
-        res.send(true);
-      });
+      res.send(true);
+    });
   } else {
     res.send(false);
   }
@@ -367,18 +349,14 @@ exports.groupDelete = (req, res) => {
 
   if (user !== undefined) {
     models.Mlist.destroy({
-      where : { id: req.body.listId
-              }
+      where: { id: req.body.listId },
     }).then((result) => {
-        res.send(true);
-      });
+      res.send(true);
+    });
   } else {
     res.send(false);
   }
 };
-
-
-
 
 exports.groupFind = async (req, res) => {
   let user = req.session.user;
@@ -396,16 +374,14 @@ exports.groupFind = async (req, res) => {
         },
       },
     ],
-
   });
- 
-  console.log('그룹',groups);
+
+  console.log("그룹", groups);
   if (groups == "") {
     res.send(`
         <script>
-          swal('참여한 모임이 없어요').then(function(){
-            document.location.href = '/'; 
-          })
+          alert('참여한 모임이 없어요');
+          document.location.href = '/'; 
         </script>
       `);
   } else {
@@ -416,8 +392,7 @@ exports.groupFind = async (req, res) => {
         },
       });
 
-      res.render("main", { isLogin: true, userInfo: userInfo,  result: groups });
-     
+      res.render("main", { isLogin: true, userInfo: userInfo, result: groups });
     } else {
       res.render("main", { isLogin: false, result: groups });
     }
@@ -427,19 +402,19 @@ exports.groupFind = async (req, res) => {
 exports.editPw = async (req, res) => {
   let user = req.session.user;
   if (user !== undefined) {
-    models.Muser.update({
-      pw: req.body.pw,
-    },
-    {
-      where: {
-        userid: user
+    models.Muser.update(
+      {
+        pw: req.body.pw,
       },
-
-    }).then((result) => {
-        res.send(true);
-      });
+      {
+        where: {
+          userid: user,
+        },
+      }
+    ).then((result) => {
+      res.send(true);
+    });
   } else {
     res.send(false);
   }
 };
-
