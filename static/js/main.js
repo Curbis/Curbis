@@ -15,6 +15,8 @@ let Gin = document.querySelector(".group-in-btn");
 let Gdel = document.querySelector(".group-delete-btn");
 let Gout = document.querySelector(".group-out-btn");
 let sessionId = document.querySelector(".hi").id;
+let hostImg = document.querySelector("#hostImg")
+let hostName = document.querySelector(".hostName")
 let userMember = [];
 scrollLeft.onclick = () => {
   cardArticle.scrollLeft -= 1020;
@@ -46,6 +48,8 @@ function detail(data) {
     })
     .then((data) => {
       GPic.src = data.result.picture;
+      hostImg.src = data.result.members[0].user.picture
+      hostName.innerText = data.result.members[0].user.nickname
       GIntro.innerText = data.result.introduce;
       GDay.innerText = data.result.day;
       Ghour.innerText = data.result.hour;
@@ -61,7 +65,6 @@ function detail(data) {
         let profileImg = document.createElement("img");
         let profileId = document.createElement("p");
         let profileAll = document.createElement("div");
-
         profileImg.classList.add("profileImg");
         profileAll.classList.add("profileAll");
         profileImg.src = data.result.members[j].user.picture;
@@ -140,53 +143,61 @@ function groupIn() {
 }
 
 function groupOut() {
-  console.log(Gin.id, sessionId);
-  if (!swal("정말로 모임을 탈퇴 하시겠습니까?", {
-    buttons: ["아니요!", true],
-  }))
-   {
-    return;
-   }else{
- 
-  axios({
-    method: "POST",
-    url: "/groupOut",
-    data: {
-      listId: Gin.id,
-      userId: sessionId,
+  swal("정말로 모임을 탈퇴 하시겠습니까?", {
+    buttons: {
+      next: "아니요",
+      defeat: "네",
     },
-  }).then((res) => {
-    alert("모임 탈퇴 완료");
-    history.go(0);
+  }).then((value) => {
+    switch (value) {
+      case "next":
+        swal("탈퇴를 취소하였습니다.");
+        break;
+      case "defeat":
+        axios({
+          method: "POST",
+          url: "/groupOut",
+          data: {
+            listId: Gin.id,
+            userId: sessionId,
+          },
+        }).then((res) => {
+          swal("탈퇴를 완료하였습니다.").then(function () {
+            history.go(0);
+          });
+        });
+        break;
+    }
   });
-}
 }
 
 function groupDelete() {
   console.log(Gin.id, sessionId);
-  if (!confirm("정말로 모임을 삭제 하시겠습니까?")) {
-    return;
-  }
-  axios({
-    method: "POST",
-    url: "/groupDelete",
-    data: {
-      listId: Gin.id,
-      userId: sessionId,
+
+  swal("정말로 모임을 삭제 하시겠습니까?", {
+    buttons: {
+      next: "아니요",
+      defeat: "네",
     },
-  }).then((res) => {
-    alert("모임 삭제 완료");
-    history.go(0);
+  }).then((value) => {
+    switch (value) {
+      case "next":
+        swal("삭제를 취소하였습니다.");
+        break;
+      case "defeat":
+        axios({
+          method: "POST",
+          url: "/groupDelete",
+          data: {
+            listId: Gin.id,
+            userId: sessionId,
+          },
+        }).then((res) => {
+          swal("삭제를 완료하였습니다.").then(function () {
+            history.go(0);
+          });
+        });
+        break;
+    }
   });
 }
-
-// function groupFind() {
-//   console.log('아아아아');
-//   axios({
-//     method: "POST",
-//     url: "/groupFind",
-//   }).then((res) => {
-//     alert("모임 삭제 완료");
-//     // history.go(0);
-//   })
-// };

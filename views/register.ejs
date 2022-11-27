@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,7 @@
 
   <!-- favicon -->
   <link rel="shoctcut icon" type="image/x-icon" href="../static/img/favicon/favicon.ico">
-  
+
   <!-- font CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +112,7 @@
       padding: 0;
     }
 
-    .profile-box label{ 
+    .profile-box label {
 
       display: inline-block;
       background-color: rgba(255, 255, 255, 0.548);
@@ -161,7 +162,6 @@
       flex-direction: column;
       align-items: center;
     }
-
   </style>
   <!-- axios CDN -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -169,7 +169,7 @@
   <!-- 다음주소검색 api -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-  
+
   <!-- SweatAlert CDN -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
@@ -269,7 +269,7 @@
       console.log(form.userid.value);
 
       if (!reg_id2.test(useridInput.value)) {
-        return alert('아이디를 확인해주세요.')
+        return swal('아이디를 확인해주세요.')
       }
 
       axios({
@@ -282,19 +282,20 @@
         .then((res) => {
           return res.data;
         })
-        .then((data) => { // true, false
-          console.log('중복된 아이디인가요? ', data)
+        .then((data) => { 
           if (data) {
-            alert('중복된 아이디입니다')
+            swal('중복된 아이디입니다')
             disBtn.disabled = true;
           } else {
             console.log('distbtnvalue', disBtn.dataset.value);
-            alert('사용가능한 아이디입니다')
-            if (disBtn.dataset.value) {
-              disBtn.disabled = false;
-            } else {
-              disBtn.setAttribute('data-value', true);
-            }
+            swal('사용가능한 아이디입니다').then(function() {
+              if (disBtn.dataset.value) {
+                disBtn.disabled = false;
+              } else {
+                disBtn.setAttribute('data-value', true);
+              }
+            })
+
 
           }
         });
@@ -306,7 +307,7 @@
       // console.log(form.userid.value);
       if (form.nickname.value.length < 3) {
 
-        return alert('닉네임을 3글자 이상으로 만들어주세요')
+        return swal('닉네임을 3글자 이상으로 만들어주세요')
       }
 
 
@@ -324,20 +325,26 @@
         })
         .then((data) => { // true, false
           console.log('중복된 닉네임인가요? ', data)
+
+
           if (data) {
-            alert('중복된 닉네임입니다')
-            disBtn.disabled = true;
+            swal('중복된 닉네임입니다').then(function() {
+              disBtn.disabled = true;
+            })
+
 
           } else {
-            alert('사용가능한 닉네임입니다')
-            if (disBtn.dataset.value) {
-              disBtn.disabled = false;
-            } else {
-              disBtn.setAttribute('data-value', true);
-            }
+            swal('사용가능한 닉네임입니다').then(function() {
+              if (disBtn.dataset.value) {
+                disBtn.disabled = false;
+              } else {
+                disBtn.setAttribute('data-value', true);
+              }
+            })
           }
         });
     }
+
 
     function charCheck(obj) {
       // 특수문자 판별
@@ -411,7 +418,7 @@
         profileDiv.setAttribute('data-value', false);
         console.log('저장완료', profileDiv.dataset.value);
 
-        alert('프로필 저장이 완료되었어요!');
+        swal('프로필 저장이 완료되었어요!');
       })
     }
 
@@ -469,16 +476,16 @@
     function register() {
       // console.log('porfile<<',profileDiv.dataset.value);
       if (profileDiv.dataset.value == 'true') {
-        return alert('프로필 저장을 완료해주세요')
+        return swal('프로필 저장을 완료해주세요')
       };
       if (!reg_pw3.test(pwInput.value) || pwInput.value != pwConfirm.value) {
-        return alert('비밀번호를 확인해주세요')
+        return swal('비밀번호를 확인해주세요')
       };
 
       const form = document.forms['register-form'];
 
       if (form.userid.value == '' || form.pw.value == '' || form.nickname.value == '' || form.address.value == '') {
-        return alert('값을 입력해주세요')
+        return swal('값을 입력해주세요')
       }
 
       axios({
@@ -492,28 +499,20 @@
           address: form.address.value,
         },
       }).then((res) => {
-        console.log(res);
-        console.log(res.data);
         return res.data;
       }).then((data) => {
-        // (1) alert 띄우기
-        alert('회원이 되신 것을 축하해요!');
-        // (2) 가입 성공시 로그인 페이지로 이동
-        // document.location.href란?
-        // javascript에서 페이지 이동할 수 있는 방법
-        // document 객체를 사용하기 때문에 프론트에서 사용 가능
         form.userid.value = '';
         form.pw.value = '';
         form.nickname.value = '';
         form.address.value = '';
         const disBtn = document.querySelector('#disBtn');
         disBtn.disabled = true;
+        swal('회원이 되신 것을 축하해요!').then(function(){
         document.location.href = '/login';
+        })
       });
     }
-
   </script>
 </body>
 
 </html>
-
