@@ -49,7 +49,9 @@ function detail(data) {
       GIntro.innerText = data.result.introduce;
       GDay.innerText = data.result.day;
       Ghour.innerText = data.result.hour;
-      Gmember.innerText = data.result.headcount;
+      Gmember.innerText = `${Object.keys(data.result.members).length} / ${
+        data.result.headcount
+      }`;
       profileDiv.innerText = "";
       Gin.id = data.result.id;
       GName.innerText = data.result.name;
@@ -59,11 +61,12 @@ function detail(data) {
         let profileImg = document.createElement("img");
         let profileId = document.createElement("p");
         let profileAll = document.createElement("div");
+
         profileImg.classList.add("profileImg");
         profileAll.classList.add("profileAll");
         profileImg.src = data.result.members[j].user.picture;
         profileAll.appendChild(profileImg);
-        profileId.classList.add('profileId')
+        profileId.classList.add("profileId");
         profileId.innerText = data.result.members[j].user.nickname;
         profileAll.appendChild(profileId);
         profileDiv.appendChild(profileAll);
@@ -168,11 +171,8 @@ function groupDelete() {
   }).then((res) => {
     alert("모임 삭제 완료");
     history.go(0);
-
-  })
-};
-
-
+  });
+}
 
 // function groupFind() {
 //   console.log('아아아아');
@@ -184,4 +184,3 @@ function groupDelete() {
 //     // history.go(0);
 //   })
 // };
-
