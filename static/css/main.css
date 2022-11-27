@@ -424,7 +424,7 @@ body {
   object-fit: cover;
 }
 
-.profils > div > img {
+.group-notice > div > img {
   width: 128px;
   height: 42px;
   font-size: 16px;
@@ -444,6 +444,8 @@ body {
 .group-notice > img {
   height: 25px;
   margin: 9px;
+  position: relative;
+  top: 3px;
 }
 
 .group-notice > div > div {
@@ -466,11 +468,66 @@ body {
   justify-content: center;
 }
 
-
 .after-check {
   display: none;
 }
 
+
 .profileId {
   text-align: center;
 }
+
+.group-address {
+  position: relative;
+  top: 30px;
+  left: 49px;
+}
+
+.group-day {
+  position: relative;
+  top: -106px;
+  left: 49px;
+}
+
+.group-hour {
+  position: relative;
+  top: -38px;
+  left: 49px;
+}
+
+.group-headcount {
+  position: relative;
+  top: -39px;
+  left: 49px;
+}
+
+.group-in-btn {
+  display: block;
+  height: 32px;
+  background-color: #ff9671b0;
+  border-radius: 5px;
+  border: none;
+  width: 100px;
+  margin-top: 16px;
+}
+
+.group-out-btn {
+  display: block;
+  height: 32px;
+  background-color: #ff9671b0;
+  border-radius: 5px;
+  border: none;
+  width: 100px;
+  margin-top: 16px;
+}
+
+.group-delete-btn {
+  display: block;
+  height: 32px;
+  background-color: #ff9671b0;
+  border-radius: 5px;
+  border: none;
+  width: 100px;
+  margin-top: 16px;
+}
+

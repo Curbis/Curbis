@@ -49,8 +49,10 @@ function detail(data) {
       GIntro.innerText = data.result.introduce;
       GDay.innerText = data.result.day;
       Ghour.innerText = data.result.hour;
-      Gmember.innerText = data.result.headcount;
       profileDiv.innerHTML = ``;
+      Gmember.innerText = `${Object.keys(data.result.members).length} / ${
+        data.result.headcount
+      }`;
       Gin.id = data.result.id;
       GName.innerText = data.result.name;
       GAdress.innerText = data.result.address;
@@ -59,6 +61,7 @@ function detail(data) {
         let profileImg = document.createElement("img");
         let profileId = document.createElement("p");
         let profileAll = document.createElement("div");
+
         profileImg.classList.add("profileImg");
         profileAll.classList.add("profileAll");
         profileImg.src = data.result.members[j].user.picture;

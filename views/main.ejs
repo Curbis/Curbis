@@ -70,6 +70,7 @@
       <button class="categori_4">성장/자기계발</button>
     </div>
 
+
     <% if (isLogin) { %>
 
     <a href="/groupCreate" class="buttons" id="add">
@@ -116,6 +117,7 @@
               <% } %>
             </div>
             <!-- </a> -->
+
           </div>
 
           <% } %>
@@ -127,32 +129,36 @@
     <button class="prev"></button>
     <button class="next"></button>
   </div>
-  <div id="modal" class="modal-overlay">
-    <div class="modal-window">
-      <div class="close-area">X</div>
+      <div id="modal" class="modal-overlay">
+      <div class="modal-window">
+        <div class="close-area">X</div>
+        
+        <div class="content">
+          <img class="group-pic" src="../static/img/mountain-g7d103621e_1280.jpg"></img>
+          <!-- <div class="group-topic">여기는 토픽</div> -->
 
-      <div class="content">
-        <img class="group-pic" src="../static/img/mountain-g7d103621e_1280.jpg"></img>
-        <!-- <div class="group-topic">여기는 토픽</div> -->
+          <!-- 여기 넣어주세요 -->
+          <img src="" alt="">
 
-        <h2 class="group-name"></h2>
-        <div class="group-intro"></div>
-        <div class="group-notice">
+          <h2 class="group-name"></h2>
+          <div class="group-intro"></div>
+          <div class="group-notice">
 
-          <img class="icon-location" src="/static/img/location-sign.png" alt="">
-          <div class="group-address"></div>
+            <img class="icon-location" src="/static/img/location-sign.png" alt="">
+            <div class="group-address"></div>
 
-          <img class="icon-calendar" src="/static/img/calendar.png" alt="">
-          <div class="group-day"></div>
+            <img class="icon-calendar" src="/static/img/calendar.png" alt="">
+            <div class="group-day"></div>
+            
+            <img class="icon-clock" src="/static/img/clock.png" alt="">
+            <div class="group-hour"></div>
 
-          <img class="icon-clock" src="/static/img/clock.png" alt="">
-          <div class="group-hour"></div>
-
-          <div class="group-headcount"></div>
-        </div>
-        <div class="profils">
-          <div class="profile-user">
+            <img src="/static/img/user.png" alt="">
+            <div class="group-headcount"></div>
           </div>
+          <div class="profils">
+            <div class="profile-user">
+            </div>
         </div>
       </div>
 
