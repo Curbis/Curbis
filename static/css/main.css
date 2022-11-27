@@ -327,13 +327,13 @@ body {
 } */
 
 #modal.modal-overlay{
-  /* display: none; */
+  display: none;
   width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  display: flex;
+  /* display: flex; */
   /* flex-direction: column; */
   align-items: center;
   justify-content: center;

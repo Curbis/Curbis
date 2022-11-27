@@ -17,7 +17,7 @@ const List = function (Sequelize, DataTypes) {
           autoIncrement: true,
         },
         name: {
-            type: DataTypes.STRING(20),
+            type: DataTypes.STRING(50),
             allowNull: false,
           },
         topic: {
