@@ -472,6 +472,11 @@ body {
   display: none;
 }
 
+
+.profileId {
+  text-align: center;
+}
+
 .group-address {
   position: relative;
   top: 30px;
@@ -525,3 +530,4 @@ body {
   width: 100px;
   margin-top: 16px;
 }
+

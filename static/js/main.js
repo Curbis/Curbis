@@ -49,10 +49,10 @@ function detail(data) {
       GIntro.innerText = data.result.introduce;
       GDay.innerText = data.result.day;
       Ghour.innerText = data.result.hour;
+      profileDiv.innerHTML = ``;
       Gmember.innerText = `${Object.keys(data.result.members).length} / ${
         data.result.headcount
       }`;
-      profileDiv.innerText = "";
       Gin.id = data.result.id;
       GName.innerText = data.result.name;
       GAdress.innerText = data.result.address;
@@ -133,16 +133,21 @@ function groupIn() {
       userId: sessionId,
     },
   }).then((res) => {
-    alert("모임 참여 완료");
-    history.go(0);
+    swal("모임 참여 완료", "", "info").then(function () {
+      history.go(0);
+    });
   });
 }
 
 function groupOut() {
   console.log(Gin.id, sessionId);
-  if (!confirm("정말로 모임을 탈퇴 하시겠습니까?")) {
+  if (!swal("정말로 모임을 탈퇴 하시겠습니까?", {
+    buttons: ["아니요!", true],
+  }))
+   {
     return;
-  }
+   }else{
+ 
   axios({
     method: "POST",
     url: "/groupOut",
@@ -154,6 +159,7 @@ function groupOut() {
     alert("모임 탈퇴 완료");
     history.go(0);
   });
+}
 }
 
 function groupDelete() {
