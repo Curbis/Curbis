@@ -374,3 +374,71 @@ exports.groupDelete = (req, res) => {
     res.send(false);
   }
 };
+
+
+
+
+exports.groupFind = async (req, res) => {
+  let user = req.session.user;
+  let groups = await models.Mlist.findAll({
+    include: [
+      {
+        model: models.Mmember,
+        include: [
+          {
+            model: models.Muser,
+          },
+        ],
+        where: {
+          user_id: user,
+        },
+      },
+    ],
+
+  });
+ 
+  console.log('그룹',groups);
+  if (groups == "") {
+    res.send(`
+        <script>
+          alert('참여한 모임이 없어요');
+          document.location.href = '/'; 
+        </script>
+      `);
+  } else {
+    if (user !== undefined) {
+      const userInfo = await models.Muser.findOne({
+        where: {
+          userid: user,
+        },
+      });
+
+      res.render("main", { isLogin: true, userInfo: userInfo,  result: groups });
+     
+    } else {
+      res.render("main", { isLogin: false, result: groups });
+    }
+  }
+};
+
+exports.editPw = async (req, res) => {
+
+  let user = req.session.user;
+
+  if (user !== undefined) {
+    models.Muser.update({
+      pw: req.body.pw,
+    },
+    {
+      where: {
+        userid: user
+      },
+
+    }).then((result) => {
+        res.send(true);
+      });
+  } else {
+    res.send(false);
+  }
+};
+

@@ -7,7 +7,7 @@ let GPic = document.querySelector(".group-pic");
 let GIntro = document.querySelector(".group-intro");
 let GDay = document.querySelector(".group-day");
 let Ghour = document.querySelector(".group-hour");
-let profileDiv = document.querySelector(".profil-user");
+let profileDiv = document.querySelector(".profile-user");
 let Gmember = document.querySelector(".group-headcount");
 let Gin = document.querySelector(".group-in-btn");
 let Gdel = document.querySelector(".group-delete-btn");
@@ -53,10 +53,16 @@ function detail(data) {
       outModal();
       for (j = 0; j < Object.keys(data.result.members).length; j++) {
         let profileImg = document.createElement("img");
+        let profileId = document.createElement("p");
+        let profileAll = document.createElement("div");
         profileImg.classList.add("profileImg");
+        profileAll.classList.add("profileAll");
         profileImg.src = data.result.members[j].user.picture;
-        profileDiv.appendChild(profileImg);
-
+        profileAll.appendChild(profileImg);
+        profileId.classList.add('profileId')
+        profileId.innerText = data.result.members[j].user.nickname;
+        profileAll.appendChild(profileId);
+        profileDiv.appendChild(profileAll);
         if (data.btn == "host") {
           let Gde = document.querySelector(".group-in-btn");
           Gdel.style.display = "block";
@@ -159,3 +165,16 @@ function groupDelete() {
     history.go(0);
   })
 };
+
+
+
+// function groupFind() {
+//   console.log('아아아아');
+//   axios({
+//     method: "POST",
+//     url: "/groupFind",
+//   }).then((res) => {
+//     alert("모임 삭제 완료");
+//     // history.go(0);
+//   })
+// };
