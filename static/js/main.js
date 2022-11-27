@@ -4,10 +4,12 @@ let cardArticle = document.querySelector(".cardArticle");
 let serchInput = document.querySelector(".serch-input");
 let closeBtn = modal.querySelector(".close-area");
 let GPic = document.querySelector(".group-pic");
+let GAdress = document.querySelector(".group-address");
+let GName = document.querySelector(".group-name");
 let GIntro = document.querySelector(".group-intro");
 let GDay = document.querySelector(".group-day");
 let Ghour = document.querySelector(".group-hour");
-let profileDiv = document.querySelector(".profil-user");
+let profileDiv = document.querySelector(".profile-user");
 let Gmember = document.querySelector(".group-headcount");
 let Gin = document.querySelector(".group-in-btn");
 let Gdel = document.querySelector(".group-delete-btn");
@@ -47,20 +49,31 @@ function detail(data) {
       GIntro.innerText = data.result.introduce;
       GDay.innerText = data.result.day;
       Ghour.innerText = data.result.hour;
-      Gmember.innerText = data.result.headcount;
-      profileDiv.innerText = ''
+      profileDiv.innerHTML = ``;
+      Gmember.innerText = `${Object.keys(data.result.members).length} / ${
+        data.result.headcount
+      }`;
       Gin.id = data.result.id;
+      GName.innerText = data.result.name;
+      GAdress.innerText = data.result.address;
       outModal();
       for (j = 0; j < Object.keys(data.result.members).length; j++) {
         let profileImg = document.createElement("img");
-        profileImg.classList.add("profileImg");
-        profileImg.src = data.result.members[j].user.picture;
-        profileDiv.appendChild(profileImg);
+        let profileId = document.createElement("p");
+        let profileAll = document.createElement("div");
 
+        profileImg.classList.add("profileImg");
+        profileAll.classList.add("profileAll");
+        profileImg.src = data.result.members[j].user.picture;
+        profileAll.appendChild(profileImg);
+        profileId.classList.add("profileId");
+        profileId.innerText = data.result.members[j].user.nickname;
+        profileAll.appendChild(profileId);
+        profileDiv.appendChild(profileAll);
         if (data.btn == "host") {
           let Gde = document.querySelector(".group-in-btn");
           Gdel.style.display = "block";
-      
+
           // GPic.setAttribute("onclick", exileBtn(this));
         } else {
           userMember.push(data.result.members[j].user.userid);
@@ -74,7 +87,10 @@ function detail(data) {
           if (find !== undefined) {
             Gout.style.display = "block";
             Gin.style.display = "none";
-          } else if (sessionId != "id" && data.result.headcount > Object.keys(data.result.members).length) {
+          } else if (
+            sessionId != "id" &&
+            data.result.headcount > Object.keys(data.result.members).length
+          ) {
             Gin.style.display = "block";
           }
         }
@@ -85,7 +101,6 @@ function detail(data) {
 // function exileBtn(data) {
 //   console.log('>>>>>>>>>>>>>>>>>',data)
 // }
-
 
 closeBtn.addEventListener("click", (e) => {
   modal.style.display = "none";
@@ -118,16 +133,21 @@ function groupIn() {
       userId: sessionId,
     },
   }).then((res) => {
-    alert("모임 참여 완료");
-    history.go(0);
-  })
-};
+    swal("모임 참여 완료", "", "info").then(function () {
+      history.go(0);
+    });
+  });
+}
 
 function groupOut() {
   console.log(Gin.id, sessionId);
-  if(!confirm('정말로 모임을 탈퇴 하시겠습니까?')){
-    return
-  }
+  if (!swal("정말로 모임을 탈퇴 하시겠습니까?", {
+    buttons: ["아니요!", true],
+  }))
+   {
+    return;
+   }else{
+ 
   axios({
     method: "POST",
     url: "/groupOut",
@@ -138,14 +158,14 @@ function groupOut() {
   }).then((res) => {
     alert("모임 탈퇴 완료");
     history.go(0);
-  })
-};
-
+  });
+}
+}
 
 function groupDelete() {
   console.log(Gin.id, sessionId);
-  if(!confirm('정말로 모임을 삭제 하시겠습니까?')){
-    return
+  if (!confirm("정말로 모임을 삭제 하시겠습니까?")) {
+    return;
   }
   axios({
     method: "POST",
@@ -157,5 +177,16 @@ function groupDelete() {
   }).then((res) => {
     alert("모임 삭제 완료");
     history.go(0);
-  })
-};
+  });
+}
+
+// function groupFind() {
+//   console.log('아아아아');
+//   axios({
+//     method: "POST",
+//     url: "/groupFind",
+//   }).then((res) => {
+//     alert("모임 삭제 완료");
+//     // history.go(0);
+//   })
+// };
