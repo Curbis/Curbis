@@ -168,11 +168,11 @@ exports.postSignin = (req, res) => {
     },
   }).then((result) => {
     if (result == null) {
-      res.send(false);
+      res.send({islogin: false});
     } else {
       req.session.user = result.userid;
-  
-      res.send(true);
+      
+      res.send({islogin: true, nick: result.nickname});
     }
   });
 };
@@ -422,9 +422,7 @@ exports.groupFind = async (req, res) => {
 };
 
 exports.editPw = async (req, res) => {
-
   let user = req.session.user;
-
   if (user !== undefined) {
     models.Muser.update({
       pw: req.body.pw,

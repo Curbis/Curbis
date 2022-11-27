@@ -50,7 +50,7 @@ function detail(data) {
       GDay.innerText = data.result.day;
       Ghour.innerText = data.result.hour;
       Gmember.innerText = data.result.headcount;
-      profileDiv.innerText = "";
+      profileDiv.innerHTML = ``;
       Gin.id = data.result.id;
       GName.innerText = data.result.name;
       GAdress.innerText = data.result.address;
@@ -63,7 +63,7 @@ function detail(data) {
         profileAll.classList.add("profileAll");
         profileImg.src = data.result.members[j].user.picture;
         profileAll.appendChild(profileImg);
-        profileId.classList.add('profileId')
+        profileId.classList.add("profileId");
         profileId.innerText = data.result.members[j].user.nickname;
         profileAll.appendChild(profileId);
         profileDiv.appendChild(profileAll);
@@ -130,16 +130,21 @@ function groupIn() {
       userId: sessionId,
     },
   }).then((res) => {
-    alert("모임 참여 완료");
-    history.go(0);
+    swal("모임 참여 완료", "", "info").then(function () {
+      history.go(0);
+    });
   });
 }
 
 function groupOut() {
   console.log(Gin.id, sessionId);
-  if (!confirm("정말로 모임을 탈퇴 하시겠습니까?")) {
+  if (!swal("정말로 모임을 탈퇴 하시겠습니까?", {
+    buttons: ["아니요!", true],
+  }))
+   {
     return;
-  }
+   }else{
+ 
   axios({
     method: "POST",
     url: "/groupOut",
@@ -151,6 +156,7 @@ function groupOut() {
     alert("모임 탈퇴 완료");
     history.go(0);
   });
+}
 }
 
 function groupDelete() {
@@ -168,11 +174,8 @@ function groupDelete() {
   }).then((res) => {
     alert("모임 삭제 완료");
     history.go(0);
-
-  })
-};
-
-
+  });
+}
 
 // function groupFind() {
 //   console.log('아아아아');
@@ -184,4 +187,3 @@ function groupDelete() {
 //     // history.go(0);
 //   })
 // };
-
