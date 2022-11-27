@@ -339,8 +339,7 @@ body {
   display: none;
 } */
 
-
-#modal.modal-overlay{
+#modal.modal-overlay {
   display: none;
 
   width: 100%;
@@ -422,27 +421,27 @@ body {
 .group-pic {
   width: 60%;
   height: 20%;
+  object-fit: cover;
 }
 
-.group-in-btn {
-
-  color: #ffffff;
-  position: relative;
-  top: 10px;
-  left: 420px;
-  background-color: #f49d1a;
+.profils > div > img {
   width: 128px;
   height: 42px;
   font-size: 16px;
-  border-radius: 7px;
   border: none;
+}
+
+.profils > div {
+  width: 55%;
+  justify-content: space-around;
+  display: flex;
 }
 
 .group-name {
   margin-top: 10px;
 }
 
-.group-notice > div > img {
+.group-notice > img {
   height: 25px;
   margin: 9px;
 }
@@ -472,3 +471,5 @@ body {
   display: none;
 }
 
+.group-address {
+}
