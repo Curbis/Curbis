@@ -26,6 +26,10 @@ scrollRight.onclick = () => {
   cardArticle.scrollLeft += 1020;
 };
 
+if (cardArticle.childElementCount < 3) {
+  cardArticle.style.justifyContent = 'center';
+} 
+
 function mypage() {
   document.location.href = "/profile";
 }

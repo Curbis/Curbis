@@ -41,6 +41,7 @@ body {
   justify-content: flex-end;
   margin: 10px;
   height: 10vh;
+  width: 50%;
   /* max-width: 400px;
   min-width: 250px; */
   /* left: 50vh; */
@@ -113,7 +114,7 @@ body {
 
 .cardArticle {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   /* position: relative; */
   padding-top: 10px;
@@ -531,4 +532,10 @@ body {
   border: none;
   width: 100px;
   margin-top: 16px;
+}
+
+.group-func-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
