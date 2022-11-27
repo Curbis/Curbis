@@ -43,7 +43,7 @@
           '<%= userInfo.picture %>'>
 
           <div class="hi" onclick="mypage()" id ='<%= userInfo.userid %>' >
-            <%= userInfo.userid %>님 안녕하세요
+            <%= userInfo.nickname %>님 안녕하세요
 
           </div>
           <a href="/logout" class="logout-btn">로그아웃</a>
@@ -70,14 +70,18 @@
         <button class="categori_4">성장/자기계발</button>
       </div>
 
+      <% if (isLogin) { %>
+
       <a href="/groupCreate" class="buttons" id="add">
         <button class="groupCreate">모임 만들기</button>
         <!-- <img src="/static/img/add.png" title="모임 만들기"> -->
       </a>
-
-      <button class="groupFind" id="serch">
-        내 모임
-      </button>
+      <form action="/groupFind" method="POST">
+        <button type="submit" class="groupFind">
+          내 모임
+        </button>
+      </form>
+      <% }%>
 
       <div class="card-box">
         <div class="cards">
@@ -151,8 +155,15 @@
             <div class="group-headcount"></div>
           </div>
           <div class="profils">
-            <div class="profil-user">
-              <img class="icon-user" src="/static/img/user.png" alt="">
+
+            <div class="profile-user">
+              <!-- <img class="icon-user" src="/static/img/user.png" alt=""> -->
+              <!-- <img class="userProfileImg" src="/static/img/profile-basic.png" alt=""> -->
+            </div>
+ 
+            <!-- <div class="profil-user">
+              <img class="userProfileImg" src="/static/img/profile-basic.png" alt="">
+
             </div>
 
           </div>
@@ -165,6 +176,12 @@
     </div>
 
     <script src="/static/js/main.js"></script>
+
+
   </body>
 </html>
+
+
+
+
 
