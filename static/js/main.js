@@ -141,25 +141,25 @@ function groupIn() {
 
 function groupOut() {
   console.log(Gin.id, sessionId);
-  if (!swal("정말로 모임을 탈퇴 하시겠습니까?", {
-    buttons: ["아니요!", true],
-  }))
-   {
+  if (
+    !swal("정말로 모임을 탈퇴 하시겠습니까?", {
+      buttons: ["아니요!", true],
+    })
+  ) {
     return;
-   }else{
- 
-  axios({
-    method: "POST",
-    url: "/groupOut",
-    data: {
-      listId: Gin.id,
-      userId: sessionId,
-    },
-  }).then((res) => {
-    alert("모임 탈퇴 완료");
-    history.go(0);
-  });
-}
+  } else {
+    axios({
+      method: "POST",
+      url: "/groupOut",
+      data: {
+        listId: Gin.id,
+        userId: sessionId,
+      },
+    }).then((res) => {
+      alert("모임 탈퇴 완료");
+      history.go(0);
+    });
+  }
 }
 
 function groupDelete() {

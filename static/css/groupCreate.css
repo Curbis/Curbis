@@ -285,8 +285,8 @@ fieldset {
   border-radius: 7px;
   position: absolute;
   top: 748px;
-  left: 366px;
-  width: 6%;
+  left: 337px;
+  width: 10%;
   margin-left: 167px;
   outline: none;
   font-size: 14px !important;
@@ -504,15 +504,11 @@ form input::file-selector-button {
   margin-top: -750px;
 }
 
-.moreText {
-  height: 100px;
-}
-
 #startDate {
   width: 237px;
   position: absolute;
   top: 748px;
-  left: 184px;
+  left: 159px;
   margin-right: 14px;
 }
 
@@ -576,21 +572,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #address {
   position: absolute;
   top: 837px;
-  width: 583px;
-  left: 184px;
+  width: 609px;
+  left: 159px;
 }
 
 .headcount {
   position: absolute;
   top: 763px;
-  right: 175px;
+  right: 205px;
   color: #f49d1a;
 }
 
 .addressP {
   position: absolute;
   top: 826px;
-  left: 124px;
+  left: 106px;
   font-size: 15px;
   text-align: center;
   color: #f49d1a;
@@ -600,7 +596,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   text-align: center;
   position: absolute;
   top: 763px;
-  right: 530px;
+  right: 549px;
   font-size: 15px;
   color: #f49d1a;
 }
@@ -608,7 +604,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .timeP {
   position: absolute;
   top: 764px;
-  right: 48px;
+  right: 47px;
   font-size: 15px;
   color: #f49d1a;
 }
@@ -622,20 +618,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .logo {
   height: 100px;
   position: absolute;
-  top: 17px;
-  left: 15%;
+  top: 32px;
+  left: 9%;
 }
 
 .inputSpan {
   position: relative;
-  left: -430px;
-  top: 37px;
+  left: -158px;
+  display: flex;
+  text-align: left;
+  top: 48px;
   color: #f49d1a;
+  display: block;
+  width: 90px;
 }
 
-.inputSp {
-  position: relative;
-  top: 765px;
-  left: -350px;
-  color: #f49d1a;
+#startTime {
+  position: absolute;
+  top: 741px;
 }

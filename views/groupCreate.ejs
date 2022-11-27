@@ -49,11 +49,14 @@
 
     <!-- SweatAlert CDN -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- 엔터 이벤트 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <header>
-      <img class="logo" src="/static/img/logo.png" alt="Curbis" />
-    </header>
+    <a href="/">
+      <img src="../static/img/logo.png" class="logo" />
+    </a>
     <div class="container">
       <div class="wrapper">
         <button class="backStep" onclick="goFirst()">이전으로</button>
@@ -147,7 +150,7 @@
               <br /><br />
               <!-- 모임 제목  -->
               <span class="inputSpan"> 모임 제목 </span>
-              <input required type="text" name="text" />
+              <input required type="text" name="text" maxlength="40" />
               <br />
 
               <!-- 모임 소개글  -->
@@ -159,10 +162,10 @@
               </div>
               <br />
 
+              <span class="inputSpan"> 기타 정보 </span>
               <div class="inputwrap">
                 <!-- 날짜, 시간 -->
                 <div class="date">
-                  <span class="inputSp">장소 및 세부 일정 </span>
                   <label for="date" class="dateP"> 날짜 :</label>
                   <input
                     type="text"
@@ -173,13 +176,18 @@
                   />
                 </div>
                 <div class="time">
-                  <label for="time" class="timeP">시간: </label>
-                  <input type="time" name="time" maxlength="10" />
+                  <label for="time" class="timeP">시간 : </label>
+                  <input
+                    type="time"
+                    name="time"
+                    maxlength="10"
+                    id="startTime"
+                  />
                 </div>
 
                 <!-- 모임 인원수 -->
 
-                <label for="time" class="headcount">인원수: </label>
+                <label for="time" class="headcount">인원수 : </label>
                 <input
                   required
                   type="number"
