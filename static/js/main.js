@@ -4,6 +4,8 @@ let cardArticle = document.querySelector(".cardArticle");
 let serchInput = document.querySelector(".serch-input");
 let closeBtn = modal.querySelector(".close-area");
 let GPic = document.querySelector(".group-pic");
+let GAdress = document.querySelector(".group-address");
+let GName = document.querySelector(".group-name");
 let GIntro = document.querySelector(".group-intro");
 let GDay = document.querySelector(".group-day");
 let Ghour = document.querySelector(".group-hour");
@@ -48,8 +50,10 @@ function detail(data) {
       GDay.innerText = data.result.day;
       Ghour.innerText = data.result.hour;
       Gmember.innerText = data.result.headcount;
-      profileDiv.innerText = ''
+      profileDiv.innerText = "";
       Gin.id = data.result.id;
+      GName.innerText = data.result.name;
+      GAdress.innerText = data.result.address;
       outModal();
       for (j = 0; j < Object.keys(data.result.members).length; j++) {
         let profileImg = document.createElement("img");
@@ -60,7 +64,7 @@ function detail(data) {
         if (data.btn == "host") {
           let Gde = document.querySelector(".group-in-btn");
           Gdel.style.display = "block";
-      
+
           // GPic.setAttribute("onclick", exileBtn(this));
         } else {
           userMember.push(data.result.members[j].user.userid);
@@ -74,7 +78,10 @@ function detail(data) {
           if (find !== undefined) {
             Gout.style.display = "block";
             Gin.style.display = "none";
-          } else if (sessionId != "id" && data.result.headcount > Object.keys(data.result.members).length) {
+          } else if (
+            sessionId != "id" &&
+            data.result.headcount > Object.keys(data.result.members).length
+          ) {
             Gin.style.display = "block";
           }
         }
@@ -85,7 +92,6 @@ function detail(data) {
 // function exileBtn(data) {
 //   console.log('>>>>>>>>>>>>>>>>>',data)
 // }
-
 
 closeBtn.addEventListener("click", (e) => {
   modal.style.display = "none";
@@ -120,13 +126,13 @@ function groupIn() {
   }).then((res) => {
     alert("모임 참여 완료");
     history.go(0);
-  })
-};
+  });
+}
 
 function groupOut() {
   console.log(Gin.id, sessionId);
-  if(!confirm('정말로 모임을 탈퇴 하시겠습니까?')){
-    return
+  if (!confirm("정말로 모임을 탈퇴 하시겠습니까?")) {
+    return;
   }
   axios({
     method: "POST",
@@ -138,14 +144,13 @@ function groupOut() {
   }).then((res) => {
     alert("모임 탈퇴 완료");
     history.go(0);
-  })
-};
-
+  });
+}
 
 function groupDelete() {
   console.log(Gin.id, sessionId);
-  if(!confirm('정말로 모임을 삭제 하시겠습니까?')){
-    return
+  if (!confirm("정말로 모임을 삭제 하시겠습니까?")) {
+    return;
   }
   axios({
     method: "POST",
@@ -157,5 +162,5 @@ function groupDelete() {
   }).then((res) => {
     alert("모임 삭제 완료");
     history.go(0);
-  })
-};
+  });
+}
