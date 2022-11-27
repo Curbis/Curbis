@@ -1,0 +1,146 @@
+body {
+  background-color: rgb(26, 31, 39);
+  color: white;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+form {
+  margin: 0 auto;
+  width: 650px;
+}
+
+.register-div div {
+  text-align: center;
+  font-size: 25px;
+  padding-bottom: 30px;
+}
+
+.register-form .form-required {
+  text-align: right;
+  margin: 0 auto;
+}
+
+.register-form fieldset {
+  border: 0;
+  padding: 10px;
+}
+
+.register-form .form-div {
+  display: flex;
+  padding: 5px;
+  margin: 10px 20px;
+}
+
+.register-form .form-item {
+  width: 130px;
+  padding: 5px;
+}
+
+.register-form input {
+  width: 350px;
+  margin-right: 10px;
+  height: 40px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 4px;
+  padding: 0px 11px 0px 15px;
+  background-color: transparent;
+  color: white;
+}
+
+.register-form .check-btn,
+.profile-box label,
+.profile-box button {
+  width: 80px;
+  height: 42px;
+  border-radius: 4px;
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #ff9671;
+  color: white;
+  font-size: 14px;
+}
+
+.register-form .form-div-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.register-form .guide {
+  font-size: 13px;
+  color: skyblue;
+  padding: 10px 0;
+  margin: 0;
+}
+
+#dynamicFile {
+  display: none;
+}
+
+#preview {
+  /* background-image: url('/static/img/profileBasic.png'); */
+  background-size: 170px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  color: transparent;
+  margin-bottom: 10px;
+  margin-left: 35px;
+}
+
+form input::file-selector-button {
+  display: none;
+}
+
+.profile-box input[type="file"] {
+  padding: 0;
+}
+
+.profile-box label {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.548);
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  margin: 5px 0 5px;
+  background-image: url("/static/img/img.png");
+  background-size: 36px;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  right: 50px;
+  border-radius: 50%;
+}
+
+.profile-img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+
+.profile-div {
+  height: 180px;
+}
+
+.back-main {
+  height: 50px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.back-main a {
+  color: white;
+  text-decoration: none;
+}
+
+.profile-box .profile-save-btn {
+  display: none;
+}
+
+.profile-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

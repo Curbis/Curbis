@@ -9,7 +9,7 @@ const stop3 = document.querySelector(".stop3");
 const goBack = document.getElementById("goBack");
 const buttonback = document.querySelector("buttonBack");
 
-const profileDiv = document.querySelector('.profile-div')
+const profileDiv = document.querySelector(".profile-div");
 
 // 보이기;
 function goFirst() {
@@ -57,49 +57,40 @@ function backStep() {
 }
 
 function ThirdStep() {
+  const form = document.forms["groupCreat"];
 
-  const form = document.forms['groupCreat'];
- console.log('topic',form.r1.value); 
- console.log('introduce',form.moreText.value); 
- console.log('day',form.date.value); 
- console.log('address',form.address.value); 
- console.log('hour',form.time.value); 
- console.log('name',form.text.value); 
- console.log('headcount',form.headcount.value); 
- console.log('picture',document.getElementById('preview').src); 
+  if (
+    form.text.value == "" ||
+    form.moreText.value == "" ||
+    form.date.value == "" ||
+    form.time.value == "" ||
+    form.headcount.value == "" ||
+    form.address.value == ""
+  ) {
+    return swal("공백이 존재합니다");
+  }
 
- if (
-  form.text.value == "" ||
-  form.moreText.value == "" ||
-  form.date.value == "" ||
-  form.time.value == "" ||
-  form.headcount.value == "" ||
-  form.address.value == ""
-) {
-  return swal("공백이 존재합니다");
-}
+  if (profileDiv.dataset.value == "true") {
+    return swal("프로필 저장을 완료해주세요");
+  }
 
-if (profileDiv.dataset.value == 'true') {
-  return swal('프로필 저장을 완료해주세요')
-};
+  if (form.headcount.value > 6 || form.headcount.value < 3) {
+    return swal("인원수는 3 - 6 명으로 설정해주세요");
+  }
 
-if (form.headcount.value > 6 || form.headcount.value < 3){
-  return swal('인원수는 3 - 6 명으로 설정해주세요')
-}
-
-First.style.display = "none";
-Second.style.display = "none";
-Third.style.display = "block";
-stop1.style.color = "#ccc";
-stop2.style.color = "#ccc";
-stop3.style.color = "#ff9671";
+  First.style.display = "none";
+  Second.style.display = "none";
+  Third.style.display = "block";
+  stop1.style.color = "#ccc";
+  stop2.style.color = "#ccc";
+  stop3.style.color = "#ff9671";
 
   axios({
-    method: 'POST',
-    url: '/makeGroup',
+    method: "POST",
+    url: "/makeGroup",
     data: {
       name: form.text.value,
-      picture: document.getElementById('preview').src,
+      picture: document.getElementById("preview").src,
       topic: form.r1.value,
       introduce: form.moreText.value,
       address: form.address.value,
@@ -107,22 +98,24 @@ stop3.style.color = "#ff9671";
       hour: form.time.value,
       headcount: form.headcount.value,
     },
-  }).then((res) => {
-    // console.log(res);
-    // console.log(res.data);
-    return res.data;
-  }).then((data) => {
-    // (1) swal 띄우기
-    
-    if (data) {
-      swal('그룹 생성 성공')
-    } else {
-      swal('로그인 시간이 만료되었습니다').then(function(){
-        document.location.href = "/login";                  
-      })
-    }
-  });
-};
+  })
+    .then((res) => {
+      // console.log(res);
+      // console.log(res.data);
+      return res.data;
+    })
+    .then((data) => {
+      // (1) swal 띄우기
+
+      if (data) {
+        swal("그룹 생성 성공");
+      } else {
+        swal("로그인 시간이 만료되었습니다").then(function () {
+          document.location.href = "/login";
+        });
+      }
+    });
+}
 
 console.log("dd", $("input[name='r1']:checked").val());
 
@@ -167,24 +160,22 @@ window.onload = function () {
   });
 };
 
-
 function fileUpload() {
   const formData = new FormData(); // 폼 객체 생성
-  const file = document.getElementById('dynamicFile'); // file input
-  formData.append('dynamicFile', file.files[0])
+  const file = document.getElementById("dynamicFile"); // file input
+  formData.append("dynamicFile", file.files[0]);
   axios({
-    method: 'POST',
-    url: '/dynamicFile',
+    method: "POST",
+    url: "/dynamicFile",
     data: formData,
     headers: {
-      'Content-Type': 'multipart/form-data', // enctype: "multipart/form-data"
+      "Content-Type": "multipart/form-data", // enctype: "multipart/form-data"
     },
-  }).then(function(res) {
-    document.getElementById('preview').src = `/uploads/${res.data.filename}`
-    profileDiv.setAttribute('data-value', false);
-    swal('프로필 저장이 완료되었어요!');
-  })
-
+  }).then(function (res) {
+    document.getElementById("preview").src = `/uploads/${res.data.filename}`;
+    profileDiv.setAttribute("data-value", false);
+    swal("프로필 저장이 완료되었어요!");
+  });
 }
 
 // 이미지 미리보기
@@ -192,20 +183,18 @@ function readURL(input) {
   if (input.files[0]) {
     let reader = new FileReader();
 
-    reader.onload = function(obj) {
-      document.getElementById('preview').src = obj.target.result;
+    reader.onload = function (obj) {
+      document.getElementById("preview").src = obj.target.result;
     };
 
     reader.readAsDataURL(input.files[0]);
-
   } else {
     // document.getElementById('preview').src = "/static/img/profile-basic.png";
   }
-  profileDiv.setAttribute('data-value', true);
-  console.log('미리보기', profileDiv.dataset.value);
-  document.querySelector('.profile-save-btn').style.display = 'block'
+  profileDiv.setAttribute("data-value", true);
+  console.log("미리보기", profileDiv.dataset.value);
+  document.querySelector(".profile-save-btn").style.display = "block";
 }
-
 
 const popoverTriggerList = document.querySelectorAll(
   '[data-bs-toggle="popover"]'
@@ -226,7 +215,6 @@ function shareTwitter() {
 }
 
 function shareFacebook() {
-
   var sendUrl = "http://118.67.142.249:8090/"; // 전달할 URL
 
   window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
@@ -247,14 +235,10 @@ function shareKakao() {
       link: {
         mobileWebUrl: "http://118.67.142.249:8090/",
         webUrl: "http://118.67.142.249:8090/",
-
       },
     },
   });
 }
-
-
-
 
 function clip() {
   var url = ""; // <a>태그에서 호출한 함수인 clip 생성
@@ -270,8 +254,6 @@ function clip() {
 
   swal("URL이 복사되었습니다."); // 알림창
 }
-
-
 
 $(function () {
   const now = new Date();
@@ -319,4 +301,3 @@ $(function () {
     $("#datepicker1").datepicker();
   });
 });
-

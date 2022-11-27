@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/static/css/groupCreate.css" />
 
     <!-- favicon -->
-
     <link
       rel="shoctcut icon"
       type="image/x-icon"
@@ -24,16 +23,8 @@
     />
 
     <!-- bootstrap cdn -->
-
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-    <link rel="stylesheet" href="/static/css/ticket.css" />
-
-    <!-- bootstrap cdn -->
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- bootstrap icon -->
     <link
       rel="stylesheet"
@@ -45,17 +36,27 @@
     <!-- 다음주소검색 api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+    <!-- Kakao api -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <!-- SweatAlert CDN -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <!-- 엔터 이벤트 CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- JQuery CDN -->
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
   <body>
     <a href="/">
-      <img src="../static/img/logo.png" class="logo" />
+      <img src="/static/img/logo.png" class="logo" />
     </a>
     <div class="container">
       <div class="wrapper">
@@ -128,7 +129,7 @@
                 <div class="profile-div">
                   <img
                     id="preview"
-                    src="../static/img/mountain-g7d103621e_1280.jpg"
+                    src="/static/img/mountain-g7d103621e_1280.jpg"
                   />
                   <input
                     required
@@ -258,13 +259,6 @@
         </form>
       </div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/static/js/groupCreate.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </body>
 </html>
