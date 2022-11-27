@@ -76,15 +76,15 @@ function ThirdStep() {
   form.headcount.value == "" ||
   form.address.value == ""
 ) {
-  return alert("공백이 존재합니다");
+  return swal("공백이 존재합니다");
 }
 
 if (profileDiv.dataset.value == 'true') {
-  return alert('프로필 저장을 완료해주세요')
+  return swal('프로필 저장을 완료해주세요')
 };
 
 if (form.headcount.value > 6 || form.headcount.value < 3){
-  return alert('인원수는 3 - 6 명으로 설정해주세요')
+  return swal('인원수는 3 - 6 명으로 설정해주세요')
 }
 
 First.style.display = "none";
@@ -112,15 +112,15 @@ stop3.style.color = "#ff9671";
     // console.log(res.data);
     return res.data;
   }).then((data) => {
-    // (1) alert 띄우기
+    // (1) swal 띄우기
     
     if (data) {
-      alert('그룹 생성 성공')
+      swal('그룹 생성 성공')
     } else {
-      alert('로그인 시간이 만료되었습니다')
-      document.location.href = "/login";
+      swal('로그인 시간이 만료되었습니다').then(function(){
+        document.location.href = "/login";                  
+      })
     }
-
   });
 };
 
@@ -152,18 +152,11 @@ function selectImg3() {
 
 window.onload = function () {
   document.getElementById("address").addEventListener("click", function () {
-    //주소입력칸을 클릭하면
-    //카카오 지도 발생
     new daum.Postcode({
       oncomplete: function (data) {
         console.log(data);
-        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
         var roadAddr = data.roadAddress; // 도로명 주소 변수
         var jibunAddr = data.jibunAddress; // 지번 주소 변수
-        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-        // document.getElementById('member_post').value = data.zonecode;
         if (roadAddr !== "") {
           document.getElementById("address").value = roadAddr;
         } else if (jibunAddr !== "") {
@@ -176,18 +169,9 @@ window.onload = function () {
 
 
 function fileUpload() {
-  console.log('click fileUpload')
-
-  // 멀티미디어 데이터는 비동기 데이터를 보여줄 때 폼 데이터를 만들어서 함
   const formData = new FormData(); // 폼 객체 생성
   const file = document.getElementById('dynamicFile'); // file input
-  console.dir(file.files[0]); // 파일 input에 들어간 파일 정보
-
-  // formData.append(name, value);
-  // input의 name과 input의 value
   formData.append('dynamicFile', file.files[0])
-
-  // axios 통신
   axios({
     method: 'POST',
     url: '/dynamicFile',
@@ -196,12 +180,9 @@ function fileUpload() {
       'Content-Type': 'multipart/form-data', // enctype: "multipart/form-data"
     },
   }).then(function(res) {
-    // res : 클라이언트의 POST /dynamicFile 요청을 보낸 응답 결과
     document.getElementById('preview').src = `/uploads/${res.data.filename}`
     profileDiv.setAttribute('data-value', false);
-    console.log('저장완료', profileDiv.dataset.value);
-
-    alert('프로필 저장이 완료되었어요!');
+    swal('프로필 저장이 완료되었어요!');
   })
 
 }
@@ -223,7 +204,6 @@ function readURL(input) {
   profileDiv.setAttribute('data-value', true);
   console.log('미리보기', profileDiv.dataset.value);
   document.querySelector('.profile-save-btn').style.display = 'block'
-
 }
 
 
@@ -288,7 +268,7 @@ function clip() {
   document.execCommand("copy"); // 복사
   document.body.removeChild(textarea); //extarea 요소를 없애줌
 
-  alert("URL이 복사되었습니다."); // 알림창
+  swal("URL이 복사되었습니다."); // 알림창
 }
 
 

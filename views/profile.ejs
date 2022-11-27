@@ -14,6 +14,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+  <!-- SweatAlert CDN -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <style>
     body {
       background-color: rgb(26, 31, 39);
@@ -296,20 +299,18 @@
             //     const edit = editForm.item(i);
             //     editForm.style.display = 'none'
             // }       
-            alert('비밀번호 확인이 완료되었습니다');
+            swal('비밀번호 확인이 완료되었습니다');
             let afterCheck1 = document.querySelectorAll('.after-check');
             let checkBtn = document.querySelector('.confirm-btn')
             let nowPw = document.querySelector('.now-pw')
             let afterName = document.querySelector('.after-name')
-            console.log(afterCheck1)
-            
             afterCheck1[0].classList.remove("after-check");
             afterCheck1[1].classList.remove("after-check");
             afterName.innerText = '내 프로필';
             checkBtn.classList.add("after-check");
             nowPw.classList.add("after-check");
           } else {
-            alert('비밀번호를 다시 입력해주세요')
+            swal('비밀번호를 다시 입력해주세요')
           }
         });
     }
@@ -325,7 +326,7 @@
       // console.log(form.userid.value);
       if (form.nickname.value.length < 3) {
 
-        return alert('닉네임을 3글자 이상으로 만들어주세요')
+        return swal('닉네임을 3글자 이상으로 만들어주세요')
       }
 
 
@@ -341,19 +342,21 @@
         .then((res) => {
           return res.data;
         })
-        .then((data) => { // true, false
-          console.log('중복된 닉네임인가요? ', data)
+        .then((data) => {
           if (data) {
-            alert('중복된 닉네임입니다')
-            disBtn.disabled = true;
+            swal('중복된 닉네임입니다').then(function(){
+              disBtn.disabled = true;                  
+            })
+            
 
           } else {
-            alert('사용가능한 닉네임입니다')
-            if (disBtn.dataset.value) {
-              disBtn.disabled = false;
-            } else {
-              disBtn.setAttribute('data-value', true);
-            }
+            swal('사용가능한 닉네임입니다').then(function(){
+                if (disBtn.dataset.value) {
+                disBtn.disabled = false;
+              } else {
+                disBtn.setAttribute('data-value', true);
+              }               
+            })
           }
         });
     }
@@ -404,8 +407,8 @@
         console.log(res.data);
         return res.data;
       }).then((data) => {
-        // (1) alert 띄우기
-        alert('비밀번호 수정 완료');
+   
+        swal('비밀번호 수정 완료');
 
 
       });
@@ -506,59 +509,10 @@ axios({
   console.log(res.data);
   return res.data;
 }).then((data) => {
-  // (1) alert 띄우기
-  alert('비밀번호 수정 완료');
 
-
+  swal('비밀번호 수정 완료');
 });
 }
-
-
-    // function register() {
-    //   // console.log('porfile<<',profileDiv.dataset.value);
-    //   if (profileDiv.dataset.value == 'true') {
-    //     return alert('프로필 저장을 완료해주세요')
-    //   };
-    //   if (!reg_pw3.test(pwInput.value) || pwInput.value != pwConfirm.value) {
-    //     return alert('비밀번호를 확인해주세요')
-    //   };
-
-    //   const form = document.forms['register-form'];
-
-    //   if (form.userid.value == '' || form.pw.value == '' || form.nickname.value == '' || form.address.value == '') {
-    //     return alert('값을 입력해주세요')
-    //   }
-
-    //   axios({
-    //     method: 'POST',
-    //     url: '/signup',
-    //     data: {
-    //       profile: document.getElementById('preview').src,
-    //       userid: form.userid.value,
-    //       pw: form.pw.value,
-    //       nickname: form.nickname.value,
-    //       address: form.address.value,
-    //     },
-    //   }).then((res) => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //     return res.data;
-    //   }).then((data) => {
-    //     // (1) alert 띄우기
-    //     alert('회원이 되신 것을 축하해요!');
-    //     // (2) 가입 성공시 로그인 페이지로 이동
-    //     // document.location.href란?
-    //     // javascript에서 페이지 이동할 수 있는 방법
-    //     // document 객체를 사용하기 때문에 프론트에서 사용 가능
-    //     form.userid.value = '';
-    //     form.pw.value = '';
-    //     form.nickname.value = '';
-    //     form.address.value = '';
-    //     const disBtn = document.querySelector('#disBtn');
-    //     disBtn.disabled = true;
-    //     document.location.href = '/login';
-    //   });
-    // }
   </script>
 </body>
 
