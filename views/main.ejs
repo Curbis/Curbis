@@ -34,10 +34,7 @@
       </a>
       <div class="buttonBox">
         <% if (isLogin) { %>
-          <a href="/groupCreate" class="buttons" id="add">
-            <button class="groupCreate">모임 만들기</button>
-            <!-- <img src="/static/img/add.png" title="모임 만들기"> -->
-          </a>
+          
           <img id ='profile' src=
           '<%= userInfo.picture %>'>
           <div class="hi">
@@ -64,6 +61,15 @@
         <button class="categori_3">파티/술</button>
         <button class="categori_4">성장/자기계발</button>
       </div>
+
+      <a href="/groupCreate" class="buttons" id="add">
+        <button class="groupCreate">모임 만들기</button>
+        <!-- <img src="/static/img/add.png" title="모임 만들기"> -->
+      </a>
+
+      <button class="groupFind" id="serch">
+        내 모임
+      </button>
 
       <div class="card-box">
         <div class="cards">
