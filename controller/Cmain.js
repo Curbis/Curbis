@@ -94,8 +94,10 @@ exports.postSerch = async (req, res) => {
   if (groups == "") {
     res.send(`
         <script>
-          alert('검색 결과가 없어요');
-          document.location.href = '/'; 
+          alert('검색 결과가 없습니다')
+            document.location.href = '/'; 
+          
+   
         </script>
       `);
   } else {
@@ -126,8 +128,9 @@ exports.getGroupCreate = (req, res) => {
   } else {
     res.send(`
         <script>
-          alert('로그인 후 모임 생성이 가능합니다');
-          document.location.href = '/'; 
+          swal('로그인 후 모임 생성이 가능합니다').then(function(){
+            document.location.href = '/'; 
+          })
         </script>
       `);
   }
@@ -217,20 +220,19 @@ exports.getLogout = (req, res) => {
       
       res.send(`
           <script>
-            alert('로그아웃 되었어요');
+          alert('로그아웃되었습니다.')
             document.location.href = '/'; 
+
           </script>
         `);
     });
   } else {
-    // 유저가 브라우저에서 /logout 경로로 직접 접근
-    // res.send()
-    // - alert()
-    // - / 경로로 이동
+
     res.send(`
         <script>
-          alert('잘못된 접근입니다');
+        alert('잘못된 접근입니다')
           document.location.href = '/'; 
+  
         </script>
       `);
   }
@@ -401,8 +403,9 @@ exports.groupFind = async (req, res) => {
   if (groups == "") {
     res.send(`
         <script>
-          alert('참여한 모임이 없어요');
-          document.location.href = '/'; 
+          swal('참여한 모임이 없어요').then(function(){
+            document.location.href = '/'; 
+          })
         </script>
       `);
   } else {
