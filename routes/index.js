@@ -94,6 +94,10 @@ router.post("/groupDelete", controller.groupDelete);
 
 router.post("/passPw", controller.passPw);
 
+router.post("/editPw", controller.editPw);
+
+router.post("/groupFind", controller.groupFind);
+
 
 module.exports = router;
 
