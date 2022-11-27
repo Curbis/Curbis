@@ -88,6 +88,10 @@ router.post("/makeGroup", controller.makeGroup);
 
 router.post("/groupIn", controller.groupIn);
 
+router.post("/groupOut", controller.groupOut);
+
+router.post("/groupDelete", controller.groupDelete);
+
 router.post("/passPw", controller.passPw);
 
 

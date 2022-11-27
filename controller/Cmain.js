@@ -343,3 +343,34 @@ exports.groupIn = (req, res) => {
     res.send(false);
   }
 };
+
+exports.groupOut = (req, res) => {
+  let user = req.session.user;
+
+  if (user !== undefined) {
+    models.Mmember.destroy({
+      where : { user_id: user,
+                list_id: req.body.listId
+              }
+    }).then((result) => {
+        res.send(true);
+      });
+  } else {
+    res.send(false);
+  }
+};
+
+exports.groupDelete = (req, res) => {
+  let user = req.session.user;
+
+  if (user !== undefined) {
+    models.Mlist.destroy({
+      where : { id: req.body.listId
+              }
+    }).then((result) => {
+        res.send(true);
+      });
+  } else {
+    res.send(false);
+  }
+};

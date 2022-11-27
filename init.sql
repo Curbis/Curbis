@@ -9,7 +9,7 @@ USE curbis;
 DROP TABLE list;
 
 SHOW tables;
-alter table list DROP column introduce;
+alter table list DROP column name;
 ALTER TABLE list ADD picture mediumtext NOT NULL;
 ALTER TABLE user ADD day VARCHAR(50) NOT NULL;
 ALTER TABLE user ADD hour VARCHAR(10) NOT NULL;
@@ -18,6 +18,7 @@ ALTER TABLE list ADD day VARCHAR(50) NOT NULL;
 ALTER TABLE list ADD hour VARCHAR(10) NOT NULL;
 ALTER TABLE list ADD host VARCHAR(15) NOT NULL;
 ALTER TABLE list ADD introduce mediumtext NOT NULL;
+ALTER TABLE list ADD name VARCHAR(50) NOT NULL;
 
 
 
