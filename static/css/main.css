@@ -59,23 +59,8 @@ body {
   color: white;
 }
 
-.groupCreate {
-  border: #f49d1a;
-  display: inline-block;
-  padding: 8px 30px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  position: relative;
-  right: -837px;
-  border-radius: 15px;
-  bottom: -55px;
-  width: 150px;
-  background-color: #f49d1a;
-  height: 40px;
-}
 
-.groupFind {
+/* .groupFind {
   border: #f49d1a;
   display: inline-block;
   padding: 8px 30px;
@@ -89,7 +74,7 @@ body {
   width: 150px;
   background-color: #f49d1a;
   height: 40px;
-}
+} */
 
 #profile {
   margin: 0 15px;
@@ -128,7 +113,7 @@ body {
 
 .cardArticle {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   /* position: relative; */
   padding-top: 10px;
@@ -161,7 +146,7 @@ body {
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  height: 510px;
+  height: 50vh;
   width: 300px;
   /* max-width: 300px; */
   min-width: 300px;
@@ -296,7 +281,7 @@ body {
 }
 
 .serch-box {
-  height: 20vh;
+  height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -328,21 +313,9 @@ body {
   margin: 8px;
 }
 
-/* .detail {
-  position: fixed;
-  bottom: 10%;
-  left: 25%;
-  display: flex;
-  width: 40vw;
-  height: 70vh;
-  background-color: rgb(26, 31, 39);
-  display: none;
-} */
-
-
 #modal.modal-overlay{
   display: none;
-
+  
   width: 100%;
   height: 100%;
   position: absolute;
@@ -425,7 +398,6 @@ body {
 }
 
 .group-in-btn {
-
   color: #ffffff;
   position: relative;
   top: 10px;
@@ -467,10 +439,27 @@ body {
   justify-content: center;
 }
 
-  color: black;
-}
-
 .after-check {
   display: none;
 }
 
+.group-btn {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.make-btn,
+.mine-btn {
+  text-decoration: none;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 15px;
+  width: 130px;
+  background-color: #f49d1a;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+}

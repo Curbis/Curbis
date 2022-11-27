@@ -70,14 +70,19 @@
         <button class="categori_4">성장/자기계발</button>
       </div>
 
-      <a href="/groupCreate" class="buttons" id="add">
-        <button class="groupCreate">모임 만들기</button>
-        <!-- <img src="/static/img/add.png" title="모임 만들기"> -->
-      </a>
-
-      <button class="groupFind" id="serch">
-        내 모임
-      </button>
+      <% if (isLogin) { %>
+      <div class="group-btn">
+        <a href="/groupCreate" class="buttons make-btn" id="add"> 모임만들기</a>
+        <form action="/groupFind" method="POST">
+          <button type="submit" class="mine-btn">내 모임</button>
+        </form>
+      </div>
+      <% }%>
+<!--       
+        <div>
+        <a href="/groupCreate" class="buttons make-btn" id="add"> 모임만들기</a>
+        <button class="groupFind" id="serch">내 모임</button>
+      </div> -->
 
       <div class="card-box">
         <div class="cards">
@@ -188,16 +193,3 @@
 
   </body>
 </html>
-
-
-
-        </div>
-        <button class="group-in-btn">회원 신청하기</button>
-      </div>
-    </div>
-
-    <script src="/static/js/main.js"></script>
-
-  </body>
-</html>
-
