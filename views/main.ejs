@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Main</title>
+  <title>Curbis</title>
   <!-- favicon -->
   <link rel="shoctcut icon" type="image/x-icon" href="/static/img/favicon/favicon.ico">
   <!-- static 연결 -->
@@ -71,7 +71,7 @@
       <div class="cards">
         <article type="total" class="cardArticle">
           <% if (search) { %>
-            <div>검색결과가 나ㅅ띵</div>
+            <div>검색결과가 존재하지 않습니다</div>
           <% } else {%>
           <% for (i = 0; i < Object.keys(result).length; i++){ %>
           <div class="card" onclick="detail(this);" id="<%= result[i].id %>">

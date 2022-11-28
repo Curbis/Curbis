@@ -43,8 +43,6 @@ router.get("/groupCreate", controller.getGroupCreate);
 
 router.get("/register", controller.getRegister);
 
-router.get("/chat", controller.getChat);
-
 router.get("/login", controller.login);
 
 router.get("/profile", controller.profile);

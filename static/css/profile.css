@@ -92,6 +92,7 @@ form {
   color: transparent;
   margin-bottom: 10px;
   /* margin-left: 35px; */
+  object-fit: cover;
 }
 
 form input::file-selector-button {

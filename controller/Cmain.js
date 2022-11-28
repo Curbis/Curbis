@@ -127,9 +127,7 @@ exports.getGroupCreate = (req, res) => {
 exports.getRegister = (req, res) => {
   res.render("register");
 };
-exports.getChat = (req, res) => {
-  res.render("chat");
-};
+
 exports.postProfileImg = (req, res) => {
   res.send(req.file);
 };
