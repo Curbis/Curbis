@@ -255,7 +255,7 @@ function logout() {
         
           if(data){
             swal("로그아웃을 완료하였습니다").then(function () {
-              history.go(0);
+              document.location.href = "/";
             });
             } else{
               swal("로그인이 만료되었습니다").then(function () {
@@ -267,3 +267,25 @@ function logout() {
     }
   });
 }
+
+// const searchform = document.forms["serch-box"];
+// let serInput = document.querySelector('.serch-input')
+
+
+// function searchFunc (){
+//   console.log('아아');
+//   axios({
+//     method: "POST",
+//     url: "/search",
+//     data: {
+//       search: serInput.value,
+//     },
+//   }).then((res) => {
+//     return res.data
+//   }).then((data) => {
+
+//   })
+
+// }
+
+// searchform.addEventListener('submit', searchFunc)

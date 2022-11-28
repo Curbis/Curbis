@@ -24,9 +24,9 @@ exports.main = async (req, res) => {
         userid: user,
       },
     });
-    res.render("main", { isLogin: true, userInfo: userInfo, result: members });
+    res.render("main", { isLogin: true, userInfo: userInfo, result: members, mygroup: true, search: false });
   } else {
-    res.render("main", { isLogin: false, result: members });
+    res.render("main", { isLogin: false, result: members ,mygroup: true, search: false});
   }
 };
 
@@ -91,14 +91,18 @@ exports.postSerch = async (req, res) => {
   }
 
   if (groups == "") {
-    res.send(`
-        <script>
-          alert('검색 결과가 없습니다')
-            document.location.href = '/'; 
-          
-   
-        </script>
-      `);
+    if (user !== undefined) {
+      const userInfo = await models.Muser.findOne({
+        where: {
+          userid: user,
+        },
+      });
+
+      res.render("main", { isLogin: true, userInfo: userInfo, result: groups ,search: true});
+    } else {
+      res.render("main", { isLogin: false, result: groups, search: true });
+    }
+      
   } else {
     if (user !== undefined) {
       const userInfo = await models.Muser.findOne({
@@ -107,9 +111,9 @@ exports.postSerch = async (req, res) => {
         },
       });
 
-      res.render("main", { isLogin: true, userInfo: userInfo, result: groups });
+      res.render("main", { isLogin: true, userInfo: userInfo, result: groups ,search: false});
     } else {
-      res.render("main", { isLogin: false, result: groups });
+      res.render("main", { isLogin: false, result: groups, search: false });
     }
   }
 };
@@ -141,7 +145,6 @@ exports.getChat = (req, res) => {
 };
 
 exports.postProfileImg = (req, res) => {
-  // uploadDetail.single('dynamicFile');
   res.send(req.file);
 };
 
@@ -365,14 +368,23 @@ exports.groupFind = async (req, res) => {
     ],
   });
 
-  console.log("그룹", groups);
   if (groups == "") {
-    res.send(`
-        <script>
-          alert('참여한 모임이 없어요');
-          document.location.href = '/'; 
-        </script>
-      `);
+  //   res.send(`
+  //       <script>
+  //         alert('참여한 모임이 없어요');
+  //         document.location.href = '/'; 
+  //       </script>
+  //     `);
+  if (user !== undefined) {
+    const userInfo = await models.Muser.findOne({
+      where: {
+        userid: user,
+      },
+    });
+    res.render("main", { isLogin: true, userInfo: userInfo, result: groups, mygroup: false , search: true});
+  } else {
+    res.render("main", { isLogin: false, result: groups, mygroup: false, search: true });
+  }
   } else {
     if (user !== undefined) {
       const userInfo = await models.Muser.findOne({
@@ -380,9 +392,9 @@ exports.groupFind = async (req, res) => {
           userid: user,
         },
       });
-      res.render("main", { isLogin: true, userInfo: userInfo, result: groups });
+      res.render("main", { isLogin: true, userInfo: userInfo, result: groups, mygroup: false, search: false});
     } else {
-      res.render("main", { isLogin: false, result: groups });
+      res.render("main", { isLogin: false, result: groups, mygroup: false, search: false});
     }
   }
 };

@@ -66,6 +66,8 @@
           <label for="pw" class="form-item">현재 비밀번호</label>
           <input type="password" name="nowPw" id="nowPw" onkeyup="enterkey()" placeholder="비밀번호를 입력해주세요" required">
         </div>
+      </div>
+
         <div class="after-check">
           <div class="form-div">
             <label for="nickname" class="form-item nickLabel" id="<%=result.nickname %>">닉네임</label>
@@ -78,7 +80,7 @@
                 required
                 onkeyup="nickInputCheck(this, 6);"
                 onchange="changeNick()"
-                placeholder="닉네임을 입력해주세요"
+                placeholder="6글자 이하로 입력해주세요"
               />
               <p class="guide-nick guide"></p>
             </div>
