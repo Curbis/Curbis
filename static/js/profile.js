@@ -119,23 +119,6 @@ function nickInputCheck(obj, max) {
   }
 }
 
-function editPw() {
-  axios({
-    method: "POST",
-    url: "/editPw",
-    data: {
-      pw: pwInput.value,
-    },
-  })
-    .then((res) => {
-      console.log(res);
-      console.log(res.data);
-      return res.data;
-    })
-    .then((data) => {
-      swal("비밀번호 수정 완료");
-    });
-}
 
 function fileUpload() {
   console.log("click fileUpload");
@@ -291,4 +274,32 @@ function enterkey() {
 	if (window.event.keyCode == 13) {
     passPw()
     }
+}
+
+function editPw() {
+  if (!reg_pw3.test(pwInput.value) || pwInput.value != pwConfirm.value) {
+    return swal("비밀번호를 확인해주세요");
+  }
+
+  axios({
+    method: "POST",
+    url: "/editPw",
+    data: {
+      pw: pwInput.value,
+    },
+  })
+    .then((res) => {
+      return res.data;
+    })
+    .then((data) => {
+      if (data) {
+          swal("비밀번호 수정 완료").then(function () {
+        });
+      } else {
+        swal("로그인이 만료되었습니다").then(function () {
+          document.location.href = "/";
+        });
+      }
+
+    });
 }

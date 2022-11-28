@@ -6,7 +6,9 @@ USE curbis;
 
 
 -- 기존 테이블 지움 (필요없음)
-DROP TABLE list;
+DROP TABLE chat;
+DROP TABLE favorite;
+DROP TABLE chat;
 
 SHOW tables;
 alter table list DROP column name;
@@ -65,13 +67,6 @@ CREATE TABLE member (
     FOREIGN KEY(list_id) REFERENCES list(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE favorite (
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    user_id VARCHAR(15) NOT NULL,
-    list_id INT NOT NULL,
-    FOREIGN KEY(user_id) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY(list_id) REFERENCES list(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
 
 -- user 데이블 데이터 추가
 INSERT INTO list (name, topic, introduce, picture, address, day, hour, headcount, user_id) VALUES ('낚시하실래요?', '낚시' ,'같이 낚시하실분들 모여주세요', 'http://localhost:8090/uploads/calzone1669115323399.jpg','서울시 동작구 구배동 112', '2022-11-25', '17:30', '6', 'aa');
@@ -89,8 +84,6 @@ INSERT INTO member (user_id, list_id) VALUES ('aaaaa', '6');
 -- user 테이블 구조 보기
 DESC list; 
 DESC user; 
-DESC favorite; 
-DESC chat; 
 DESC member; 
 
 -- user 테이블 데이터 조회

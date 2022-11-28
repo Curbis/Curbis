@@ -365,7 +365,6 @@ exports.groupFind = async (req, res) => {
     ],
   });
 
-  console.log("그룹", groups);
   if (groups == "") {
     res.send(`
         <script>
