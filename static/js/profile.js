@@ -105,9 +105,9 @@ function nickInputCheck(obj, max) {
   handleInputLength(obj, max);
 
   // 조건을 만족하지 않으면 가이드 보임
-  if ((nicknameInput.value.length = 0 || nicknameInput.value.length < 3)) {
+  if ((nicknameInput.value.length = 0 || nicknameInput.value.length < 2)) {
     usernickGuide.innerText =
-      "닉네임은 특수문자를 제외한 3 - 10자로 만들어주세요";
+      "닉네임은 특수문자를 제외한 2 - 6자로 만들어주세요";
 
     // 6자 이상 16자 이하로 특수문자 제외
   } else {
@@ -116,6 +116,10 @@ function nickInputCheck(obj, max) {
 }
 
 function editPw() {
+  if (!reg_pw3.test(pwInput.value) || pwInput.value != pwConfirm.value) {
+    return swal("비밀번호를 확인해주세요");
+  }
+
   axios({
     method: "POST",
     url: "/editPw",
@@ -123,14 +127,18 @@ function editPw() {
       pw: pwInput.value,
     },
   })
-    .then((res) => {
-      console.log(res);
-      console.log(res.data);
-      return res.data;
-    })
-    .then((data) => {
-      swal("비밀번호 수정 완료");
-    });
+  .then((res) => {
+    return res.data;
+  })
+  .then((data) => {
+    if(data){
+    swal("비밀번호 수정 완료");
+    } else{
+      swal("로그인이 만료되었습니다").then(function () {
+        document.location.href = "/";
+      });
+    }
+  });
 }
 
 function fileUpload() {

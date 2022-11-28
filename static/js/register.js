@@ -122,7 +122,7 @@ function nickInputCheck(obj, max) {
   // 조건을 만족하지 않으면 가이드 보임
   if ((nicknameInput.value.length = 0 || nicknameInput.value.length < 2)) {
     usernickGuide.innerText =
-      "닉네임은 특수문자를 제외한 2 - 4 자로 만들어주세요";
+      "닉네임은 특수문자를 제외한 2 - 6 자로 만들어주세요";
 
   } else {
     usernickGuide.innerText = "";

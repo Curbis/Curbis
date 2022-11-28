@@ -83,28 +83,29 @@
     <div class="card-box">
       <div class="cards">
         <article type="total" class="cardArticle">
-
+          <% if (search) { %>
+            <div>검색결과가 나ㅅ띵</div>
+          <% } else {%>
           <% for (i = 0; i < Object.keys(result).length; i++){ %>
           <div class="card" onclick="detail(this);" id="<%= result[i].id %>">
             <img src="<%= result[i].picture %>" alt="" />
             <h3><%= result[i].name %></h3>
             <br />
             <div class="profiledata">
-              <div>장소 :</div>
-              <div><%= result[i].address %></div>
+              <div>장소 : <%= result[i].address %></div>
             </div>
             <div class="profiledata">
-              <div>날짜 :</div>
-              <div><%= result[i].day %></div>
-            </div>
-
-            <div class="profiledata">
-              <div>시간 :</div>
-              <div><%= result[i].hour %></div>
+              <div>날짜 : <%= result[i].day %></div>
             </div>
             <div class="profiledata">
-              <div>인원 :</div>
-              <div><%= Object.keys(result[i].members).length %>/<%= result[i].headcount %></div>
+              <div>시간 : <%= result[i].hour %></div>
+            </div>
+            <div class="profiledata">
+              <% if (mygroup) { %>
+              <div>인원 : <%= Object.keys(result[i].members).length %>/<%= result[i].headcount %></div>
+              <% } else{ %>
+              <div>최대 인원 : <%= result[i].headcount %></div>
+              <% }%>
             </div>
             <br />
             <div class="membersImg">
@@ -115,7 +116,7 @@
 
           </div>
 
-          <% } %>
+          <% } } %>
       </div>
     </div>
 
