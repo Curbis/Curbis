@@ -1,102 +1,178 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 수정</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입</title>
+    <!-- favicon -->
+    <link
+      rel="shoctcut icon"
+      type="image/x-icon"
+      href="../static/img/favicon/favicon.ico"
+    />
 
-  <!-- favicon -->
-  <link rel="shoctcut icon" type="image/x-icon" href="../static/img/favicon/favicon.ico">
+    <!-- font CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- font CDN -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <!-- SweatAlert CDN -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <!-- css -->
-  <link rel="stylesheet" href="/static/css/register.css">
+    <!-- axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  <!-- axios CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 다음주소검색 api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-  <!-- 다음주소검색 api -->
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/static/css/profile.css" />
+  </head>
 
-
-  <!-- SweatAlert CDN -->
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-</head>
-
-<body>
-  <div class="back-main">
-    <a href="/login">뒤로가기</a>
-  </div>
-  <form class="register-form" name="register-form">
-    <div class="register-div">
-      <div>모임에 참여해볼까요?</div>
+  <body>
+    <div class="back-main">
+      <a href="/">뒤로가기</a>
     </div>
-    <fieldset>
-      <div class="profile-box form-div">
-        <!-- <p class="form-item"></p> -->
-        <div class="profile-div">
-          <img id="preview" src="../static/img/profile-basic.png">
-          <input type="file" name="dynamicFile" id="dynamicFile" onchange="readURL(this);">
-
-          <label for="dynamicFile"></label>
+    <form class="register-form" name="register-form">
+      <fieldset>
+        <div class="register-div">
+          <div class="after-name">프로필 수정</div>
         </div>
-        <button class="profile-save-btn" type="button" onclick="fileUpload();">저장</button>
-      </div>
-      </div>
-
-      <div class="form-div">
-        <label for="userid" class="form-item">아이디</label>
-        <div class="form-guide">
-          <input type="text" name="userid" id="userid" placeholder="아이디를 입력해주세요" required onchange="changeId()" onkeyup="idInputCheck(this, 10);">
-          <p class="guide-id guide"></p>
+        <div class="profile-box form-div">
+          <div class="profile-div">
+            <img id="preview" src="<%= result.picture %>" />
+            <input
+              type="file"
+              name="dynamicFile"
+              id="dynamicFile"
+              onchange="readURL(this);"
+            />
+            <label for="dynamicFile" class="profilelabel after-check"></label>
+          </div>
+          <button
+            class="profile-save-btn"
+            type="button"
+            onclick="fileUpload();"
+          >
+            저장
+          </button>
         </div>
-        <button type="button" class="check-btn" onclick="overlapId()">중복확인</button>
-      </div>
-
-      <div class="form-div">
-        <label for="pw" class="form-item">비밀번호</label>
-        <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요" required onkeyup="checkPw(this);">
-      </div>
-
-      <div class="form-div">
-        <label for="pw" class="form-item">비밀번호 확인</label>
-        <div class="form-guide">
-          <input type="password" id="pw-confirm" placeholder="비밀번호를 한번 더 입력해주세요" required onkeyup="checkPw(this);">
-          <p class="guide-pw guide"></p>
+        <div class="form-div-pw now-pw">
+          <label for="pw" class="form-item">현재 비밀번호</label>
+          <input type="password" name="nowPw" id="nowPw" onkeyup="enterkey()" placeholder="비밀번호를 입력해주세요" required">
         </div>
-      </div>
+        <div class="after-check">
+          <div class="form-div">
+            <label for="nickname" class="form-item nickLabel" id="<%=result.nickname %>">닉네임</label>
+            <div class="form-guide">
+              <input
+                type="text"
+                name="nickname"
+                id="nickname"
+                value="<%=result.nickname %>"
+                required
+                onkeyup="nickInputCheck(this, 6);"
+                onchange="changeNick()"
+                placeholder="닉네임을 입력해주세요"
+              />
+              <p class="guide-nick guide"></p>
+            </div>
+            <button type="button" class="check-btn" onclick="overlapNick()">
+              중복확인
+            </button>
+          </div>
 
-      <div class="form-div">
-        <label for="nickname" class="form-item">닉네임</label>
-        <div class="form-guide">
-          <input type="text" name="nickname" id="nickname" onchange="changeNick()" required onkeyup="nickInputCheck(this, 6);" placeholder="6글자 이하로 입력해주세요">
-          <p class="guide-nick guide"></p>
+          <div class="form-div">
+            <label for="address" class="form-item"  value="<%= result.address %>">주소</label>
+            <input
+              id="address"
+              name="address"
+              type="text"
+              value="<%= result.address %>"
+              placeholder="주소를 선택해주세요"
+              readonly
+            />
+            <br />
+            <button type="button" class="check-btn" onclick="findAddr()">
+              주소검색
+            </button>
+          </div>
+          <div class="form-div-btn">
+            <button
+              id="disBtn"
+              type="button"
+              onclick="profileEdittor();"
+              class="check-btn"
+            >
+              수정
+            </button>
+          </div>
+
+          <br />
+
+          <div class="register-div">
+            <div>보안 설정</div>
+          </div>
+
+          <div class="form-div check">
+            <label for="pw" class="form-item">변경할 비밀번호</label>
+            <input
+              type="password"
+              name="pw"
+              id="pw"
+              placeholder="비밀번호를 입력해주세요"
+              required
+              onkeyup="checkPw(this);"
+            />
+          </div>
+
+          <div class="form-div">
+            <label for="pw" class="form-item">비밀번호 확인</label>
+            <div class="form-guide">
+              <input
+                type="password"
+                id="pw-confirm"
+                placeholder="비밀번호를 한번 더 입력해주세요"
+                required
+                onkeyup="checkPw(this);"
+              />
+              <p class="guide-pw guide"></p>
+            </div>
+
+          </div>
+
+          <br />
+          <div class="form-div-btn">
+            <button
+              type="button"
+              class="check-btn"
+              onclick="editPw()"
+            >
+              수정
+            </button>
+            <button  type="button" class="check-btn" onclick="withdrawal()">
+              회원탈퇴
+            </button>
+          </div>
         </div>
-        <button type="button" class="check-btn" onclick="overlapNick()">중복확인</button>
-      </div>
 
-      <div class="form-div">
-        <label for="address" class="form-item">주소</label>
-        <input id="address" name="address" type="text" placeholder="주소를 선택해주세요" readonly> <br>
-        <button type="button" class="check-btn" onclick="findAddr()">주소검색</button>
-      </div>
-      <br>
+        <div class="form-div-btn">
+          <button
+            type="button"
+            onclick="passPw();"
+            class="check-btn confirm-btn"
+          >
+            확인
+          </button>
+        </div>
+      </fieldset>
+    </form>
 
-
-      <div class="form-div-btn">
-        <button id="disBtn" type="button" onclick="register();" class="check-btn">가입하기</button>
-
-      </div>
-    </fieldset>
-  </form>
-
-<script src="/static/js/register.js"></script>
-</body>
-
+    <script src="/static/js/profile.js"></script>
+  </body>
 </html>
