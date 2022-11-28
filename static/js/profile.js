@@ -281,7 +281,9 @@ function withdrawal() {
           })
           .then((data) => {
             if(data){
-              swal("회원탈퇴가 완료되었습니다");
+              swal("회원탈퇴가 완료되었습니다").then(function () {
+                document.location.href = "/";
+              });
               } else{
                 swal("로그인이 만료되었습니다").then(function () {
                   document.location.href = "/";
