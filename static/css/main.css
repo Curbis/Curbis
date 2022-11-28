@@ -118,21 +118,11 @@ body {
   padding-top: 10px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  animation: fadeinLeft;
   top: 80px;
-  height: 55vh;
+  height: 65vh;
   /* -webkit-box-pack: start; */
   /* -webkit-box-align: center; */
   /* transition: transform 0.5s; */
-}
-
-@keyframes fadeInLeft {
-  0% {
-    left: -100%;
-  }
-  to {
-    left: 100%;
-  }
 }
 
 .card {
@@ -145,7 +135,7 @@ body {
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  height: 50vh;
+  height: 60vh;
   width: 300px;
   /* max-width: 300px; */
   min-width: 300px;
@@ -282,6 +272,7 @@ body {
 
 .login-btn {
   font-size: 18px;
+  text-decoration: none;
 }
 
 .serch-box {
@@ -453,6 +444,7 @@ body {
   border: #f49d1aa6 4px solid;
   position: relative;
   top: -39px;
+
 }
 
 .after-check {
@@ -462,6 +454,7 @@ body {
 .group-btn {
   display: flex;
   flex-direction: row-reverse;
+  height: 10vh;
 }
 
 .make-btn,
@@ -555,10 +548,10 @@ body {
 }
 
 .hostCrown {
-  height: 46px;
-  width: 51px;
+  height: 35px;
+  width: 40px;
   position: absolute;
-  top: 192px;
+  top: 197px;
   background-color: #ff7c7c63;
   border-radius: 50%;
   z-index: 1;
