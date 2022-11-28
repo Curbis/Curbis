@@ -55,7 +55,7 @@ function overlapId() {
 function overlapNick() {
   const form = document.forms["register-form"];
   // console.log(form.userid.value);
-  if (form.nickname.value.length < 2) {
+  if (form.nickname.value.length < 3) {
     return swal("닉네임을 2글자 이상으로 만들어주세요");
   }
 

@@ -118,21 +118,11 @@ body {
   padding-top: 10px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  animation: fadeinLeft;
   top: 80px;
-  height: 55vh;
+  height: 65vh;
   /* -webkit-box-pack: start; */
   /* -webkit-box-align: center; */
   /* transition: transform 0.5s; */
-}
-
-@keyframes fadeInLeft {
-  0% {
-    left: -100%;
-  }
-  to {
-    left: 100%;
-  }
 }
 
 .card {
@@ -145,7 +135,7 @@ body {
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  height: 50vh;
+  height: 60vh;
   width: 300px;
   /* max-width: 300px; */
   min-width: 300px;
@@ -282,6 +272,7 @@ body {
 
 .login-btn {
   font-size: 18px;
+  text-decoration: none;
 }
 
 .serch-box {
@@ -345,7 +336,7 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   width: 567px;
-  height: 894px;
+  height: 875px;
   position: relative;
   padding: 10px;
 }
@@ -379,9 +370,9 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 852px;
+  height: 845px;
   position: relative;
-  top: -36px;
+  top: -38px;
 }
 
 .content > div {
@@ -399,7 +390,7 @@ body {
 
 .group-pic {
   width: 589px;
-  height: 240px;
+  height: 256px;
   position: relative;
   border-radius: 10px 10px 0 0;
   z-index: -1;
@@ -447,12 +438,13 @@ body {
 }
 
 #hostImg {
-  width: 85px;
-  height: 85px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: #f49d1aa6 4px solid;
   position: relative;
-  top: -20px;
+  top: -39px;
+
 }
 
 .after-check {
@@ -462,6 +454,7 @@ body {
 .group-btn {
   display: flex;
   flex-direction: row-reverse;
+  height: 10vh;
 }
 
 .make-btn,
@@ -555,10 +548,10 @@ body {
 }
 
 .hostCrown {
-  height: 46px;
-  width: 51px;
+  height: 35px;
+  width: 40px;
   position: absolute;
-  top: 192px;
+  top: 197px;
   background-color: #ff7c7c63;
   border-radius: 50%;
   z-index: 1;
