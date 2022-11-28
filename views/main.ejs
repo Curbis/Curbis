@@ -38,16 +38,15 @@
     </a>
     <div class="buttonBox">
       <% if (isLogin) { %>
-      <div class="my-info">
-        <img id='profile' src='<%= userInfo.picture %>'>
-        <div class="hi" id='<%= userInfo.userid %>'>
-          <%= userInfo.nickname %>님 안녕하세요
-        </div>
+
+
+      <img id='profile' src='<%= userInfo.picture %>'>
+
+      <div class="hi" onclick="mypage()" id='<%= userInfo.userid %>'>
+        <%= userInfo.nickname %>님 안녕하세요
+
       </div>
-      <div class="my-btn">
-        <button onclick="mypage()" class="profile-btn">마이 페이지</button>
-        <button class="logout-btn" onclick="logout()">로그아웃</button>
-      </div>
+      <a href="/logout" class="logout-btn">로그아웃</a>
       <% } else {%>
       <a href="/login" class="login-btn">로그인</a>
       <div class="hi" id='id'>
@@ -127,10 +126,12 @@
       <div id="modal" class="modal-overlay">
       <div class="modal-window">
         <div class="close-area">X</div>
-        
-        <img class="group-pic" src="/static/img/mountain-g7d103621e_1280.jpg"></img>
-        <div class="content">
 
+        
+      
+
+        <div class="content">
+          <img class="group-pic" src="/static/img/mountain-g7d103621e_1280.jpg"></img>
           <img class="hostCrown" src="/static/img/host.png" alt="">
           <img  id ='hostImg' src="" alt="">
           <p class="hostName"></p>
@@ -141,7 +142,7 @@
             <img class="icon-location" src="/static/img/location-sign.png" alt="">
             <div class="group-address"></div>
 
-            <img class="icon-calendar" src="/static/img/calendar.png" alt="">
+            <img class="icon-calendar" src="/static/img/date.png" alt="">
             <div class="group-day"></div>
             
             <img class="icon-clock" src="/static/img/clock.png" alt="">
