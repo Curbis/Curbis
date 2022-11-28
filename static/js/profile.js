@@ -4,14 +4,16 @@ let pwInput = document.querySelector("#pw");
 let pwConfirm = document.querySelector("#pw-confirm");
 let useridGuide = document.querySelector(".guide-id");
 let usernickGuide = document.querySelector(".guide-nick");
+let nickLabel = document.querySelector(".nickLabel");
 let userpwGuide = document.querySelector(".guide-pw");
 let disBtn = document.querySelector("#disBtn");
 let profileDiv = document.querySelector(".profile-div");
+let guideNick = document.querySelector(".guide-nick");
 let reg_id2 = /^[a-z0-9]{3,10}$/;
 let reg_pw3 = /(?=.*\d)(?=.*[a-zA-ZS]).{8,16}/;
+const form = document.forms["register-form"];
 
 function passPw() {
-  const form = document.forms["register-form"];
   const editForm = document.querySelectorAll(".register-form .form-div");
   axios({
     method: "POST",
@@ -24,23 +26,19 @@ function passPw() {
       return res.data;
     })
     .then((data) => {
-      // true, false
-      console.log("중복된 닉네임인가요? ", data);
       if (data) {
-        // for (i = 0; i < editForm.length; i++) {
-        //     const edit = editForm.item(i);
-        //     editForm.style.display = 'none'
-        // }
-        swal("비밀번호 확인이 완료되었습니다");
-        let afterCheck1 = document.querySelectorAll(".after-check");
-        let checkBtn = document.querySelector(".confirm-btn");
-        let nowPw = document.querySelector(".now-pw");
-        let afterName = document.querySelector(".after-name");
-        afterCheck1[0].classList.remove("after-check");
-        afterCheck1[1].classList.remove("after-check");
-        afterName.innerText = "내 프로필";
-        checkBtn.classList.add("after-check");
-        nowPw.classList.add("after-check");
+        swal("비밀번호 확인이 완료되었습니다").then(function () {
+          let afterCheck1 = document.querySelectorAll(".after-check");
+          let checkBtn = document.querySelector(".confirm-btn");
+          let nowPw = document.querySelector(".now-pw");
+          let afterName = document.querySelector(".after-name");
+          afterCheck1[0].classList.remove("after-check");
+          afterCheck1[1].classList.remove("after-check");
+          afterName.innerText = "내 프로필";
+          checkBtn.classList.add("after-check");
+          nowPw.classList.add("after-check");
+        });
+
       } else {
         swal("비밀번호를 다시 입력해주세요");
       }
@@ -52,8 +50,11 @@ function nickChange() {
 }
 
 function overlapNick() {
-  const form = document.forms["register-form"];
-  // console.log(form.userid.value);
+  if (nickLabel.id == form.nickname.value) {
+    guideNick.setAttribute("data-value", false);
+    return swal("사용중인 닉네임과 동일합니다");
+  }
+
   if (form.nickname.value.length < 3) {
     return swal("닉네임을 3글자 이상으로 만들어주세요");
   }
@@ -71,15 +72,11 @@ function overlapNick() {
     .then((data) => {
       if (data) {
         swal("중복된 닉네임입니다").then(function () {
-          disBtn.disabled = true;
+          guideNick.setAttribute("data-value", true);
         });
       } else {
         swal("사용가능한 닉네임입니다").then(function () {
-          if (disBtn.dataset.value) {
-            disBtn.disabled = false;
-          } else {
-            disBtn.setAttribute("data-value", true);
-          }
+          guideNick.setAttribute("data-value", false);
         });
       }
     });
@@ -160,9 +157,7 @@ function fileUpload() {
     // res : 클라이언트의 POST /dynamicFile 요청을 보낸 응답 결과
     document.getElementById("preview").src = `/uploads/${res.data.filename}`;
     profileDiv.setAttribute("data-value", false);
-    console.log("저장완료", profileDiv.dataset.value);
-
-    alert("프로필 저장이 완료되었어요!");
+    swal("프로필 저장이 완료되었어요!");
   });
 }
 
@@ -201,11 +196,11 @@ function findAddr() {
     oncomplete: function (data) {
       console.log(data);
       // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-      // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+      // 도로명 주소의 노출 규칙에 따라 주소를 표시한다
+      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다
       var roadAddr = data.roadAddress; // 도로명 주소 변수
       var jibunAddr = data.jibunAddress; // 지번 주소 변수
-      // 우편번호와 주소 정보를 해당 필드에 넣는다.
+      // 우편번호와 주소 정보를 해당 필드에 넣는다
       // document.getElementById('member_post').value = data.zonecode;
       if (roadAddr !== "") {
         document.getElementById("address").value = roadAddr;
@@ -216,20 +211,80 @@ function findAddr() {
   }).open();
 }
 
-function editPw() {
+
+function profileEdittor() {
+  if (form.nickname.value == "" || form.address.value == "") {
+    return swal("모든 정보를 입력해주세요");
+  }
+  if (profileDiv.dataset.value == "true") {
+    return swal("프로필 저장을 완료해주세요");
+  }
+
+  if (guideNick.dataset.value == "true") {
+    return swal("닉네임 중복체크를 확인해주세요");
+  }
+
   axios({
     method: "POST",
-    url: "/editPw",
+    url: "/profileEdittor",
     data: {
-      pw: pwInput.value,
+      profile: document.getElementById("preview").src,
+      nickname: form.nickname.value,
+      address: form.address.value,
     },
   })
     .then((res) => {
-      console.log(res);
-      console.log(res.data);
       return res.data;
     })
     .then((data) => {
-      swal("비밀번호 수정 완료");
+      if(data){
+      swal("회원정보 수정 완료");
+      } else{
+        swal("로그인이 만료되었습니다").then(function () {
+          document.location.href = "/";
+        });
+      }
     });
+}
+
+function withdrawal() {
+  swal("정말로 회원을 탈퇴 하시겠습니까?", {
+    buttons: {
+      next: "아니요",
+      defeat: "네",
+    },
+  }).then((value) => {
+    switch (value) {
+      case "next":
+        swal("탈퇴를 취소하였습니다");
+        break;
+      case "defeat":
+        axios({
+          method: "POST",
+          url: "/withdrawal",
+          data: {},
+        })
+          .then((res) => {
+            return res.data;
+          })
+          .then((data) => {
+            if(data){
+              swal("회원탈퇴가 완료되었습니다");
+              } else{
+                swal("로그인이 만료되었습니다").then(function () {
+                  document.location.href = "/";
+                });
+              }
+            
+          });
+        break;
+    }
+  });
+
+}
+
+function enterkey() {
+	if (window.event.keyCode == 13) {
+    passPw()
+    }
 }

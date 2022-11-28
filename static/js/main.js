@@ -38,8 +38,6 @@ let card = document.card;
 
 function detail(data) {
   modal.style.display = "flex";
-  console.log("각각의 그룹 아이디 >>>", data.id);
-
   axios({
     method: "POST",
     url: "/detail",
@@ -105,9 +103,7 @@ function detail(data) {
     });
 }
 
-// function exileBtn(data) {
-//   console.log('>>>>>>>>>>>>>>>>>',data)
-// }
+
 
 closeBtn.addEventListener("click", (e) => {
   modal.style.display = "none";
@@ -140,10 +136,19 @@ function groupIn() {
       userId: sessionId,
     },
   }).then((res) => {
-    swal("모임 참여 완료", "", "info").then(function () {
-      history.go(0);
-    });
-  });
+    return res.data
+  }).then((data) => {
+    if(data){
+      swal("모임 참여 완료").then(function () {
+        history.go(0);
+      });
+      } else{
+        swal("로그인이 만료되었습니다").then(function () {
+          document.location.href = "/";
+      });
+      }
+  })
+
 }
 
 function groupOut() {
@@ -155,7 +160,7 @@ function groupOut() {
   }).then((value) => {
     switch (value) {
       case "next":
-        swal("탈퇴를 취소하였습니다.");
+        swal("탈퇴를 취소하였습니다");
         break;
       case "defeat":
         axios({
@@ -166,10 +171,19 @@ function groupOut() {
             userId: sessionId,
           },
         }).then((res) => {
-          swal("탈퇴를 완료하였습니다.").then(function () {
+          return res.data
+        }).then((data) => {
+        if(data){
+          swal("탈퇴를 완료하였습니다").then(function () {
             history.go(0);
           });
-        });
+          } else{
+            swal("로그인이 만료되었습니다").then(function () {
+              document.location.href = "/";
+          });
+          }
+      })
+
         break;
     }
   });
@@ -186,7 +200,7 @@ function groupDelete() {
   }).then((value) => {
     switch (value) {
       case "next":
-        swal("삭제를 취소하였습니다.");
+        swal("삭제를 취소하였습니다");
         break;
       case "defeat":
         axios({
@@ -197,10 +211,57 @@ function groupDelete() {
             userId: sessionId,
           },
         }).then((res) => {
-          swal("삭제를 완료하였습니다.").then(function () {
-            history.go(0);
-          });
-        });
+          return res.data
+        }).then((data) => {
+        
+          if(data){
+            swal("삭제를 완료하였습니다").then(function () {
+              history.go(0);
+            });
+            } else{
+              swal("로그인이 만료되었습니다").then(function () {
+                document.location.href = "/";
+            });
+            }
+        })
+        break;
+    }
+  });
+}
+
+
+function logout() {
+
+  swal("정말로 로그아웃 하시겠습니까?", {
+    buttons: {
+      next: "아니요",
+      defeat: "네",
+    },
+  }).then((value) => {
+    switch (value) {
+      case "next":
+        swal("로그아웃을 취소하였습니다");
+        break;
+      case "defeat":
+        axios({
+          method: "GET",
+          url: "/logout",
+          data: {
+          },
+        }).then((res) => {
+          return res.data
+        }).then((data) => {
+        
+          if(data){
+            swal("로그아웃을 완료하였습니다").then(function () {
+              history.go(0);
+            });
+            } else{
+              swal("로그인이 만료되었습니다").then(function () {
+                document.location.href = "/";
+            });
+            }
+        })
         break;
     }
   });

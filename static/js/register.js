@@ -7,12 +7,20 @@ let usernickGuide = document.querySelector(".guide-nick");
 let userpwGuide = document.querySelector(".guide-pw");
 let disBtn = document.querySelector("#disBtn");
 let profileDiv = document.querySelector(".profile-div");
+let guideNick = document.querySelector(".guide-nick");
+let guideId = document.querySelector(".guide-id");
 let reg_id2 = /^[a-z0-9]{3,10}$/;
 let reg_pw3 = /(?=.*\d)(?=.*[a-zA-ZS]).{8,16}/;
 
 function changeId() {
-  disBtn.disabled = true;
+  guideId.setAttribute("data-value", true);
 }
+
+function changeNick() {
+  guideNick.setAttribute("data-value", true);
+}
+
+
 // let check = false;
 function overlapId() {
   const form = document.forms["register-form"];
@@ -35,15 +43,10 @@ function overlapId() {
     .then((data) => {
       if (data) {
         swal("중복된 아이디입니다");
-        disBtn.disabled = true;
+          guideId.setAttribute("data-value", true);
       } else {
-        console.log("distbtnvalue", disBtn.dataset.value);
         swal("사용가능한 아이디입니다").then(function () {
-          if (disBtn.dataset.value) {
-            disBtn.disabled = false;
-          } else {
-            disBtn.setAttribute("data-value", true);
-          }
+          guideId.setAttribute("data-value", false);
         });
       }
     });
@@ -52,8 +55,8 @@ function overlapId() {
 function overlapNick() {
   const form = document.forms["register-form"];
   // console.log(form.userid.value);
-  if (form.nickname.value.length < 3) {
-    return swal("닉네임을 3글자 이상으로 만들어주세요");
+  if (form.nickname.value.length < 2) {
+    return swal("닉네임을 2글자 이상으로 만들어주세요");
   }
 
   axios({
@@ -72,15 +75,11 @@ function overlapNick() {
 
       if (data) {
         swal("중복된 닉네임입니다").then(function () {
-          disBtn.disabled = true;
+          guideNick.setAttribute("data-value", true);
         });
       } else {
         swal("사용가능한 닉네임입니다").then(function () {
-          if (disBtn.dataset.value) {
-            disBtn.disabled = false;
-          } else {
-            disBtn.setAttribute("data-value", true);
-          }
+          guideNick.setAttribute("data-value", false);
         });
       }
     });
@@ -121,11 +120,10 @@ function nickInputCheck(obj, max) {
   handleInputLength(obj, max);
 
   // 조건을 만족하지 않으면 가이드 보임
-  if ((nicknameInput.value.length = 0 || nicknameInput.value.length < 3)) {
+  if ((nicknameInput.value.length = 0 || nicknameInput.value.length < 2)) {
     usernickGuide.innerText =
-      "닉네임은 특수문자를 제외한 3 - 10자로 만들어주세요";
+      "닉네임은 특수문자를 제외한 2 - 4 자로 만들어주세요";
 
-    // 6자 이상 16자 이하로 특수문자 제외
   } else {
     usernickGuide.innerText = "";
   }
@@ -196,11 +194,11 @@ function findAddr() {
     oncomplete: function (data) {
       console.log(data);
       // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-      // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+      // 도로명 주소의 노출 규칙에 따라 주소를 표시한다
+      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다
       var roadAddr = data.roadAddress; // 도로명 주소 변수
       var jibunAddr = data.jibunAddress; // 지번 주소 변수
-      // 우편번호와 주소 정보를 해당 필드에 넣는다.
+      // 우편번호와 주소 정보를 해당 필드에 넣는다
       // document.getElementById('member_post').value = data.zonecode;
       if (roadAddr !== "") {
         document.getElementById("address").value = roadAddr;
@@ -212,7 +210,16 @@ function findAddr() {
 }
 
 function register() {
-  // console.log('porfile<<',profileDiv.dataset.value);
+  const form = document.forms["register-form"];
+  if (
+    form.userid.value == "" ||
+    form.pw.value == "" ||
+    form.nickname.value == "" ||
+    form.address.value == ""
+  ) {
+    return swal("모든 정보를 입력해주세요");
+  }
+
   if (profileDiv.dataset.value == "true") {
     return swal("프로필 저장을 완료해주세요");
   }
@@ -220,15 +227,12 @@ function register() {
     return swal("비밀번호를 확인해주세요");
   }
 
-  const form = document.forms["register-form"];
+  if (guideId.dataset.value == 'true'){
+    return swal("아이디 중복체크를 확인해주세요");
+  }
 
-  if (
-    form.userid.value == "" ||
-    form.pw.value == "" ||
-    form.nickname.value == "" ||
-    form.address.value == ""
-  ) {
-    return swal("값을 입력해주세요");
+  if (guideNick.dataset.value == 'true'){
+    return swal("닉네임 중복체크를 확인해주세요");
   }
 
   axios({

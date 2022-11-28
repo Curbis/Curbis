@@ -207,24 +207,13 @@ exports.getLogout = (req, res) => {
         throw err;
       }
 
-      res.send(`
-          <script>
-          alert('로그아웃되었습니다.')
-            document.location.href = '/'; 
-
-          </script>
-        `);
-    });
+      res.send(true);
+    }); 
   } else {
-    res.send(`
-        <script>
-        alert('잘못된 접근입니다')
-          document.location.href = '/'; 
-  
-        </script>
-      `);
+    res.send(false);
   }
 };
+
 exports.makeGroup = (req, res) => {
   let user = req.session.user;
 
@@ -391,7 +380,6 @@ exports.groupFind = async (req, res) => {
           userid: user,
         },
       });
-
       res.render("main", { isLogin: true, userInfo: userInfo, result: groups });
     } else {
       res.render("main", { isLogin: false, result: groups });
@@ -418,3 +406,46 @@ exports.editPw = async (req, res) => {
     res.send(false);
   }
 };
+
+exports.profileEdittor = async (req, res) => {
+  let user = req.session.user;
+  if (user !== undefined) {
+    models.Muser.update({
+      picture: req.body.profile,
+      nickname: req.body.nickname,
+      address: req.body.address,
+    },
+    {
+      where: {
+        userid: user
+      },
+
+    }).then((result) => {
+        res.send(true);
+      });
+  } else {
+    res.send(false);
+  }
+};
+
+
+
+exports.withdrawal = (req, res) => {
+  let user = req.session.user;
+  if (user !== undefined) {
+    req.session.destroy((err) => {
+      if (err) {
+        throw err;
+      }
+    })
+    models.Muser.destroy({
+      where: { userid: user },
+      
+    }).then((result) => {
+      res.send(true)
+    })
+  } else {
+    res.send(false)
+  }
+};
+

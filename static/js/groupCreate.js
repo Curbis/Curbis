@@ -110,7 +110,7 @@ function ThirdStep() {
       if (data) {
         swal("그룹 생성 성공");
       } else {
-        swal("로그인 시간이 만료되었습니다").then(function () {
+        swal("로그인이 만료되었습니다").then(function () {
           document.location.href = "/login";
         });
       }
@@ -252,7 +252,7 @@ function clip() {
   document.execCommand("copy"); // 복사
   document.body.removeChild(textarea); //extarea 요소를 없애줌
 
-  swal("URL이 복사되었습니다."); // 알림창
+  swal("URL이 복사되었습니다"); // 알림창
 }
 
 $(function () {

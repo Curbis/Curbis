@@ -38,15 +38,11 @@
     </a>
     <div class="buttonBox">
       <% if (isLogin) { %>
-
-
       <img id='profile' src='<%= userInfo.picture %>'>
-
       <div class="hi" onclick="mypage()" id='<%= userInfo.userid %>'>
-        <%= userInfo.nickname %>님 안녕하세요
-
+      <%= userInfo.nickname %>님 안녕하세요
       </div>
-      <a href="/logout" class="logout-btn">로그아웃</a>
+      <button type="button" class="logout-btn" onclick="logout()">로그아웃</button>
       <% } else {%>
       <a href="/login" class="login-btn">로그인</a>
       <div class="hi" id='id'>
