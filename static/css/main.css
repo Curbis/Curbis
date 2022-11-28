@@ -37,15 +37,9 @@ body {
   align-items: flex-end;
   justify-content: center;
   margin: 10px;
-  height: 15vh;
-  /* width: 50%; */
-  /* max-width: 400px;
-  min-width: 250px; */
-  /* left: 50vh; */
-  /* justify-content: space-around; */
+  height: 10vh;
   -webkit-box-pack: justify;
   -webkit-box-align: center;
-  /* width: 100%;/ */
 }
 
 .my-info {
@@ -58,22 +52,6 @@ body {
 .card:hover {
   bottom: 20px;
 }
-
-/* .groupFind {
-  border: #f49d1a;
-  display: inline-block;
-  padding: 8px 30px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  position: relative;
-  right: -658px;
-  border-radius: 15px;
-  bottom: -16px;
-  width: 150px;
-  background-color: #f49d1a;
-  height: 40px;
-} */
 
 #profile {
   margin: 0 15px;
@@ -92,6 +70,14 @@ body {
   border: 1px solid white;
   background-color: #ff9671;
   box-shadow: rgb(95, 95, 95);
+}
+
+/* .group-btn {
+
+} */
+
+#mine-form{
+  height: 10px;
 }
 
 .categories > button {
@@ -408,7 +394,10 @@ body {
   width: 55%;
   justify-content: space-around;
   display: flex;
+  height: 97px;
 }
+
+
 
 .group-notice > img {
   height: 23px;
@@ -426,8 +415,10 @@ body {
   font-size: 18px;
 }
 
-.profils {
+.profils { 
   display: flex;
+  background-color: transparent !important;
+  border: 0 !important;
 }
 .userProfileImg {
   width: 50px;
@@ -454,7 +445,7 @@ body {
 .group-btn {
   display: flex;
   flex-direction: row-reverse;
-  height: 10vh;
+  /* height: 10vh; */
 }
 
 .make-btn,
@@ -564,6 +555,10 @@ body {
 
 .profileAll {
   margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .profileId{

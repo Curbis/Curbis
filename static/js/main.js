@@ -78,17 +78,11 @@ function detail(data) {
         if (data.btn == "host") {
           let Gde = document.querySelector(".group-in-btn");
           Gdel.style.display = "block";
-
-          // GPic.setAttribute("onclick", exileBtn(this));
         } else {
           userMember.push(data.result.members[j].user.userid);
-
-          // console.log(userInfo)
-
           let find = userMember.find((element) => {
             return element == sessionId;
           });
-
           if (find !== undefined) {
             Gout.style.display = "block";
             Gin.style.display = "none";
@@ -267,25 +261,3 @@ function logout() {
     }
   });
 }
-
-// const searchform = document.forms["serch-box"];
-// let serInput = document.querySelector('.serch-input')
-
-
-// function searchFunc (){
-//   console.log('아아');
-//   axios({
-//     method: "POST",
-//     url: "/search",
-//     data: {
-//       search: serInput.value,
-//     },
-//   }).then((res) => {
-//     return res.data
-//   }).then((data) => {
-
-//   })
-
-// }
-
-// searchform.addEventListener('submit', searchFunc)

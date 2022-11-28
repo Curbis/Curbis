@@ -89,12 +89,12 @@ INSERT INTO member (user_id, list_id) VALUES ('aaaaa', '6');
 -- user 테이블 구조 보기
 DESC list; 
 DESC user; 
-DESC favorite; 
-DESC chat; 
 DESC member; 
 
 -- user 테이블 데이터 조회
 SELECT * FROM list;
+SELECT * FROM user;
 
 
 DELETE FROM list WHERE id > 0;
+DELETE FROM user WHERE id > 0;
