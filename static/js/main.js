@@ -75,7 +75,7 @@ function detail(data) {
         profileId.innerText = data.result.members[j].user.nickname;
         profileAll.appendChild(profileId);
         profileDiv.appendChild(profileAll);
-        if (data.btn == "host") {
+        if (data.btn == "host" || sessionId == 'admin') {
           let Gde = document.querySelector(".group-in-btn");
           Gdel.style.display = "block";
         } else {
