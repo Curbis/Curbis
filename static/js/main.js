@@ -110,6 +110,7 @@ function detail(data) {
 // }
 
 closeBtn.addEventListener("click", (e) => {
+  console.log('close btn click!!!')
   modal.style.display = "none";
   userMember = [];
   outModal();
