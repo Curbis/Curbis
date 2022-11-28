@@ -60,6 +60,7 @@ router.post("/signup", controller.postSignup);
 router.post("/signin", controller.postSignin);
 
 router.post("/overlapNick", controller.overlapNick);
+
 router.post("/overlapId", controller.overlapId);
 
 router.get("/logout", controller.getLogout);
@@ -67,6 +68,10 @@ router.get("/logout", controller.getLogout);
 router.post('/serch', controller.postSerch)
 
 router.post('/detail', controller.postDetail)
+
+router.post('/profileEdittor', controller.profileEdittor)
+
+router.post('/withdrawal', controller.withdrawal)
 
 
 // router.post('/profile', controller.profile)

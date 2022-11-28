@@ -1,4 +1,5 @@
-function login() {
+function login(event) {
+  event.preventDefault();
   const formLogin = document.forms["login-form"];
 
   if (!formLogin.checkValidity()) {
@@ -22,7 +23,7 @@ function login() {
       if (data.islogin) {
         swal(
           "로그인 성공!",
-          data.nick + "님 로그인되었습니다.",
+          data.nick + "님 로그인되었습니다",
           "success"
         ).then(function () {
           document.location.href = "/";
@@ -38,3 +39,5 @@ function login() {
       }
     });
 }
+
+document.querySelector('.login-form').addEventListener('submit', login);

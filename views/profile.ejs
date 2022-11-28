@@ -65,12 +65,12 @@
 
         <div class="form-div-pw now-pw">
           <label for="pw" class="form-item">현재 비밀번호</label>
-          <input type="password" name="nowPw" id="nowPw" placeholder="비밀번호를 입력해주세요" required>
+          <input type="password" name="nowPw" id="nowPw" onkeyup="enterkey()" placeholder="비밀번호를 입력해주세요" required">
         </div>
 
         <div class="after-check">
           <div class="form-div">
-            <label for="nickname" class="form-item">닉네임</label>
+            <label for="nickname" class="form-item nickLabel" id="<%=result.nickname %>">닉네임</label>
             <div class="form-guide">
               <input
                 type="text"
@@ -89,7 +89,7 @@
           </div>
 
           <div class="form-div">
-            <label for="address" class="form-item">주소</label>
+            <label for="address" class="form-item"  value="<%= result.address %>">주소</label>
             <input
               id="address"
               name="address"
@@ -103,6 +103,17 @@
               주소검색
             </button>
           </div>
+          <div class="form-div-btn">
+            <button
+              id="disBtn"
+              type="button"
+              onclick="profileEdittor();"
+              class="check-btn"
+            >
+              수정
+            </button>
+          </div>
+
           <br />
 
           <div class="register-div">
@@ -133,6 +144,11 @@
               />
               <p class="guide-pw guide"></p>
             </div>
+
+          </div>
+
+          <br />
+          <div class="form-div-btn">
             <button
               type="button"
               class="check-btn"
@@ -141,21 +157,8 @@
             >
               수정
             </button>
-          </div>
-
-          <br />
-          <div class="form-div-btn">
-            <button
-              id="disBtn"
-              type="button"
-              onclick="register();"
-              class="check-btn"
-              disabled
-            >
-              수정 하기
-            </button>
-            <button id="disBtn" type="button" class="check-btn" disabled>
-              탙퇴 하기
+            <button  type="button" class="check-btn" onclick="withdrawal()">
+              회원탈퇴
             </button>
           </div>
         </div>
