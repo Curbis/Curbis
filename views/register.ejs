@@ -75,7 +75,7 @@
       <div class="form-div">
         <label for="nickname" class="form-item">닉네임</label>
         <div class="form-guide">
-          <input type="text" name="nickname" id="nickname" onchange="changeNick()" required onkeyup="nickInputCheck(this, 10);" placeholder="닉네임을 입력해주세요">
+          <input type="text" name="nickname" id="nickname" onchange="changeNick() maxlength="6" required onkeyup="nickInputCheck(this, 6);" placeholder="6글자 이하로 입력해주세요">
           <p class="guide-nick guide"></p>
         </div>
         <button type="button" class="check-btn" onclick="overlapNick()">중복확인</button>

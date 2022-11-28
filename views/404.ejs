@@ -5,13 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ERROR</title>
-    
-    <!-- favicon -->
-    <link rel="shoctcut icon" type="image/x-icon" href="../static/img/favicon/favicon.ico">
 
+    <!-- favicon -->
+    <link
+      rel="shoctcut icon"
+      type="image/x-icon"
+      href="/static/img/favicon/favicon.ico"
+    />
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button {
+        height: 50px;
+        width: 100px;
+        background-color: #ff9671;
+        border-radius: 7px;
+        color: aliceblue;
+        border: none;
+        font-size: 17px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
-    <H1>잘못된 경로입니다</H1>
+    <img src="/static/img/404.png" alt="" />
+    <h2>잘못된 경로입니다.</h2>
     <button onclick="location.href='/'">메인으로</button>
   </body>
 </html>

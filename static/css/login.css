@@ -4,6 +4,13 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
+.logo {
+  width: 146px;
+  position: absolute;
+  top: 50px;
+  left: 10%;
+}
+
 form {
   width: 400px;
   margin: 0 auto;

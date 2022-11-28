@@ -8,7 +8,7 @@
   <title>Main</title>
 
   <!-- favicon -->
-  <link rel="shoctcut icon" type="image/x-icon" href="../static/img/favicon/favicon.ico">
+  <link rel="shoctcut icon" type="image/x-icon" href="/static/img/favicon/favicon.ico">
 
   <!-- static 연결 -->
   <link rel="stylesheet" href="/static/css/main.css" />
@@ -38,11 +38,16 @@
     </a>
     <div class="buttonBox">
       <% if (isLogin) { %>
-      <img id='profile' src='<%= userInfo.picture %>'>
-      <div class="hi" onclick="mypage()" id='<%= userInfo.userid %>'>
-      <%= userInfo.nickname %>님 안녕하세요
+      <div class="my-info">
+        <img id='profile' src='<%= userInfo.picture %>'>
+        <div class="hi" id='<%= userInfo.userid %>'>
+          <%= userInfo.nickname %>님 안녕하세요
+        </div>
       </div>
-      <button type="button" class="logout-btn" onclick="logout()">로그아웃</button>
+      <div class="my-btn">
+        <button onclick="mypage()" class="profile-btn">마이 페이지</button>
+        <button class="logout-btn" onclick="logout()">로그아웃</button>
+      </div>
       <% } else {%>
       <a href="/login" class="login-btn">로그인</a>
       <div class="hi" id='id'>
@@ -124,9 +129,10 @@
         <div class="close-area">X</div>
         
         <div class="content">
-          <img class="group-pic" src="../static/img/mountain-g7d103621e_1280.jpg"></img>
+          <img class="group-pic" src="/static/img/mountain-g7d103621e_1280.jpg"></img>
 
-          <img class ='profileImg' id ='hostImg' src="" alt="">
+          <img class="hostCrown" src="/static/img/host.png" alt="">
+          <img  id ='hostImg' src="" alt="">
           <p class="hostName"></p>
           <h2 class="group-name"></h2>
           <div class="group-intro"></div>

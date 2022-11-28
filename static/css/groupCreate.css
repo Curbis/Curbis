@@ -264,12 +264,12 @@ fieldset {
   display: block;
   padding: 10px;
   top: 740px;
-  left: 513px;
+  left: 506px;
   position: absolute;
   margin: 15px;
   border: 1px solid gray;
   border-radius: 7px;
-  width: 104px;
+  width: 110px;
   margin-left: 148px;
   outline: none;
   font-size: 14px !important;
@@ -579,7 +579,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .headcount {
   position: absolute;
   top: 763px;
-  right: 205px;
+  right: 212px;
   color: #f49d1a;
 }
 
@@ -604,7 +604,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .timeP {
   position: absolute;
   top: 764px;
-  right: 47px;
+  right: 58px;
   font-size: 15px;
   color: #f49d1a;
 }
