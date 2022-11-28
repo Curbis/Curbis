@@ -55,8 +55,8 @@ function overlapNick() {
     return swal("사용중인 닉네임과 동일합니다");
   }
 
-  if (form.nickname.value.length < 3) {
-    return swal("닉네임을 3글자 이상으로 만들어주세요");
+  if (form.nickname.value.length < 2) {
+    return swal("닉네임을 2글자 이상으로 만들어주세요");
   }
 
   axios({
@@ -100,14 +100,18 @@ function handleInputLength(el, max) {
   }
 }
 
+function changeNick() {
+  guideNick.setAttribute("data-value", true);
+}
+
 function nickInputCheck(obj, max) {
   charCheck(obj);
   handleInputLength(obj, max);
 
   // 조건을 만족하지 않으면 가이드 보임
-  if ((nicknameInput.value.length = 0 || nicknameInput.value.length < 3)) {
+  if ((nicknameInput.value.length = 0 || nicknameInput.value.length < 2)) {
     usernickGuide.innerText =
-      "닉네임은 특수문자를 제외한 3 - 10자로 만들어주세요";
+      "닉네임은 특수문자를 제외한 2 - 6자로 만들어주세요";
 
     // 6자 이상 16자 이하로 특수문자 제외
   } else {
