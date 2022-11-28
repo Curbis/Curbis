@@ -176,7 +176,7 @@ function groupOut() {
         }).then((data) => {
         if(data){
           swal("탈퇴를 완료하였습니다").then(function () {
-            history.go(0);
+            document.location.href = "/";
           });
           } else{
             swal("로그인이 만료되었습니다").then(function () {

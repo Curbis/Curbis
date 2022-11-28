@@ -24,38 +24,12 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 // db = { sequelize: sequelize, Sequelize: Sequelize }
 
-db.Mchat = require('./Mchat')(sequelize, Sequelize);
 db.Muser = require('./Muser')(sequelize, Sequelize);
 db.Mlist = require('./Mlist')(sequelize, Sequelize);
 db.Mmember = require('./Mmember')(sequelize, Sequelize);
-db.Mfavorite = require('./Mfavorite')(sequelize, Sequelize);
 // models/Visitor.js 정의한 model이 db.Visitor에 들어감
 // db = { sequelize: sequelize, Sequelize: Sequelize, Visitor: model }
 
-// Mchat에서 FK 가져오기
-db.Mlist.hasMany(db.Mchat, {
-    foreignKey: 'list_id',
-    sourceKey: 'id',
-  });
-  db.Mchat.belongsTo(db.Mlist, {
-    foreignKey: 'list_id',
-    targetKey: 'id',
-  });
-
-
-  
-
-  db.Muser.hasMany(db.Mchat, {
-    foreignKey: 'user_id',
-    sourceKey: 'userid',
-  });
-  db.Mchat.belongsTo(db.Muser, {
-    foreignKey: 'user_id',
-    targetKey: 'userid',
-  });
-
-
-  
 // Mlist에서 FK 가져오기
   db.Muser.hasMany(db.Mlist, {
     foreignKey: 'user_id',
@@ -75,27 +49,6 @@ db.Mlist.hasMany(db.Mchat, {
     targetKey: 'userid',
   });
 
-
-
-// Mfavorite에서 FK 가져오기
-  db.Mlist.hasMany(db.Mfavorite, {
-    foreignKey: 'list_id',
-    sourceKey: 'id',
-  });
-  db.Mfavorite.belongsTo(db.Mlist, {
-    foreignKey: 'list_id',
-    targetKey: 'id',
-  });
-
-
-  db.Muser.hasMany(db.Mfavorite, {
-    foreignKey: 'user_id',
-    sourceKey: 'userid',
-  });
-  db.Mfavorite.belongsTo(db.Muser, {
-    foreignKey: 'user_id',
-    targetKey: 'userid',
-  });
   
 // Mmember에서 FK 가져오기
   db.Muser.hasMany(db.Mmember, {
