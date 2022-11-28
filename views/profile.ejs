@@ -78,7 +78,8 @@
                 id="nickname"
                 value="<%=result.nickname %>"
                 required
-                onkeyup="nickInputCheck(this, 10);"
+                onkeyup="nickInputCheck(this, 6);"
+                onchange="changeNick()"
                 placeholder="닉네임을 입력해주세요"
               />
               <p class="guide-nick guide"></p>
