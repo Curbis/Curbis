@@ -19,8 +19,10 @@
 <h2>사용 방법</h2>
 <p>1. 메인 페이지 : 모든 모임을 한 눈에 보고 검색할 수 있어요</p>
 <img src="https://user-images.githubusercontent.com/102302705/204457161-51658551-31cb-4a13-9dd0-eef7030c0fea.png">
+![Main_-_Chrome_2022-11-29_16-18-18_AdobeExpress](https://user-images.githubusercontent.com/115196609/204466221-36d1a207-d9c9-4622-8913-3e823d7607ba.gif)
 <p>2. 회원가입 페이지 : 프로필 사진, 아이디, 비밀번호, 주소를 등록할 수 있어요</p>
 <img src="https://user-images.githubusercontent.com/115196609/204453079-4577ceb1-8d7e-4039-a6e4-d6ba90594c9f.png">
+![Main_-_Chrome_2022-11-29_16-19-47_AdobeExpress](https://user-images.githubusercontent.com/115196609/204466200-8ce44776-c792-4ed0-bfe9-857177af91c5.gif)
 <p>3. 로그인 페이지 : 가입한 정보로 로그인할 수 있어요</p>
 <img src="https://user-images.githubusercontent.com/115196609/204453082-26b9a3b6-2dfa-45cf-8a8a-ce8ff98a309c.png">
 <p>4. 모임 만들기 페이지 : 모임을 만들고 등록할 수 있어요</p>
