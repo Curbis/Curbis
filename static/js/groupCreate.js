@@ -185,7 +185,6 @@ function readURL(input) {
 
     reader.readAsDataURL(input.files[0]);
   } else {
-    // document.getElementById('preview').src = "/static/img/profile-basic.png";
   }
   profileDiv.setAttribute("data-value", true);
   document.querySelector(".profile-save-btn").style.display = "block";
