@@ -182,18 +182,18 @@ fieldset {
 
 .form-wrapper .button,
 .form-wrapper .submit {
-  border: #f49d1a;
+  border: none;
   display: inline-block;
   padding: 8px 30px;
   color: #fff;
   cursor: pointer;
   font-size: 14px;
   position: relative;
-  right: -1px;
+  right: 0;
   border-radius: 15px;
-  bottom: -204px;
+  bottom: -144px;
   width: 150px;
-  background-color: #f49d1a;
+  background-color: #ff9671a1;
   height: 40px;
 }
 
@@ -245,13 +245,11 @@ fieldset {
 .form-wrapper input[type="text"],
 .form-wrapper input[type="password"] {
   display: block;
-  padding: 10px;
-  margin: 10px auto;
+  padding: 1vh;
+  margin: 0;
   border: 1px solid gray;
   border-radius: 7px;
   width: 93%;
-  outline: none;
-  font-size: 14px !important;
   background-color: #cccccc40;
   color: white;
 }
@@ -375,15 +373,14 @@ form input::file-selector-button {
 }
 
 #preview {
-  /* background-image: url('/static/img/profileBasic.png'); */
   background-size: 170px;
   width: 538px;
-  height: 226px;
+  height: 254px;
+  top: 26vh;
   position: absolute;
   right: 72px;
   color: transparent;
   margin-bottom: 10px;
-  /* margin-left: 60px; */
   object-fit: cover;
 }
 
@@ -394,10 +391,6 @@ form input::file-selector-button {
 
 .sectionSecond {
   display: none;
-}
-
-.secondFild {
-  height: 800px;
 }
 
 .sectionThird {

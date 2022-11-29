@@ -24,7 +24,6 @@ function changeNick() {
 // let check = false;
 function overlapId() {
   const form = document.forms["register-form"];
-  console.log(form.userid.value);
 
   if (!reg_id2.test(useridInput.value)) {
     return swal("아이디를 확인해주세요.");
@@ -54,7 +53,6 @@ function overlapId() {
 
 function overlapNick() {
   const form = document.forms["register-form"];
-  // console.log(form.userid.value);
   if (form.nickname.value.length < 2) {
     return swal("닉네임을 2글자 이상으로 만들어주세요");
   }
@@ -71,8 +69,6 @@ function overlapNick() {
     })
     .then((data) => {
       // true, false
-      console.log("중복된 닉네임인가요? ", data);
-
       if (data) {
         swal("중복된 닉네임입니다").then(function () {
           guideNick.setAttribute("data-value", true);
@@ -130,15 +126,11 @@ function nickInputCheck(obj, max) {
 }
 
 function fileUpload() {
-  console.log("click fileUpload");
-
   // 멀티미디어 데이터는 비동기 데이터를 보여줄 때 폼 데이터를 만들어서 함
   const formData = new FormData(); // 폼 객체 생성
   const file = document.getElementById("dynamicFile"); // file input
   console.dir(file.files[0]); // 파일 input에 들어간 파일 정보
 
-  // formData.append(name, value);
-  // input의 name과 input의 value
   formData.append("dynamicFile", file.files[0]);
 
   // axios 통신
@@ -153,7 +145,6 @@ function fileUpload() {
     // res : 클라이언트의 POST /dynamicFile 요청을 보낸 응답 결과
     document.getElementById("preview").src = `/uploads/${res.data.filename}`;
     profileDiv.setAttribute("data-value", false);
-    console.log("저장완료", profileDiv.dataset.value);
 
     swal("프로필 저장이 완료되었어요!");
   });
@@ -169,10 +160,8 @@ function readURL(input) {
 
     reader.readAsDataURL(input.files[0]);
   } else {
-    // document.getElementById('preview').src = "/static/img/profile-basic.png";
   }
   profileDiv.setAttribute("data-value", true);
-  console.log("미리보기", profileDiv.dataset.value);
   document.querySelector(".profile-save-btn").style.display = "block";
 }
 
@@ -192,7 +181,6 @@ function checkPw() {
 function findAddr() {
   new daum.Postcode({
     oncomplete: function (data) {
-      console.log(data);
       // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
       // 도로명 주소의 노출 규칙에 따라 주소를 표시한다
       // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다
