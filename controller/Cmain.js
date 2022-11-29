@@ -117,8 +117,8 @@ exports.getGroupCreate = (req, res) => {
   } else {
     res.send(`
         <script>
-          alert('로그인 후 모임 생성이 가능합니다');
-          document.location.href = '/';
+          alert("로그인 후 모임 생성이 가능합니다");
+          document.location.href = "/";
         </script>
       `);
   }

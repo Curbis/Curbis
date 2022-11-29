@@ -27,7 +27,7 @@ router.get("/", controller.main);
 
 router.get("/groupCreate", controller.getGroupCreate);
 
-router.get("/register", controller.getRegister);
+router.get("/register", controller.getRegister);controller
 
 router.get("/login", controller.login);
 
@@ -49,13 +49,13 @@ router.post("/overlapId", controller.overlapId);
 
 router.get("/logout", controller.getLogout);
 
-router.post('/serch', controller.postSerch)
+router.post("/serch", controller.postSerch)
 
-router.post('/detail', controller.postDetail)
+router.post("/detail", controller.postDetail)
 
-router.post('/profileEdittor', controller.profileEdittor)
+router.post("/profileEdittor", controller.profileEdittor)
 
-router.post('/withdrawal', controller.withdrawal)
+router.post("/withdrawal", controller.withdrawal)
 
 router.post("/overlapNick", controller.overlapNick);
 
