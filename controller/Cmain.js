@@ -2,7 +2,6 @@ const models = require("../models");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 exports.main = async (req, res) => {
-  // console.log("세션", req.session.user);
   let user = req.session.user;
   const members = await models.Mlist.findAll({
     include: [

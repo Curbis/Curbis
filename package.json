@@ -1,13 +1,13 @@
 {
   "name": "kdt3rd-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "이 프로젝트는 같은 취미를 가진 사람들끼리 모임 생성을 위한 프로젝트입니다.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "C팀",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.6",
@@ -21,3 +21,5 @@
     "sequelize-cli": "^6.5.2"
   }
 }
+
+ 

@@ -19,7 +19,6 @@ function login(event) {
       return res.data;
     })
     .then((data) => {
-      console.log(data.islogin);
       if (data.islogin) {
         swal(
           "로그인 성공!",

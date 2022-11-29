@@ -100,8 +100,6 @@ function ThirdStep() {
     },
   })
     .then((res) => {
-      // console.log(res);
-      // console.log(res.data);
       return res.data;
     })
     .then((data) => {
@@ -117,7 +115,6 @@ function ThirdStep() {
     });
 }
 
-console.log("dd", $("input[name='r1']:checked").val());
 
 function goMain() {
   document.location.href = "/";
@@ -147,7 +144,6 @@ window.onload = function () {
   document.getElementById("address").addEventListener("click", function () {
     new daum.Postcode({
       oncomplete: function (data) {
-        console.log(data);
         var roadAddr = data.roadAddress; // 도로명 주소 변수
         var jibunAddr = data.jibunAddress; // 지번 주소 변수
         if (roadAddr !== "") {
@@ -192,7 +188,6 @@ function readURL(input) {
     // document.getElementById('preview').src = "/static/img/profile-basic.png";
   }
   profileDiv.setAttribute("data-value", true);
-  console.log("미리보기", profileDiv.dataset.value);
   document.querySelector(".profile-save-btn").style.display = "block";
 }
 

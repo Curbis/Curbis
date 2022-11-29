@@ -25,9 +25,6 @@ const uploadDetail = multer({
       const ext = path.extname(file.originalname); // file.originalname에서 "확장자" 추출
 
       // test
-      console.log(file.originalname); // peach.jpg
-      console.log(ext); // .jpg
-      console.log(path.basename(file.originalname, ext)); // path.basename('peach.jpg', '.jpg') => 'peach'
       done(null, path.basename(file.originalname, ext) + Date.now() + ext); // peach + 123123123123 + .jpg
 
       // [파일명+현재시간.확장자] 이름으로 바꿔서 파일 업로드
