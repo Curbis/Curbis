@@ -29,9 +29,10 @@
 <img src="">
 
 <h2>설치 방법</h2>
-```javascript
+
+```bash
 git clone https://github.com/Curbis/Curbis.git
-npm install express ejs 
+npm install express ejs cookie-parser express-session jquery-timepicker multer mysql2 sequelize sequelize-cli
 node app.js
 - localhost:8090 접속
 ```
