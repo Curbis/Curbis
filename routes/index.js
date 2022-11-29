@@ -27,7 +27,7 @@ const uploadDetail = multer({
       // test
       console.log(file.originalname); // peach.jpg
       console.log(ext); // .jpg
-      console.log(path.basename(file.originalname, ext)); // path.basename('peach.jpg', '.jpg') => 'peach'
+      console.log(path.basename(file.originalname, ext)); // path.basename("peach.jpg", ".jpg") => "peach"
       done(null, path.basename(file.originalname, ext) + Date.now() + ext); // peach + 123123123123 + .jpg
 
       // [파일명+현재시간.확장자] 이름으로 바꿔서 파일 업로드
@@ -41,7 +41,7 @@ router.get("/", controller.main);
 
 router.get("/groupCreate", controller.getGroupCreate);
 
-router.get("/register", controller.getRegister);
+router.get("/register", controller.getRegister);controller
 
 router.get("/login", controller.login);
 
@@ -63,24 +63,13 @@ router.post("/overlapId", controller.overlapId);
 
 router.get("/logout", controller.getLogout);
 
-router.post('/serch', controller.postSerch)
+router.post("/serch", controller.postSerch)
 
-router.post('/detail', controller.postDetail)
+router.post("/detail", controller.postDetail)
 
-router.post('/profileEdittor', controller.profileEdittor)
+router.post("/profileEdittor", controller.profileEdittor)
 
-router.post('/withdrawal', controller.withdrawal)
-
-
-// router.post('/profile', controller.profile)
-
-// router.post('/upload', controller.postUpload)///
-
-// // GET /visitor/get => localhost:PORT/visitor/get
-// router.get('/visitor/get', controller.getVisitor); // 하나 조회
-
-// // POST /visitor/write => localhost:PORT/visitor/write
-// router.post('/visitor/write', controller.postVisitor); // 하나 추가
+router.post("/withdrawal", controller.withdrawal)
 
 router.post("/overlapNick", controller.overlapNick);
 
