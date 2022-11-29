@@ -103,15 +103,13 @@ function ThirdStep() {
       return res.data;
     })
     .then((data) => {
-      // (1) swal 띄우기
-
       if (data) {
         swal("그룹 생성 성공");
       } else {
         swal("로그인이 만료되었습니다").then(function () {
           document.location.href = "/login";
         });
-      }
+      }s
     });
 }
 

@@ -22,11 +22,8 @@ app.use(express.json());
 
 // [라우터 분리]
 const indexRouter = require('./routes');
-app.use('/', indexRouter); // localhost:PORT/경로는 기본으로 ./routes/index.js 파일에 선언
+app.use('/', indexRouter);
 
-
-
-// [404 error] 맨 마지막 라우트로 선언 -> 나머지 코드 무시되기 때문!!
 app.get('*', (req, res) => {
     res.render('404');
 });

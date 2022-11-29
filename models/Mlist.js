@@ -1,16 +1,7 @@
 const List = function (Sequelize, DataTypes) {
-    // Sequelize: models/index.js 의 sequelize
-    // DataTypes: models/index.js 의 Sequelize
-  
-    // Sequelize.define(param1, param2, param3)
-    // param1: 모델 이름 설정 -> ''
-    // param2: 컬럼 정의 -> {}
-    // param3: 모델 옵션 정의 -> {}
-  
     const model = Sequelize.define(
       "list",
       {
-        // id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
         id: {
           type: DataTypes.INTEGER, 
           primaryKey: true, 
@@ -24,12 +15,10 @@ const List = function (Sequelize, DataTypes) {
           type: DataTypes.STRING(20),
           allowNull: false,
         },
-        // name VARCHAR(10) NOT NULL,
         introduce: {
           type: DataTypes.TEXT('medium'),
           allowNull: false,
         },
-        // comment MEDIUMTEXT
         address: {
           type: DataTypes.STRING(50),
           allowNull: false,
@@ -46,7 +35,6 @@ const List = function (Sequelize, DataTypes) {
           type: DataTypes.TEXT('medium'),
           allowNull: false,
         },
-        // comment MEDIUMTEXT
         headcount: {
             type: DataTypes.INTEGER,
             allowNull: false,

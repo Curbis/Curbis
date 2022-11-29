@@ -21,6 +21,7 @@ ALTER TABLE list ADD introduce mediumtext NOT NULL;
 ALTER TABLE list ADD name VARCHAR(50) NOT NULL;
 
 
+ALTER TABLE user MODIFY userid VARCHAR(15) NOT NULL PRIMARY KEY;
 
 -- TODO: 새로운 데이터베이스 생성
 CREATE TABLE user (

@@ -76,6 +76,5 @@ router.post("/editPw", controller.editPw);
 
 router.post("/groupFind", controller.groupFind);
 
-
 module.exports = router;
 
