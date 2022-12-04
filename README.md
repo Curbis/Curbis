@@ -74,4 +74,4 @@ node app.js
 
 <h2>수상</h2>
 소켓 기반 웹페이지 구현 우수상
-<img src="https://drive.google.com/file/d/1h66verHyrw5y1I_KhT9XcP0fbCnCTsqd/view?usp=sharing">
+<img src="https://user-images.githubusercontent.com/102302705/205478387-321cfae3-4c97-4b4e-b552-6344e3a0bb81.png">
