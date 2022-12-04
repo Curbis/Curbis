@@ -29,12 +29,14 @@
 <img src="https://user-images.githubusercontent.com/115196609/204453090-38808a78-26b6-4754-84e9-d66b95381419.png">
 
 <h2>설치 방법</h2>
+
 ```bash
 git clone https://github.com/Curbis/Curbis.git
-npm install express ejs express-session jquery-timepicker multer mysql2 sequelize sequelize-cli
+npm install
 node app.js
-- localhost:8090 접속
 ```
+
+- localhost:8090 접속
 
 <h2>기술 스택</h2>
 <h4>- Language</h4>
@@ -67,9 +69,9 @@ node app.js
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=black">
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
-<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=black">
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=yellow">
 </p>
 
 <h2>수상</h2>
 소켓 기반 웹페이지 구현 우수상
-<img src="">
+<img src="https://drive.google.com/file/d/1h66verHyrw5y1I_KhT9XcP0fbCnCTsqd/view?usp=sharing">
