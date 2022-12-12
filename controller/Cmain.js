@@ -1,6 +1,7 @@
 const models = require("../models");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
+
 exports.main = async (req, res) => {
   let user = req.session.user;
   const members = await models.Mlist.findAll({
@@ -408,4 +409,8 @@ exports.withdrawal = (req, res) => {
   } else {
     res.send(false)
   }
+};
+
+exports.chat = (req, res) => {
+  res.render("chat");
 };
