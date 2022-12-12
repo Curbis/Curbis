@@ -49,6 +49,8 @@ router.post("/overlapId", controller.overlapId);
 
 router.get("/logout", controller.getLogout);
 
+router.get("/chat", controller.chat);
+
 router.post("/serch", controller.postSerch)
 
 router.post("/detail", controller.postDetail)

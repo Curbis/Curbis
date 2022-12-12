@@ -12,6 +12,8 @@ let Ghour = document.querySelector(".group-hour");
 let profileDiv = document.querySelector(".profile-user");
 let Gmember = document.querySelector(".group-headcount");
 let Gin = document.querySelector(".group-in-btn");
+let Cin = document.querySelector(".chat-in-btn");
+let Pbtn = document.querySelector(".profile-btn");
 let Gdel = document.querySelector(".group-delete-btn");
 let Gout = document.querySelector(".group-out-btn");
 let sessionId = document.querySelector(".hi").id;
@@ -86,11 +88,13 @@ function detail(data) {
           if (find !== undefined) {
             Gout.style.display = "block";
             Gin.style.display = "none";
+            Cin.style.display = "none";
           } else if (
             sessionId != "id" &&
             data.result.headcount > Object.keys(data.result.members).length
           ) {
             Gin.style.display = "block";
+            Cin.style.display = "block";
           }
         }
       }
@@ -119,6 +123,7 @@ function outModal() {
   Gin.style.display = "none";
   Gdel.style.display = "none";
   Gout.style.display = "none";
+  Cin.style.display = "none";
 }
 
 function groupIn() {
@@ -260,4 +265,10 @@ function logout() {
         break;
     }
   });
+}
+let socket = io.connect()
+function chatIn () {
+
+  socket.emit('join',{ group: Gin.id, nick: Pbtn.id});
+  document.location.href = "/chat";
 }
