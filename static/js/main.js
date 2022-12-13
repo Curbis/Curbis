@@ -21,11 +21,11 @@ let hostImg = document.querySelector("#hostImg");
 let hostName = document.querySelector(".hostName");
 let userMember = [];
 scrollLeft.onclick = () => {
-  cardArticle.scrollLeft -= 1020;
+  cardArticle.scrollLeft -= 340;
 };
 
 scrollRight.onclick = () => {
-  cardArticle.scrollLeft += 1020;
+  cardArticle.scrollLeft += 340;
 };
 
 if (cardArticle.childElementCount < 3) {
@@ -269,8 +269,9 @@ function logout() {
 let socket = io.connect();
 function chatIn() {
   socket.emit("join", { group: Gin.id, nick: Pbtn.id });
+
   let state = { group: Gin.id, nick: Pbtn.id };
   let title = "chat";
   document.location.href = "/chat";
   history.pushState(state, title, "/chat");
-}
+

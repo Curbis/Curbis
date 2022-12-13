@@ -5,10 +5,7 @@ const Third = document.querySelector(".sectionThird");
 const stop1 = document.querySelector(".stop1");
 const stop2 = document.querySelector(".stop2");
 const stop3 = document.querySelector(".stop3");
-
-const goBack = document.getElementById("goBack");
 const buttonback = document.querySelector("buttonBack");
-
 const profileDiv = document.querySelector(".profile-div");
 
 // 보이기;
@@ -21,7 +18,7 @@ function goFirst() {
   stop3.style.color = "#ccc";
 }
 
-function goSecond() {
+function secondStep() {
   First.style.display = "none";
   Second.style.display = "block";
   Third.style.display = "none";
@@ -40,23 +37,14 @@ function gothird() {
   stop3.style.color = "#ff9671";
 }
 
-function secondStep() {
-  First.style.display = "none";
-  Second.style.display = "block";
-  Third.style.display = "none";
-  stop1.style.color = "#ccc";
-  stop2.style.color = "#ff9671";
-}
-
-function backStep() {
-  First.style.display = "block";
-  Second.style.display = "none";
-  Third.style.display = "none";
-  stop1.style.color = "#ff9671";
-  stop2.style.color = "#ccc";
-}
-
 function ThirdStep() {
+  First.style.display = "none";
+  Second.style.display = "none";
+  Third.style.display = "block";
+  stop1.style.color = "#ccc";
+  stop2.style.color = "#ccc";
+  stop3.style.color = "#ff9671";
+
   const form = document.forms["groupCreat"];
 
   if (
@@ -77,13 +65,6 @@ function ThirdStep() {
   if (form.headcount.value > 6 || form.headcount.value < 3) {
     return swal("인원수는 3 - 6 명으로 설정해주세요");
   }
-
-  First.style.display = "none";
-  Second.style.display = "none";
-  Third.style.display = "block";
-  stop1.style.color = "#ccc";
-  stop2.style.color = "#ccc";
-  stop3.style.color = "#ff9671";
 
   axios({
     method: "POST",
@@ -114,7 +95,6 @@ function ThirdStep() {
       }
     });
 }
-
 
 function goMain() {
   document.location.href = "/";
