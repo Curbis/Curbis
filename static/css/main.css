@@ -70,7 +70,7 @@ body {
   box-shadow: rgb(95, 95, 95);
 }
 
-#mine-form{
+#mine-form {
   height: 10px;
 }
 
@@ -441,7 +441,7 @@ body {
   font-size: 18px;
 }
 
-.profils { 
+.profils {
   display: flex;
   justify-content: center;
   background-color: transparent !important;
@@ -456,6 +456,15 @@ body {
   justify-content: center;
 }
 
+#hostImg {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: #f49d1aa6 4px solid;
+  position: relative;
+  top: -39px;
+  object-fit: cover;
+}
 
 .after-check {
   display: none;
@@ -564,11 +573,10 @@ body {
   flex-direction: column;
 }
 
-.profileId{
+.profileId {
   font-size: 13px;
-
 }
 
-.group-intro{
+.group-intro {
   text-align: center;
 }

@@ -1,6 +1,8 @@
 const models = require("../models");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
+let user;
+
 exports.main = async (req, res) => {
   let user = req.session.user;
   const members = await models.Mlist.findAll({
@@ -21,9 +23,20 @@ exports.main = async (req, res) => {
         userid: user,
       },
     });
-    res.render("main", { isLogin: true, userInfo: userInfo, result: members, mygroup: true, search: false });
+    res.render("main", {
+      isLogin: true,
+      userInfo: userInfo,
+      result: members,
+      mygroup: true,
+      search: false,
+    });
   } else {
-    res.render("main", { isLogin: false, result: members ,mygroup: true, search: false});
+    res.render("main", {
+      isLogin: false,
+      result: members,
+      mygroup: true,
+      search: false,
+    });
   }
 };
 exports.postSerch = async (req, res) => {
@@ -90,9 +103,20 @@ exports.postSerch = async (req, res) => {
           userid: user,
         },
       });
-      res.render("main", { isLogin: true, userInfo: userInfo, result: groups ,search: true, mygroup: false});
+      res.render("main", {
+        isLogin: true,
+        userInfo: userInfo,
+        result: groups,
+        search: true,
+        mygroup: false,
+      });
     } else {
-      res.render("main", { isLogin: false, result: groups, search: true, mygroup: false });
+      res.render("main", {
+        isLogin: false,
+        result: groups,
+        search: true,
+        mygroup: false,
+      });
     }
   } else {
     if (user !== undefined) {
@@ -101,9 +125,20 @@ exports.postSerch = async (req, res) => {
           userid: user,
         },
       });
-      res.render("main", { isLogin: true, userInfo: userInfo, result: groups ,search: false, mygroup: false});
+      res.render("main", {
+        isLogin: true,
+        userInfo: userInfo,
+        result: groups,
+        search: false,
+        mygroup: false,
+      });
     } else {
-      res.render("main", { isLogin: false, result: groups, search: false, mygroup: false });
+      res.render("main", {
+        isLogin: false,
+        result: groups,
+        search: false,
+        mygroup: false,
+      });
     }
   }
 };
@@ -153,6 +188,7 @@ exports.postSignin = (req, res) => {
     } else {
       req.session.user = result.userid;
       res.send({ islogin: true, nick: result.nickname });
+      return (user = req.session.user);
     }
   });
 };
@@ -331,16 +367,27 @@ exports.groupFind = async (req, res) => {
     ],
   });
   if (groups == "") {
-  if (user !== undefined) {
-    const userInfo = await models.Muser.findOne({
-      where: {
-        userid: user,
-      },
-    });
-    res.render("main", { isLogin: true, userInfo: userInfo, result: groups, mygroup: false , search: true});
-  } else {
-    res.render("main", { isLogin: false, result: groups, mygroup: false, search: true });
-  }
+    if (user !== undefined) {
+      const userInfo = await models.Muser.findOne({
+        where: {
+          userid: user,
+        },
+      });
+      res.render("main", {
+        isLogin: true,
+        userInfo: userInfo,
+        result: groups,
+        mygroup: false,
+        search: true,
+      });
+    } else {
+      res.render("main", {
+        isLogin: false,
+        result: groups,
+        mygroup: false,
+        search: true,
+      });
+    }
   } else {
     if (user !== undefined) {
       const userInfo = await models.Muser.findOne({
@@ -348,9 +395,20 @@ exports.groupFind = async (req, res) => {
           userid: user,
         },
       });
-      res.render("main", { isLogin: true, userInfo: userInfo, result: groups, mygroup: false, search: false});
+      res.render("main", {
+        isLogin: true,
+        userInfo: userInfo,
+        result: groups,
+        mygroup: false,
+        search: false,
+      });
     } else {
-      res.render("main", { isLogin: false, result: groups, mygroup: false, search: false});
+      res.render("main", {
+        isLogin: false,
+        result: groups,
+        mygroup: false,
+        search: false,
+      });
     }
   }
 };
@@ -376,18 +434,20 @@ exports.editPw = async (req, res) => {
 exports.profileEdittor = async (req, res) => {
   let user = req.session.user;
   if (user !== undefined) {
-    models.Muser.update({
-      picture: req.body.profile,
-      nickname: req.body.nickname,
-      address: req.body.address,
-    },
-    {
-      where: {
-        userid: user
+    models.Muser.update(
+      {
+        picture: req.body.profile,
+        nickname: req.body.nickname,
+        address: req.body.address,
       },
-    }).then((result) => {
-        res.send(true);
-      });
+      {
+        where: {
+          userid: user,
+        },
+      }
+    ).then((result) => {
+      res.send(true);
+    });
   } else {
     res.send(false);
   }
@@ -399,13 +459,35 @@ exports.withdrawal = (req, res) => {
       if (err) {
         throw err;
       }
-    })
+    });
     models.Muser.destroy({
       where: { userid: user },
     }).then((result) => {
-      res.send(true)
-    })
+      res.send(true);
+    });
   } else {
-    res.send(false)
+    res.send(false);
   }
+};
+
+exports.chat = (req, res) => {
+  let user = req.session.user;
+
+  if (user !== undefined) {
+    models.Muser.findOne({
+      where: {
+        userid: user,
+      },
+    }).then((result) => {
+      res.render("chat", { userInfo: result, isLogin: true });
+    });
+  } else {
+    res.redirect("/");
+  }
+};
+// };
+
+exports.sessionId = (req, res) => {
+  let user = req.session.user;
+  return (user = user);
 };
