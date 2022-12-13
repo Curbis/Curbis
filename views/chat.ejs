@@ -142,7 +142,9 @@
 </head>
 
 <body>
-  <h1>Socket.io</h1>
+  <% if (isLogin) { %>
+  <h1 class='hi' id=<%= userInfo.nickname %>><%= userInfo.nickname %></h1>
+  <% } %>
   <div class="entire"></div>
 
   <!-- [실습44-2] 채팅창 입장 문구 안내 socket.it -> nickname -->
@@ -154,11 +156,10 @@
   <div class="chat-box">
     <div id="chat-list" class="chat-list">
       <!-- [실습43] 임시 데이터 -->
-      
+
       <!-- 
         <div class="notice">xx가 입장했습니다.</div>
         <div class="my-chat">
-          <div class="nickDiv">user1</div>
           <div class="innerDiv">
             <div class="divChat">바보</div>
             <div class="timeDiv">18:30</div>
@@ -180,12 +181,19 @@
   </div>
 
   <script>
+    let myNick = document.querySelector(".hi").id;
     let socket = io.connect(); // socket 사용을 위한 객체 생성
-    let myNick; // 내 닉네임 설정
+
     let dateinit;
+
     socket.on('connect', () => {
       console.log('**** ⭕ Client Socket Connected >>', socket.id);
+      socket.emit("id", {
+        nick: myNick
+      });
     });
+
+
 
     // [실습44] 채팅창 입장 안내 문구
     // notice 이벤트를 받아서 공지 문구를 출력
@@ -204,12 +212,12 @@
       alert(msg);
     });
 
-  
+
     // [실습45] 채팅창 메세지 전송 step1
     // "send" 이벤트 전송하기
     document.querySelector('.msgForm').addEventListener('submit',
       function send(e) {
-  
+
         e.preventDefault();
         console.log(document.querySelector('#message').value);
         if (document.querySelector('#message').value == '') {
@@ -220,7 +228,6 @@
 
 
         const data = {
-
           msg: document.querySelector('#message').value,
 
         }
@@ -231,18 +238,18 @@
 
       }
     )
-    
-    socket.on('entire', (data) => {
-      let parentH = document.querySelector('h1')
-      console.log(data);
-      console.log(Object.keys(data).length)
-      entire = document.querySelector('.entire')
-      entire.textContent = `접속자 : ${Object.keys(data).length}명`
-      
-    })
+
+    // socket.on('entire', (data) => {
+    //   let parentH = document.querySelector('h1')
+    //   console.log(data);
+    //   console.log(Object.keys(data).length)
+    //   entire = document.querySelector('.entire')
+    //   entire.textContent = `접속자 : ${Object.keys(data).length}명`
+
+    // })
 
     socket.on('newMessage', (data) => {
-
+      console.log(data.nick);
       console.log('data.nick', data.nick);
       console.log('data.msg', data.msg);
       let chatList = document.querySelector('#chat-list')
@@ -286,19 +293,19 @@
       if (chatList.lastChild.className == 'my-chat') {
 
         let daterinit = `${hours}:${minutes}`
-        
+
         console.log(dateinit == daterinit);
 
         if (dateinit == daterinit) {
-  
+
 
           if (myNick == data.nick) {
             // my-chat 내 채팅일때 클래스 네임
             div.classList.add('my-chat')
 
             console.log('요소선택', chatList.lastChild.querySelector('span'))
-            if(chatList.lastChild.querySelector('span')){
-            chatList.lastChild.querySelector('span').remove()
+            if (chatList.lastChild.querySelector('span')) {
+              chatList.lastChild.querySelector('span').remove()
             }
             innerDiv.appendChild(timeDiv);
             innerDiv.appendChild(divChat)
@@ -316,9 +323,8 @@
 
 
 
-
         } else {
-        
+
 
           if (myNick == data.nick) {
             div.classList.add('my-chat')
@@ -343,11 +349,11 @@
 
 
         let daterinit = `${hours}:${minutes}`
-        
+
         console.log(dateinit == daterinit);
 
         if (dateinit == daterinit) {
-  
+
 
           if (myNick == data.nick) {
             div.classList.add('my-chat')
@@ -361,13 +367,13 @@
 
             innerDiv.appendChild(divChat)
             innerDiv.appendChild(timeDiv);
-        
+
           }
 
 
 
         } else {
-        
+
 
           if (myNick == data.nick) {
             div.classList.add('my-chat')

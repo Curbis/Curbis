@@ -80,6 +80,7 @@ function detail(data) {
         if (data.btn == "host" || sessionId == "admin") {
           let Gde = document.querySelector(".group-in-btn");
           Gdel.style.display = "block";
+          Cin.style.display = "block";
         } else {
           userMember.push(data.result.members[j].user.userid);
           let find = userMember.find((element) => {
@@ -88,13 +89,12 @@ function detail(data) {
           if (find !== undefined) {
             Gout.style.display = "block";
             Gin.style.display = "none";
-            Cin.style.display = "none";
+            Cin.style.display = "block";
           } else if (
             sessionId != "id" &&
             data.result.headcount > Object.keys(data.result.members).length
           ) {
             Gin.style.display = "block";
-            Cin.style.display = "block";
           }
         }
       }
@@ -269,5 +269,9 @@ function logout() {
 let socket = io.connect();
 function chatIn() {
   socket.emit("join", { group: Gin.id, nick: Pbtn.id });
+
+  let state = { group: Gin.id, nick: Pbtn.id };
+  let title = "chat";
   document.location.href = "/chat";
-}
+  history.pushState(state, title, "/chat");
+
