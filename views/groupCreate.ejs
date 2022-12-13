@@ -60,11 +60,10 @@
     </a>
     <div class="container">
       <div class="wrapper">
-        <button class="backStep" onclick="goFirst()">이전으로</button>
         <ul class="steps">
           <button class="stop1" onclick="goFirst()">1 단계</button>
           <button class="stop2" onclick="secondStep()">2 단계</button>
-          <button class="stop3" onclick="ThirdStep()">3 단계</button>
+          <button class="stop3" onclick="gothird()">3 단계</button>
         </ul>
         <hr />
         <form class="form-wrapper" name="groupCreat">
@@ -118,108 +117,107 @@
               메인페이지로
             </button>
           </fieldset>
-          <div class="secondFild">
-            <fieldset class="sectionSecond">
-              <!-- 이미지 지정 -->
+          <fieldset class="sectionSecond">
+            <!-- 이미지 지정 -->
 
-              <span class="inputSpan"> 모임 이미지 </span>
-              <br /><br />
-              <div class="profile-box form-div">
-                <!-- <p class="form-item"></p> -->
-                <div class="profile-div">
-                  <img
-                    id="preview"
-                    src="/static/img/mountain-g7d103621e_1280.jpg"
-                  />
-                  <input
-                    required
-                    type="file"
-                    name="dynamicFile"
-                    id="dynamicFile"
-                    onchange="readURL(this);"
-                  />
-                  <label for="dynamicFile" id="dynamicFile">변경</label>
-                </div>
-                <button
-                  class="profile-save-btn"
-                  type="button"
-                  onclick="fileUpload();"
-                >
-                  저장
-                </button>
-              </div>
-              <br /><br />
-              <!-- 모임 제목  -->
-              <span class="inputSpan"> 모임 제목 </span>
-              <input required type="text" name="text" maxlength="15" />
-              <br />
-
-              <!-- 모임 소개글  -->
-
-              <span class="inputSpan"> 모임 소개글 </span>
-              <div class="introduce">
-                <label for="introduce"></label>
-                <input required type="text" name="moreText" maxlength="34" class="moreText" />
-              </div>
-              <br />
-
-              <span class="inputSpan"> 기타 정보 </span>
-              <div class="inputwrap">
-                <!-- 날짜, 시간 -->
-                <div class="date">
-                  <label for="date" class="dateP"> 날짜 :</label>
-                  <input
-                    type="text"
-                    name="date"
-                    id="startDate"
-                    placeholder="날짜를 선택해주세요"
-                    readonly
-                  />
-                </div>
-                <div class="time">
-                  <label for="time" class="timeP">시간 : </label>
-                  <input
-                    type="time"
-                    name="time"
-                    maxlength="10"
-                    id="startTime"
-                  />
-                </div>
-
-                <!-- 모임 인원수 -->
-
-                <label for="time" class="headcount">인원수 : </label>
+            <span class="inputSpan"> 모임 이미지 </span>
+            <br /><br />
+            <div class="profile-box form-div">
+              <!-- <p class="form-item"></p> -->
+              <div class="profile-div">
+                <img
+                  id="preview"
+                  src="/static/img/mountain-g7d103621e_1280.jpg"
+                />
                 <input
                   required
-                  type="number"
-                  name="headcount"
-                  min="3"
-                  max="6"
-                  placeholder="3-6"
+                  type="file"
+                  name="dynamicFile"
+                  id="dynamicFile"
+                  onchange="readURL(this);"
                 />
+                <label for="dynamicFile" id="dynamicFile">변경</label>
+              </div>
+              <button
+                class="profile-save-btn"
+                type="button"
+                onclick="fileUpload();"
+              >
+                저장
+              </button>
+            </div>
+            <br /><br />
+            <!-- 모임 제목  -->
+            <span class="inputSpan"> 모임 제목 </span>
+            <input required type="text" name="text" maxlength="15" />
+            <br />
 
-                <br />
+            <!-- 모임 소개글  -->
 
-                <!-- 장소  -->
-                <div class="form-div">
-                  <p class="addressP">장소 :</p>
-                  <input
-                    required
-                    id="address"
-                    class="address"
-                    name="address"
-                    type="text"
-                    placeholder="주소를 선택해주세요"
-                  />
-                </div>
+            <span class="inputSpan"> 모임 소개글 </span>
+            <div class="introduce">
+              <label for="introduce"></label>
+              <input
+                required
+                type="text"
+                name="moreText"
+                maxlength="34"
+                class="moreText"
+              />
+            </div>
+            <br />
+
+            <span class="inputSpan"> 기타 정보 </span>
+            <div class="inputwrap">
+              <!-- 날짜, 시간 -->
+              <div class="date">
+                <label for="date" class="dateP"> 날짜 :</label>
+                <input
+                  type="text"
+                  name="date"
+                  id="startDate"
+                  placeholder="날짜를 선택해주세요"
+                  readonly
+                />
+              </div>
+              <div class="time">
+                <label for="time" class="timeP">시간 : </label>
+                <input type="time" name="time" maxlength="10" id="startTime" />
               </div>
 
-              <!-- 3단계 이동 버튼 -->
-              <button type="button" class="button" onclick="ThirdStep()">
-                모임 생성
-              </button>
-            </fieldset>
-          </div>
+              <!-- 모임 인원수 -->
+
+              <label for="time" class="headcount">인원수 : </label>
+              <input
+                required
+                type="number"
+                name="headcount"
+                min="3"
+                max="6"
+                placeholder="3-6"
+              />
+
+              <br />
+
+              <!-- 장소  -->
+              <div class="form-div">
+                <p class="addressP">장소 :</p>
+                <input
+                  required
+                  id="address"
+                  class="address"
+                  name="address"
+                  type="text"
+                  placeholder="주소를 선택해주세요"
+                />
+              </div>
+            </div>
+
+            <!-- 3단계 이동 버튼 -->
+            <button type="button" class="button" onclick="ThirdStep()">
+              모임 생성
+            </button>
+          </fieldset>
           <fieldset class="sectionThird">
             <h1>모임 생성 완료!</h1>
             <p>이제 모임을 공유해보아요!</p>

@@ -197,36 +197,6 @@ fieldset {
   height: 40px;
 }
 
-.backStep {
-  border: #ff9671;
-  position: absolute;
-  top: 70px;
-  left: -164px;
-  padding: 8px 30px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  right: 5px;
-  bottom: 20px;
-  width: 150px;
-  background-color: #ff9671;
-  height: 40px;
-  display: none;
-}
-
-#goBack {
-  display: block;
-  padding: 8px 30px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  right: 20px;
-  bottom: 20px;
-  width: 150px;
-  background-color: #ff9671;
-  height: 40px;
-}
-
 .profile-box .profile-save-btn {
   display: none;
 }
@@ -491,10 +461,6 @@ form input::file-selector-button {
 
 .three col {
   position: absolute;
-}
-
-.sectionThird {
-  margin-top: -750px;
 }
 
 #startDate {
