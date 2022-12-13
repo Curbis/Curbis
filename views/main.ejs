@@ -81,7 +81,6 @@
           <div class="card" onclick="detail(this);" id="<%= result[i].id %>">
             <img src="<%= result[i].picture %>" alt="" />
             <h3><%= result[i].name %></h3>
-            <br />
             <div class="profiledata">
               <div>장소 : <%= result[i].address %></div>
             </div>
@@ -98,7 +97,6 @@
               <div>최대 인원 : <%= result[i].headcount %></div>
               <% }%>
             </div>
-            <br />
             <div class="membersImg">
               <% for (j = 0; j < Object.keys(result[i].members).length && j < 3; j++){ %>
               <img class="profileImg" src="<%= result[i].members[j].user.picture %>" alt="" />
@@ -118,12 +116,17 @@
         <div class="close-area">X</div>
         <div class="content">
           <img class="group-pic" src="/static/img/mountain-g7d103621e_1280.jpg"></img>
-          <img class="hostCrown" src="/static/img/host.png" alt="">
-          <img  id ='hostImg' src="" alt="">
-          <p class="hostName"></p>
+          <div class="group-host">
+            <img class="hostCrown" src="/static/img/host.png" alt="">
+            <img  id ='hostImg' src="" alt="">
+            <p class="hostName"></p>
+          </div>
+          <div class="chat-btn">
+            <button type="button" onclick="">채팅방 입장</button>
+          </div>
           <h2 class="group-name"></h2>
-          <div class="group-intro"></div>
-          <div class="group-notice">
+          <div class="group-intro group-div"></div>
+          <div class="group-notice group-div">
             <img class="icon-location" src="/static/img/location-sign.png" alt="">
             <div class="group-address"></div>
             <img class="icon-calendar" src="/static/img/date.png" alt="">
@@ -133,9 +136,9 @@
             <img src="/static/img/user.png" alt="">
             <div class="group-headcount"></div>
           </div>
-          <div class="profils">
+          <div class="profils group-div" >
             <div class="profile-user">
-            </div>
+          </div>
         </div>
       </div>
       <div class="group-func-btn">
