@@ -274,4 +274,4 @@ function chatIn() {
   let title = "chat";
   document.location.href = "/chat";
   history.pushState(state, title, "/chat");
-
+}
