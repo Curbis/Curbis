@@ -27,7 +27,8 @@ router.get("/", controller.main);
 
 router.get("/groupCreate", controller.getGroupCreate);
 
-router.get("/register", controller.getRegister);controller
+router.get("/register", controller.getRegister);
+controller;
 
 router.get("/login", controller.login);
 
@@ -49,20 +50,17 @@ router.post("/overlapId", controller.overlapId);
 
 router.get("/logout", controller.getLogout);
 
-router.get("/chat", controller.chat);
+router.post("/serch", controller.postSerch);
 
-router.post("/serch", controller.postSerch)
+router.post("/detail", controller.postDetail);
 
-router.post("/detail", controller.postDetail)
+router.post("/profileEdittor", controller.profileEdittor);
 
-router.post("/profileEdittor", controller.profileEdittor)
-
-router.post("/withdrawal", controller.withdrawal)
+router.post("/withdrawal", controller.withdrawal);
 
 router.post("/overlapNick", controller.overlapNick);
 
 router.post("/overlapId", controller.overlapId);
-
 
 router.post("/makeGroup", controller.makeGroup);
 
@@ -78,6 +76,8 @@ router.post("/editPw", controller.editPw);
 
 router.post("/groupFind", controller.groupFind);
 
+router.post("/chat", controller.chat);
+
+router.post("/chatSave", controller.chatSave);
 
 module.exports = router;
-

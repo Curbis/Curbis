@@ -44,9 +44,21 @@ CREATE TABLE member (
 );
 
 
+CREATE TABLE chat (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    list_id INT NOT NULL,
+    user_id VARCHAR(15) NOT NULL,
+    content MEDIUMTEXT NOT NULL,
+    time VARCHAR(50) NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(list_id) REFERENCES list(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 
-
+INSERT INTO chat (user_id, list_id, content, time) VALUES ('aaa', '43', '채팅입니다', '14:30');
+INSERT INTO chat (user_id, list_id, content, time) VALUES ('aaa', '43', '채팅입니다', '14:30');
+INSERT INTO chat (user_id, list_id, content, time) VALUES ('aaa', '43', '채팅입니다', '14:30');
+INSERT INTO chat (user_id, list_id, content, time) VALUES ('aaa', '43', '채팅입니다', '14:30');
 
 
 -- user 테이블 데이터 조회
