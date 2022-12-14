@@ -481,7 +481,6 @@ exports.chat = async (req, res) => {
     });
     let result = await models.Mchat.findAll({
       where: {
-        user_id: user,
         list_id: req.body.groupId,
       },
     });
