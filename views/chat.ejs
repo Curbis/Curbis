@@ -12,142 +12,27 @@
 
   <!-- axios cdn   -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <style>
-    .chat-list {
-      background-color: skyblue;
-      width: 50%;
-      height: 500px;
-      padding: 10px;
-      overflow-y: auto;
-      word-break: break-all;
-    }
 
-    .chat-list p {
-      margin-top: 5px;
-      margin-bottom: 3px;
-    }
+  <!-- css -->
+  <link rel="stylesheet" href="/static/css/chat.css">
 
+  <!-- font CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  
 
-    ::-webkit-scrollbar {
-      display: none;
-    }
-
-
-    .chat-list div div div {
-
-      padding: 6px;
-      max-width: 80%;
-    }
-
-    .my-chat {
-      padding-left: 30%;
-      text-align: right;
-
-    }
-
-    .my-chat div div {
-      background-color: yellow;
-      display: inline-block;
-      border-radius: 3px 0px 3px 3px;
-      text-align: left;
-      /* margin-right: 11%; */
-      margin-top: 3%;
-    }
-
-    /* .my-chat .innerDiv {
-      background-color: aliceblue;
-    } */
-
-    .my-chat .innerDiv span {
-      display: inline;
-      margin-right: 13px;
-      padding-top: 40px;
-      font-size: 14px;
-    }
-
-    .other-chat .innerDiv span {
-      display: inline;
-      margin-left: 13px;
-      padding-top: 40px;
-      font-size: 14px;
-    }
-
-
-
-    .other-chat {
-      margin-top: 10px;
-    }
-
-    .other-chat div div {
-      background-color: white;
-      display: inline-block;
-      border-radius: 0px 3px 3px 3px;
-      margin-top: 3px;
-    }
-
-    .notice {
-      text-align: center;
-      color: navy;
-      font-size: 12px;
-      margin-top: 5px;
-    }
-
-    .d-none {
-      display: none;
-    }
-
-    img {
-      height: 60px;
-      width: 60px;
-      border-radius: 50% 50%;
-    }
-
-    #message {
-      /* margin-right: 3%; */
-      /* margin-left: 3%; */
-      width: 50.7%;
-      height: 10vh;
-      display: block;
-    }
-
-    .msgForm button {
-      width: 10%;
-    }
-
-    /* .chat-list p img{
-     position: relative;
-     top: 5vh;
-     margin-left: 1vw;
-    } */
-
-    .entire {
-      font-size: 15px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .chat-list {
-        width: 90%;
-        margin-right: 6%;
-        margin-left: 3%;
-      }
-
-      #message {
-        /* margin-right: 3%; */
-        margin-left: 3%;
-        width: 92%;
-        height: 20vh;
-      }
-    }
-  </style>
 </head>
 
 <body>
   <% if (isLogin) { %>
+
   <h1 class='hi' id=<%= userInfo.nickname %>>
     <%= groupNick %>
+
   </h1>
+
+  <a href="/"><button class="goMain">메인으로</button></a>
 
   <div class="entire" id=<%= groupId %>></div>
   <% } %>
@@ -196,8 +81,8 @@
         <div class="notice">xx가 입장했습니다.</div> -->
         </div>
         <form class="msgForm">
-          <input type="text" id="message" autofocus />
-          <button type="submit" onclick="chatDb()">전송</button>
+          <textarea type="text" id="message" autofocus ></textarea>
+          <button type="submit" onclick="chatDb()">✔</button>
         </form>
       </div>
 
@@ -449,6 +334,7 @@
           chatList.scrollTop = chatList.scrollHeight;
         })
       </script>
+      <script src="/static/js/chat.js"></script>
 </body>
 
 </html>
