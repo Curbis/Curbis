@@ -146,7 +146,7 @@
 <body>
   <% if (isLogin) { %>
   <h1 class='hi' id=<%= userInfo.nickname %>>
-    <%= userInfo.nickname %>
+    <%= groupNick %>
   </h1>
 
   <div class="entire" id=<%= groupId %>></div>
@@ -169,7 +169,7 @@
           <div class="divChat"><%= chatContent[i].content %></div>
           <% }else { %>
           <div class="other-chat">
-            <div class="nickDiv"><%= chatContent[i].user_id %></div>
+            <div class="nickDiv"><%= chatContent[i].user.nickname %></div>
             <div class="innerDiv">
               <div class="divChat"><%= chatContent[i].content %></div>
               <span class="timeDiv"><%= chatContent[i].time %></span>
@@ -208,6 +208,11 @@
         let dateinit;
 
         window.history.forward();
+        window.onload = function() {
+          let chatList = document.querySelector('#chat-list')
+
+          chatList.scrollTop = chatList.scrollHeight;
+        }
 
         function noBack() {
           window.history.forward();

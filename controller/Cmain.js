@@ -480,8 +480,18 @@ exports.chat = async (req, res) => {
       },
     });
     let result = await models.Mchat.findAll({
+      include: [
+        {
+          model: models.Muser,
+        },
+      ],
       where: {
         list_id: req.body.groupId,
+      },
+    });
+    let group = await models.Mlist.findOne({
+      where: {
+        id: req.body.groupId,
       },
     });
     res.render("chat", {
@@ -489,6 +499,7 @@ exports.chat = async (req, res) => {
       isLogin: true,
       chatContent: result,
       groupId: req.body.groupId,
+      groupNick: group.name,
     });
   } else {
     res.redirect("/");
