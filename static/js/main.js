@@ -20,6 +20,8 @@ let sessionId = document.querySelector(".hi").id;
 let hostImg = document.querySelector("#hostImg");
 let hostName = document.querySelector(".hostName");
 let userMember = [];
+
+// 스크롤 이동 
 scrollLeft.onclick = () => {
   cardArticle.scrollLeft -= 340;
 };
