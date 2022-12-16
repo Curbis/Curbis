@@ -87,7 +87,7 @@ io.on("connection", (socket) => {
   // [실습 44-3] 접속자 퇴장시
   // 'notice' 이벤트로 퇴장 공지
   socket.on("disconnect", () => {
-    if (nickArray == undefined) {
+    if (nickArray[socket.id] == undefined) {
       console.log("누가왔다감");
     } else {
       // 1. socket.id 콘솔로그 찍기

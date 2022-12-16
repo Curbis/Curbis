@@ -37,21 +37,24 @@
     </a>
     <div class="buttonBox">
       <% if (isLogin) { %>
-        <div class="my-info">
-          <img id='profile' src='<%= userInfo.picture %>'>
-          <div class="hi" id='<%= userInfo.userid %>'>
-            <%= userInfo.nickname %>님 안녕하세요
-          </div>
+      <div class="my-info">
+        <img id='profile' src='<%= userInfo.picture %>'>
+        <form name="form_info" action="/chat" method="POST">
+          <input type="hidden" name="groupId" />
+        </form>
+        <div class="hi" id='<%= userInfo.userid %>'>
+          <%= userInfo.nickname %>님 안녕하세요
         </div>
-        <div class="my-btn">
-          <button onclick="mypage()" class="profile-btn" id='<%= userInfo.nickname %>'>마이 페이지</button>
-          <button class="logout-btn" onclick="logout()">로그아웃</button>
-        </div>
-        <% } else {%>
-          <a href="/login" class="login-btn">로그인</a>
-          <div class="hi" id='id'>
-          </div>
-          <% } %>
+      </div>
+      <div class="my-btn">
+        <button onclick="mypage()" class="profile-btn" id='<%= userInfo.nickname %>'>마이 페이지</button>
+        <button class="logout-btn" onclick="logout()">로그아웃</button>
+      </div>
+      <% } else {%>
+      <a href="/login" class="login-btn">로그인</a>
+      <div class="hi" id='id'>
+      </div>
+      <% } %>
     </div>
     <form action="/serch" method="POST" class="serch-box">
       <div class="serch-div">
@@ -139,7 +142,7 @@
           <p class="hostName"></p>
         </div>
         <div class="chat-btn">
-          <button type="button" onclick="">채팅방 입장</button>
+          <button type="button" class="chat-in-btn" onclick="chatIn();">채팅방 입장</button>
         </div>
         <h2 class="group-name"></h2>
         <div class="group-intro group-div"></div>
@@ -157,12 +160,11 @@
           <div class="profile-user">
           </div>
         </div>
-        <div class="group-func-btn">
-          <button class="group-in-btn" onclick="groupIn();">모임 참여</button>
-          <button class="group-out-btn" onclick="groupOut();">모임 탈퇴</button>
-          <button class="chat-in-btn" onclick="chatIn();">채팅방 입장</button>
-          <button class="group-delete-btn" onclick="groupDelete();">모임 삭제</button>
-        </div>
+      </div>
+      <div class="group-func-btn">
+        <button class="group-in-btn" onclick="groupIn();">모임 참여</button>
+        <button class="group-out-btn" onclick="groupOut();">모임 탈퇴</button>
+        <button class="group-delete-btn" onclick="groupDelete();">모임 삭제</button>
       </div>
     </div>
   </div>

@@ -272,8 +272,20 @@ let socket = io.connect();
 function chatIn() {
   socket.emit("join", { group: Gin.id, nick: Pbtn.id });
 
-  let state = { group: Gin.id, nick: Pbtn.id };
-  let title = "chat";
-  document.location.href = "/chat";
-  history.pushState(state, title, "/chat");
+  let data = { group: Gin.id, nick: Pbtn.id };
+  // let title = "chat";
+  // document.location.href = "/chat";
+  // history.pushState(state, title, "/chat");
+  let form_info = document.forms["form_info"];
+  form_info.groupId.value = Gin.id;
+  // console.log();
+  form_info.submit();
+  // axios({
+  //   method: "POST",
+  //   url: "/chat",
+  //   data: {
+  //     groupId: Gin.id,
+  //     nickname: Pbtn.id,
+  //   },
+  // });
 }

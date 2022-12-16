@@ -470,24 +470,52 @@ exports.withdrawal = (req, res) => {
   }
 };
 
-exports.chat = (req, res) => {
+exports.chat = async (req, res) => {
   let user = req.session.user;
 
   if (user !== undefined) {
-    models.Muser.findOne({
+    let info = await models.Muser.findOne({
       where: {
         userid: user,
       },
-    }).then((result) => {
-      res.render("chat", { userInfo: result, isLogin: true });
+    });
+    let result = await models.Mchat.findAll({
+      include: [
+        {
+          model: models.Muser,
+        },
+      ],
+      where: {
+        list_id: req.body.groupId,
+      },
+    });
+    let group = await models.Mlist.findOne({
+      where: {
+        id: req.body.groupId,
+      },
+    });
+    res.render("chat", {
+      userInfo: info,
+      isLogin: true,
+      chatContent: result,
+      groupId: req.body.groupId,
+      groupNick: group.name,
     });
   } else {
     res.redirect("/");
   }
 };
-// };
-
-exports.sessionId = (req, res) => {
+exports.chatSave = (req, res) => {
   let user = req.session.user;
-  return (user = user);
+
+  if (user !== undefined) {
+    models.Mchat.create({
+      user_id: user,
+      list_id: req.body.list_id,
+      content: req.body.content,
+      time: req.body.time,
+    });
+  } else {
+    res.redirect("/");
+  }
 };
