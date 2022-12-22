@@ -19,14 +19,15 @@ body {
   flex-direction: column;
   -webkit-box-pack: center;
   justify-content: center;
-  width: 1020px;
+  width: 80vw;
   margin: 0px auto;
 }
 
-.card > .profiledata {
+.card .profiledata {
   display: flex;
   font-size: 1rem;
   justify-content: space-around;
+  margin: 3px 0;
 }
 
 .buttonBox {
@@ -46,10 +47,6 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
-}
-
-.card:hover {
-  bottom: 20px;
 }
 
 #profile {
@@ -74,7 +71,7 @@ body {
   height: 10px;
 }
 
-.categories > button {
+.categories>button {
   width: 100%;
   height: 47px;
   min-height: 25px;
@@ -96,6 +93,12 @@ body {
   scroll-behavior: smooth;
   top: 80px;
   height: 60vh;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card {
@@ -120,33 +123,32 @@ body {
   color: azure;
 }
 
-.card > * {
+.card>* {
   justify-content: space-around;
   margin: auto;
 }
-.card > img {
-  height: 200px;
+
+.card>img {
+  height: 50%;
   width: 100%;
   max-width: 300px;
-  min-width: 270px;
+  /* min-width: 270px; */
   object-fit: cover;
   position: relative;
   top: -20px;
+  margin: 0;
 }
 
 .membersImg {
-  align-items: baseline;
+  display: flex;
 }
 
 .profileImg {
-  width: 100%;
-  max-width: 50px;
-  min-width: 50px;
+  width: 5vw;
+  height: 5vw;
   background-color: rgba(250, 235, 215, 0.253);
   border-radius: 50%;
-  height: 50px;
   object-fit: cover;
-  /* z-index: 1; */
 }
 
 #addProfileImg {
@@ -185,13 +187,6 @@ body {
   cursor: pointer;
 }
 
-.prev:hover,
-.next:hover {
-  width: 55px;
-  height: 55px;
-  opacity: 0.8;
-}
-
 .controls button {
   width: 50px;
   height: 50px;
@@ -225,13 +220,6 @@ body {
   height: 30%;
 }
 
-.logout-btn:hover,
-.profile-btn:hover,
-.make-btn:hover,
-.mine-btn:hover {
-  opacity: 0.8;
-}
-
 .logo {
   width: 146px;
   position: absolute;
@@ -256,7 +244,7 @@ body {
 
 .serch-div {
   background-color: #ff632b;
-  width: 70%;
+  width: 65%;
   height: 70%;
   border-radius: 14px;
   display: flex;
@@ -265,7 +253,7 @@ body {
 
 .serch-input {
   height: 32px;
-  width: 609px;
+  width: 85%;
   border-radius: 3px;
   border: 0;
   margin: 0 10px;
@@ -313,16 +301,17 @@ body {
 }
 
 #modal .close-area {
-  display: inline;
   float: right;
   padding-right: 10px;
   cursor: pointer;
   text-shadow: 1px 1px 2px gray;
   color: white;
-  font-size: 18px;
+  font-size: 1.5rem;
   position: relative;
+  z-index: 2;
   align-items: flex-end;
-  z-index: 5;
+  font-weight: 700;
+  height: 0;
 }
 
 #modal .title {
@@ -336,6 +325,10 @@ body {
   display: inline;
 }
 
+#modal-header {
+  display: none;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -343,10 +336,10 @@ body {
   width: 100%;
   height: 90%;
   position: relative;
-  top: -38px;
+  /* top: -38px; */
 }
 
-.content > .group-div {
+.content>.group-div {
   width: 70%;
   margin: 5px 0;
   color: #ffffffe3;
@@ -362,22 +355,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 12%;
-}
-
-.hostCrown {
-  height: 35px;
-  width: 40px;
+  height: 10%;
   position: relative;
-  top: -35%;
-  background-color: #ff7c7c63;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.hostName {
-  position: relative;
-  top: -50%;
+  top: -7vh;
 }
 
 #hostImg {
@@ -385,8 +365,25 @@ body {
   height: 75px;
   border-radius: 50%;
   border: #f49d1aa6 4px solid;
+  object-fit: cover;
+  background-color: white;
+  /* position: relative;
+  top: -39px; */
+}
+
+.hostCrown {
+  height: 35px;
+  width: 40px;
+  background-color: #ff7c7c63;
+  border-radius: 50%;
+  z-index: 1;
   position: relative;
-  top: -50%;
+  top: 1vh;
+}
+
+.hostName {
+  position: relative;
+  top: 1vh;
 }
 
 .chat-btn {
@@ -397,7 +394,7 @@ body {
   width: 15%;
 }
 
-.chat-btn > button {
+.chat-btn>button {
   background-color: #FFC75F;
   padding: 3px;
   border-radius: 5px;
@@ -412,28 +409,28 @@ body {
   object-fit: cover;
 }
 
-.group-notice > div > img {
+.group-notice>div>img {
   width: 128px;
   height: 42px;
   font-size: 16px;
   border: none;
 }
 
-.profils > div {
+.profils>div {
   width: 55%;
   justify-content: space-around;
   display: flex;
   /* height: 110px; */
 }
 
-.group-notice > img {
+.group-notice>img {
   height: 23px;
   position: relative;
   top: 8px;
   left: 11px;
 }
 
-.group-notice > div > div {
+.group-notice>div>div {
   margin: -7px;
   position: relative;
   top: -27px;
@@ -446,24 +443,15 @@ body {
   justify-content: center;
   background-color: transparent !important;
   border: 0 !important;
-  height: 10%;
+  height: 13%;
 }
+
 .userProfileImg {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin: 4px;
   justify-content: center;
-}
-
-#hostImg {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  border: #f49d1aa6 4px solid;
-  position: relative;
-  top: -39px;
-  object-fit: cover;
 }
 
 .after-check {
@@ -493,18 +481,10 @@ body {
   border: 0;
 }
 
-.make-btn:hover {
-  opacity: 0.8;
-  bottom: 10px;
-}
-
-.mine-btn:hover {
-  opacity: 0.8;
-  bottom: 10px;
-}
-
 .profileId {
   text-align: center;
+  width: 10vw;
+  font-size: 13px;
 }
 
 .group-address {
@@ -573,10 +553,154 @@ body {
   flex-direction: column;
 }
 
-.profileId {
-  font-size: 13px;
-}
-
 .group-intro {
   text-align: center;
+}
+
+@media (max-width: 786px) {
+  * {
+    font-size: 0.85rem;
+  }
+
+  .make-btn, .mine-btn {
+    font-size: 0.85rem;
+    width: 20vw;
+  }
+
+  .container {
+    margin: 0;
+    width: 100vw;
+  }
+
+  .logo {
+    width: 20vw;
+  }
+
+  .cardArticle {
+    flex-direction: column;
+  }
+
+  .card {
+    flex-direction: row;
+    height: 15vh;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .cards {
+    width: 100vw;
+  }
+
+  .card .card-bg-pic {
+    width: 30vw;
+    height: 100%;
+    top: 0;
+  }
+
+  .card-content {
+    align-items: flex-start;
+    margin-left: 10px;
+  }
+
+  .controls {
+    display: none;
+  }
+
+  #modal .modal-window {
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh
+  }
+
+  .group-notice {
+    height: 40%;
+  }
+
+  #modal .close-area {
+    display: none;
+  }
+
+  #modal-header {
+    display: block;
+    position: sticky;
+    top: 0;
+    height: 6vh;
+    background-color: rgb(26, 31, 39);
+    z-index: 1;
+  }
+
+  #modal-header a {
+    width: 10vw;
+    font-size: 2rem;
+    margin-left: 5%;
+    margin-top: 3%;
+    text-decoration: none;
+  }
+
+  #modal.modal-overlay {
+    border: 0;
+  }
+  
+  .group-pic {
+    border-radius: 0;
+  }
+
+  .serch-div {
+    width: 90vw;
+  }
+
+  .card-content h3 {
+    font-size: 1rem;
+  }
+
+  .card .profiledata {
+    margin: 0;
+  }
+
+  .profiledata div {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  .card-content .hour,
+  .card-content .headcount {
+    display: none;
+  }
+
+  .profileImg {
+    width: 7vw;
+    height: 7vw;
+  }
+
+  .group-btn {
+    height: 5vh;
+  }
+
+}
+
+/* hover 효과 미디어 쿼리로 적용 > 모바일에서는 적용되지 않음 */
+@media (hover: hover) {
+
+  .logout-btn:hover,
+  .profile-btn:hover,
+  .make-btn:hover,
+  .mine-btn:hover {
+    opacity: 0.8;
+  }
+
+  .prev:hover,
+  .next:hover {
+    width: 55px;
+    height: 55px;
+    opacity: 0.8;
+  }
+
+  .card:hover {
+    bottom: 20px;
+  }
+
+  .group-func-btn button:hover {
+    opacity: 0.8;
+  }
 }
