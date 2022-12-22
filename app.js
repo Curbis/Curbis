@@ -47,36 +47,23 @@ io.on("connection", (socket) => {
   // io.emit('notice', `${socket.id.slice(0, 5)}님이 입장하셨습니다.`);
 
   // [실습44-2] 채팅창 입장 안내 문구 socket.id -> nickname
-  socket.on("join", (roomName) => {
-    // console.log("제발되주세요", controller.sessionId());
+  // socket.on("join", (roomName) => {
+  //   // console.log("제발되주세요", controller.sessionId());
 
-    // 프론트에서 입력한 닉네임 값
-    console.log("닉네임", roomName.nick);
-    // console.log('그룹',roomName.group);
-    room = roomName.group;
-    console.log("그룹", room);
-    socket.join(room);
-    console.log(room);
-    // nickArray: { socketId1: nick1, socketId2: nick2, ... }
-    // -> { nick1, nick2, nick2, ... }
-    // -> nick 이 존재하는지
+  //   // 프론트에서 입력한 닉네임 값
+  //   console.log("닉네임", roomName.nick);
+  //   // console.log('그룹',roomName.group);
+  //   room = roomName.group;
+  //   console.log("그룹", room);
+  //   socket.join(room);
+  //   console.log(room);
 
-    // if ( Object.values(nickArray).indexOf(nick) > -1 ) {
-    //   // 닉네임 중복이 있다면
-
-    //   socket.emit("error", '닉네임이 중복되었습니다')
-    // } else {
-    // 닉네임 중복이 없다면
-    // nickArray = controller.sessionId(); // { socket.id: nick }
-
-    // nickArray = roomName.nick; // { socket.id: nick }
-
-    // }
-  });
+  // });
 
   socket.on("id", (nick) => {
-    socket.join(room);
     nickArray[socket.id] = nick.nick;
+    room = nick.group;
+    socket.join(room);
     // console.log("접속 유저 목록 >> ", nickArray);
     // io.to(room).emit("notice", `${roomName.nick}님이 입장하였습니다`);
     // console.log("살려주세요", nick.nick);

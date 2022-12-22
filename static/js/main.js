@@ -268,11 +268,11 @@ function logout() {
     }
   });
 }
-let socket = io.connect();
+// let socket = io.connect();
 function chatIn() {
-  socket.emit("join", { group: Gin.id, nick: Pbtn.id });
+  // socket.emit("join", { group: Gin.id, nick: Pbtn.id });
 
-  let data = { group: Gin.id, nick: Pbtn.id };
+  // let data = { group: Gin.id, nick: Pbtn.id };
   // let title = "chat";
   // document.location.href = "/chat";
   // history.pushState(state, title, "/chat");
