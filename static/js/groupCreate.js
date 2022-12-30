@@ -38,15 +38,7 @@ function gothird() {
 }
 
 function ThirdStep() {
-  First.style.display = "none";
-  Second.style.display = "none";
-  Third.style.display = "block";
-  stop1.style.color = "#ccc";
-  stop2.style.color = "#ccc";
-  stop3.style.color = "#ff9671";
-
   const form = document.forms["groupCreat"];
-
   if (
     form.text.value == "" ||
     form.moreText.value == "" ||
@@ -65,6 +57,13 @@ function ThirdStep() {
   if (form.headcount.value > 6 || form.headcount.value < 3) {
     return swal("인원수는 3 - 6 명으로 설정해주세요");
   }
+
+  First.style.display = "none";
+  Second.style.display = "none";
+  Third.style.display = "block";
+  stop1.style.color = "#ccc";
+  stop2.style.color = "#ccc";
+  stop3.style.color = "#ff9671";
 
   axios({
     method: "POST",
