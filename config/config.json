@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "user",
-    "password": "1234",
+    "username": "admin",
+    "password": "tkfkdgo1",
     "database": "curbis",
-    "host": "127.0.0.1",
+    "host": "curbis-database.cfgkklvcklh9.ap-northeast-2.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {},
