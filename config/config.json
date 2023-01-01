@@ -6,13 +6,12 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "test": {
-  },
+  "test": {},
   "production": {
-    "username": "user",
-    "password": "1234",
+    "username": "admin",
+    "password": "tkfkdgo1",
     "database": "curbis",
-    "host": "118.67.142.249",
+    "host": "curbis-database.cfgkklvcklh9.ap-northeast-2.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
