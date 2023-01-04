@@ -3,7 +3,6 @@ body {
   color: white;
   font-family: "Noto Sans KR", sans-serif;
 }
-
 form {
   margin: 0 auto;
   width: 650px;
@@ -143,4 +142,39 @@ form input::file-selector-button {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+@media (max-width: 786px) {
+  form {
+    margin: 0;
+    width: 90vw;
+  }
+
+  .form-div {
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  .register-form .form-div {
+    margin: 0;
+  }
+  .register-form .form-item {
+    margin-bottom: 10px;
+  }
+
+  .register-form .check-btn {
+    margin-left: auto;
+  }
+  #disBtn {
+    margin-left: 0;
+  }
+
+  #preview {
+    background-size: 170px;
+    width: 160px;
+    height: 160px;
+  }
+  .register-form input {
+    width: 83vw;
+    margin: 0;
+  }
 }
