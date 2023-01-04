@@ -98,7 +98,10 @@ io.on("connection", (socket) => {
       // io.to(room).emit("notice", `${nickArray[socket.id]}님이 퇴장하셨습니다`);
       delete nickArray[socket.id];
       delete entireRoom[socket.id];
-      // io.to(room).emit("entire", nickArray[socket.id]);
+      let dog = Object.values(entireRoom);
+      let cat = dog.filter((v) => v === room);
+      let visitorNum = cat.length;
+      io.to(room).emit("entire", visitorNum);
       socket.leave(room);
     }
   });
