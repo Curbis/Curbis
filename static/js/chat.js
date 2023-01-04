@@ -217,6 +217,7 @@ socket.on("newMessage", (data) => {
   chatList.appendChild(div);
 
   chatList.scrollTop = chatList.scrollHeight;
+  document.getElementById("message").focus();
 });
 
 window.onresize = function (event) {

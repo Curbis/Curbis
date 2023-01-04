@@ -199,4 +199,8 @@ button:hover {
     left: 5vw;
     position: fixed;
   }
+
+  .msgForm button {
+    width: 20vw;
+  }
 }
