@@ -17,7 +17,7 @@ body {
 }
 
 .goMain {
-  height: 4vh;
+  height: 40px;
   width: 100px;
   background-color: #ff4f11e6;
   border-radius: 7px;
@@ -179,5 +179,24 @@ button:hover {
     margin: 20px 0 20px 70vw;
     color: wheat;
     text-align: center;
+  }
+  .chat-box {
+    width: 95vw;
+    margin: 0 auto;
+  }
+
+  #chat-list {
+    margin-top: 20px;
+  }
+  .goMain {
+    height: 30px;
+    width: 80px;
+    background-color: #ff4f11e6;
+    border-radius: 7px;
+    color: aliceblue;
+    border: none;
+    font-size: 15px;
+    left: 5vw;
+    position: fixed;
   }
 }
