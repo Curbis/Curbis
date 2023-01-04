@@ -31,7 +31,7 @@ app.get("*", (req, res) => {
   res.render("404");
 });
 const nickArray = {};
-
+const entireRoom = {};
 let room;
 
 // io.on()
@@ -61,14 +61,25 @@ io.on("connection", (socket) => {
   // });
 
   socket.on("id", (nick) => {
-    nickArray[socket.id] = nick.nick;
     room = nick.group;
+    nickArray[socket.id] = nick.nick;
+    entireRoom[socket.id] = room;
+
+    // entireRoom[room] = ["바보"];
+
+    console.log(nickArray);
+    console.log(Object.values(entireRoom));
+    // let enKey = Object.keys(entireRoom).find((key) => entireRoom[key] === room);
+    let cat = Object.values(entireRoom).filter((v) => v === room);
+    console.log("cat", cat.length);
+    let visitorNum = cat.length;
     socket.join(room);
+
     // console.log("접속 유저 목록 >> ", nickArray);
     // io.to(room).emit("notice", `${roomName.nick}님이 입장하였습니다`);
     // console.log("살려주세요", nick.nick);
     // socket.emit("entrySuccess");
-    io.to(room).emit("entire", nickArray);
+    io.to(room).emit("entire", visitorNum);
   });
 
   // [실습 44-3] 접속자 퇴장시
@@ -85,6 +96,7 @@ io.on("connection", (socket) => {
 
       // io.to(room).emit("notice", `${nickArray[socket.id]}님이 퇴장하셨습니다`);
       delete nickArray[socket.id];
+      delete entireRoom[socket.id];
       // io.to(room).emit("entire", nickArray[socket.id]);
       socket.leave(room);
     }

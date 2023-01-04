@@ -88,9 +88,9 @@ document.querySelector(".msgForm").addEventListener("submit", function send(e) {
 
 socket.on("entire", (data) => {
   let parentH = document.querySelector("h1");
-  console.log(Object.keys(data).length);
+
   entire = document.querySelector(".entire");
-  entire.textContent = `접속자 : ${Object.keys(data).length}명`;
+  entire.textContent = `접속자 : ${data}명`;
   console.log(Object.values(data)[0]);
 });
 
