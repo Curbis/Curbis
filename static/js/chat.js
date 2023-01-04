@@ -218,3 +218,9 @@ socket.on("newMessage", (data) => {
 
   chatList.scrollTop = chatList.scrollHeight;
 });
+
+window.onresize = function (event) {
+  let chatList = document.querySelector("#chat-list");
+
+  chatList.scrollTop = chatList.scrollHeight;
+};
