@@ -579,6 +579,7 @@ body {
   .make-btn, .mine-btn {
     font-size: 0.85rem;
     width: 20vw;
+    height: 23px;
   }
 
   .serch-btn i {
@@ -587,6 +588,19 @@ body {
 
   .group-name {
     font-size: 1.3rem;
+    margin: 10px 0;
+  }
+  .group-intro {
+    height: 20px;
+  }
+  .content {
+    height: 90%;
+  }
+  .group-host {
+    height: 60px;
+  }
+  .group-address{
+    width: 70%;
   }
 
   .container {
@@ -605,7 +619,7 @@ body {
 
   .card {
     flex-direction: row;
-    height: 80px;
+    height: 100px;
     width: 100%;
     margin: 0;
     border-radius: 0;
@@ -617,7 +631,7 @@ body {
   }
 
   .card .card-bg-pic {
-    width: 30vw;
+    width: 40vw;
     height: 100%;
     top: 0;
   }
@@ -645,7 +659,7 @@ body {
     display: block;
     position: sticky;
     top: 0;
-    height: 6vh;
+    height: 40px;
     background-color: rgb(26, 31, 39);
     z-index: 1;
   }
@@ -663,13 +677,17 @@ body {
   }
 
   #hostImg {
-    width: 10vw;
-    height: 10vw;
+    width: 50px;
+    height: 50px;
   }
 
   .hostCrown {
     width: 6vw;
     height: 6vw;
+    top: 9px;
+  }
+  .hostName {
+    top: 4px;
   }
   
   .group-pic {
@@ -678,6 +696,29 @@ body {
 
   .serch-div {
     width: 90vw;
+    height: 45px;
+  }
+  .buttonBox {
+    height: 75px;
+  }
+  .serch-box {
+    height: 50px;
+    margin: 10px 0;
+  }
+  .cardArticle {
+    height: auto;
+  }
+  .serch-input {
+    width: 77%;
+  }
+  .group-pic {
+    height: 136px;
+  }
+  .group-host{
+    top: -35px;
+  }
+  .chat-btn {
+    top: -45px;
   }
 
   .card-content h3 {
@@ -708,7 +749,7 @@ body {
   }
 
   .group-btn {
-    height: 5vh;
+    height: 20px
   }
 
 }
@@ -730,9 +771,9 @@ body {
     opacity: 0.8;
   }
 
-  .card:hover {
+  /* .card:hover {
     bottom: 20px;
-  }
+  } */
 
   .group-func-btn button:hover {
     opacity: 0.8;
