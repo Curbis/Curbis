@@ -69,8 +69,9 @@ io.on("connection", (socket) => {
 
     console.log(nickArray);
     console.log(Object.values(entireRoom));
+    let dog = Object.values(entireRoom);
     // let enKey = Object.keys(entireRoom).find((key) => entireRoom[key] === room);
-    let cat = Object.values(entireRoom).filter((v) => v === room);
+    let cat = dog.filter((v) => v === room);
     console.log("cat", cat.length);
     let visitorNum = cat.length;
     socket.join(room);
