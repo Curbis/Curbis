@@ -83,7 +83,7 @@ io.on("connection", (socket) => {
       // 3. nickArray에서 해당 유저 삭제
       console.log(nickArray[socket.id]);
 
-      io.to(room).emit("notice", `${nickArray[socket.id]}님이 퇴장하셨습니다`);
+      // io.to(room).emit("notice", `${nickArray[socket.id]}님이 퇴장하셨습니다`);
       delete nickArray[socket.id];
       // io.to(room).emit("entire", nickArray[socket.id]);
       socket.leave(room);
