@@ -6,16 +6,14 @@ const router = express.Router();
 // multer 설정
 const multer = require("multer");
 const path = require("path");
-const upload = multer({
-  dest: "uploads/",
-});
-
 const uploadDetail = multer({
   storage: multer.diskStorage({
     destination(req, file, done) {
       done(null, "uploads/"); // 경로설정
     },
     filename(req, file, done) {
+      // 한글 파일 업로드시 문자 인코딩 문제 해결
+      file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8');
       const ext = path.extname(file.originalname); // file.originalname에서 "확장자" 추출
       done(null, path.basename(file.originalname, ext) + Date.now() + ext); // peach + 123123123123 + .jpg
     },
