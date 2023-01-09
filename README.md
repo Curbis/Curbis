@@ -1,6 +1,6 @@
 <h1>Curbis 소개</h1>
 
-* [Curbis 바로가기](http://118.67.142.249:8090/)
+* [Curbis 바로가기](http://13.125.72.31:8090/)
 
 * [Curbis 프로젝트 소개](https://drive.google.com/file/d/1VuvYmdBn9uKe1VZaNbfQYmvE79gieDXo/view?usp=sharing)
 
@@ -17,16 +17,16 @@
 </p>
 
 <h2>사용 방법</h2>
-<p>1. 메인 페이지 : 모든 모임을 한 눈에 보고 검색할 수 있어요</p>
-<img src="https://user-images.githubusercontent.com/102302705/204457161-51658551-31cb-4a13-9dd0-eef7030c0fea.png">
-<p>2. 회원가입 페이지 : 프로필 사진, 아이디, 비밀번호, 주소를 등록할 수 있어요</p>
-<img src="https://user-images.githubusercontent.com/115196609/204453079-4577ceb1-8d7e-4039-a6e4-d6ba90594c9f.png">
-<p>3. 로그인 페이지 : 가입한 정보로 로그인할 수 있어요</p>
-<img src="https://user-images.githubusercontent.com/115196609/204453082-26b9a3b6-2dfa-45cf-8a8a-ce8ff98a309c.png">
-<p>4. 모임 만들기 페이지 : 모임을 만들고 등록할 수 있어요</p>
-<img src="https://user-images.githubusercontent.com/115196609/204453320-16b35c0a-0659-4366-96a4-e0e5557c94d8.png">
-<p>5. 마이 페이지 : 가입한 정보를 수정할 수 있어요</p>
-<img src="https://user-images.githubusercontent.com/115196609/204453090-38808a78-26b6-4754-84e9-d66b95381419.png">
+<p>1. 로그인/로그아웃 : 가입한 정보로 로그인할 수 있어요</p>
+<img src="https://user-images.githubusercontent.com/102302705/211246630-cafbc279-73b9-45fc-94e3-10a408ee3a1b.gif">
+<p>2. 회원가입 : 프로필 이미지, 아이디, 비밀번호, 주소를 등록할 수 있어요</p>
+<img src="https://user-images.githubusercontent.com/102302705/211245690-155aaebb-ed8d-4027-b15b-6f79d92e9e4b.gif">
+<p>3. 모임 만들기 : 모임을 만들고 등록할 수 있어요</p>
+<img src="https://user-images.githubusercontent.com/102302705/211245654-38cd5f8b-3495-4e56-83fa-94c3dd6242cb.gif">
+<p>4. 마이 페이지 : 개인 정보를 수정할 수 있어요</p>
+<img src="https://user-images.githubusercontent.com/102302705/211245647-a37c6f3a-57ff-4e6f-a1de-6f674c8b55cc.gif">
+<p>5. 채팅 기능 : 모임에 참여한 사람끼리 채팅에 참여할 수 있어요</p>
+<img src="https://user-images.githubusercontent.com/102302705/211246503-39f6390d-1a35-43e0-88f5-5e40f9bc37bf.gif">
 
 <h2>설치 방법</h2>
 
